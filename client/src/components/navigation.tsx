@@ -22,29 +22,31 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-100">
+    <nav className="bg-gradient-to-r from-brand-blue via-brand-purple to-brand-mint shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0">
             <Link href="/" data-testid="logo-link">
-              <h1 className="text-xl font-bold text-brand-slate">Sarah Chen</h1>
-              <p className="text-xs text-slate-500 -mt-1">Instructional Designer</p>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20">
+                <h1 className="text-2xl font-bold text-white tracking-tight">Sarah Chen</h1>
+                <p className="text-sm text-white/80 -mt-1 font-medium">Instructional Designer</p>
+              </div>
             </Link>
           </div>
           
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="ml-10 flex items-center space-x-8">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
                   data-testid={`nav-${item.name.toLowerCase()}`}
                   className={cn(
-                    "font-medium hover:text-brand-purple transition-colors duration-200",
+                    "relative px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-white/10 hover:backdrop-blur-sm",
                     isActive(item.href)
-                      ? "text-brand-blue"
-                      : "text-slate-600"
+                      ? "text-white bg-white/20 shadow-lg border border-white/30"
+                      : "text-white/90 hover:text-white"
                   )}
                 >
                   {item.name}
@@ -60,11 +62,12 @@ export default function Navigation() {
               size="sm"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               data-testid="mobile-menu-toggle"
+              className="text-white hover:bg-white/10 hover:text-white"
             >
               {isMobileMenuOpen ? (
-                <X className="h-5 w-5" />
+                <X className="h-6 w-6" />
               ) : (
-                <Menu className="h-5 w-5" />
+                <Menu className="h-6 w-6" />
               )}
             </Button>
           </div>
@@ -73,18 +76,18 @@ export default function Navigation() {
       
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-slate-100">
-          <div className="px-6 py-4 space-y-3">
+        <div className="md:hidden bg-white/95 backdrop-blur-sm border-t border-white/20">
+          <div className="px-6 py-4 space-y-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 data-testid={`mobile-nav-${item.name.toLowerCase()}`}
                 className={cn(
-                  "block transition-colors",
+                  "block px-4 py-3 rounded-lg font-medium transition-all duration-200",
                   isActive(item.href)
-                    ? "text-brand-blue font-medium"
-                    : "text-slate-600 hover:text-brand-blue"
+                    ? "text-brand-blue bg-brand-blue/10 border-l-4 border-brand-blue"
+                    : "text-slate-700 hover:text-brand-blue hover:bg-slate-50"
                 )}
                 onClick={() => setIsMobileMenuOpen(false)}
               >

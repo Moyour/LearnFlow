@@ -138,8 +138,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Enhanced Navigation */}
-        <nav className="absolute top-8 left-8 right-8 z-20">
+        {/* Enhanced Navigation - Fixed Position */}
+        <nav className="fixed top-8 left-8 right-8 z-20">
           <div 
             className="flex justify-between items-center backdrop-blur-sm bg-white/5 rounded-2xl px-6 py-4 border border-white/10"
             style={{

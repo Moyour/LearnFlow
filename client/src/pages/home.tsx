@@ -73,11 +73,11 @@ export default function Home() {
         {/* Enhanced Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400"></div>
         
-        {/* Profile Image - Centered and Clean */}
+        {/* Profile Image - Right Side and Big */}
         <div 
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute right-0 top-0 h-full w-1/2 flex items-center justify-center"
           style={{ 
-            transform: isLoaded ? 'scale(1)' : 'scale(0.9)', 
+            transform: isLoaded ? 'translateX(0) scale(1)' : 'translateX(50px) scale(0.9)', 
             opacity: isLoaded ? 1 : 0,
             transition: 'all 1.5s ease-out 0.5s'
           }}
@@ -85,7 +85,7 @@ export default function Home() {
           <img
             src={aboutMeImage}
             alt="Kazeem Salau"
-            className="max-w-lg max-h-screen object-contain"
+            className="w-full h-5/6 object-contain"
             style={{
               filter: 'contrast(1.1) brightness(1.0)'
             }}

@@ -72,6 +72,21 @@ export default function Home() {
       <section className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-black"></div>
         
+        {/* Name Background Text */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div 
+            className="text-[12vw] lg:text-[8vw] font-black text-white/8 select-none pointer-events-none leading-none tracking-wider whitespace-nowrap"
+            style={{
+              transform: isLoaded ? 'translateY(0px)' : 'translateY(20px)',
+              opacity: isLoaded ? 1 : 0,
+              transition: 'all 2s ease-out 0.5s',
+              animation: 'float 15s ease-in-out infinite'
+            }}
+          >
+            KAZEEM SALAU
+          </div>
+        </div>
+        
         {/* Full Screen Image */}
         <div 
           className="absolute inset-0"

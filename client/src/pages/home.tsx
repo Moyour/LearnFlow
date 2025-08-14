@@ -68,6 +68,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      {/* Full Black Screen Section */}
+      <section className="relative min-h-screen bg-black flex items-center justify-center">
+        <div className="absolute inset-0 bg-black"></div>
+      </section>
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         <div className="absolute inset-0 bg-black"></div>

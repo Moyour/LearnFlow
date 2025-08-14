@@ -75,14 +75,15 @@ export default function Home() {
         {/* Animated Text Background */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div 
-            className="text-[20vw] lg:text-[15vw] font-black text-white/5 select-none pointer-events-none leading-none"
+            className="text-[25vw] lg:text-[20vw] font-black text-white/8 select-none pointer-events-none leading-none tracking-wider"
             style={{
-              transform: isLoaded ? 'translateX(-50px)' : 'translateX(0px)',
-              transition: 'transform 20s linear infinite',
-              animation: 'float 20s ease-in-out infinite'
+              transform: isLoaded ? 'translateY(0px)' : 'translateY(20px)',
+              opacity: isLoaded ? 1 : 0,
+              transition: 'all 2s ease-out 0.5s',
+              animation: 'float 15s ease-in-out infinite'
             }}
           >
-            LEARNING DESIGN LEARNING DESIGN
+            KAZEEM SALAU
           </div>
         </div>
         

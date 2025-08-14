@@ -36,14 +36,14 @@ export default function Blog() {
   });
 
   return (
-    <div className="py-20">
+    <div className="py-20 bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400 min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-50 to-blue-50 py-20">
+      <section className="py-20 relative">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold text-brand-slate mb-6">
+          <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6 drop-shadow-lg">
             Blog & Insights
           </h1>
-          <p className="text-xl text-slate-600 leading-relaxed">
+          <p className="text-xl text-white/90 leading-relaxed">
             Thoughts on instructional design trends, learning technology, and creating effective educational experiences
           </p>
         </div>
@@ -56,13 +56,13 @@ export default function Blog() {
           {/* Search and Filter Controls */}
           <div className="mb-12 space-y-6">
             <div className="relative max-w-md mx-auto">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/60 h-5 w-5" />
               <Input
                 type="text"
                 placeholder="Search articles..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
+                className="pl-10 bg-white/10 backdrop-blur-md border-white/20 text-white placeholder:text-white/60"
                 data-testid="blog-search"
               />
             </div>
@@ -76,8 +76,8 @@ export default function Blog() {
                   onClick={() => setActiveCategory(category)}
                   className={
                     activeCategory === category
-                      ? "bg-brand-blue hover:bg-blue-600 text-white"
-                      : "bg-slate-200 text-slate-700 hover:bg-slate-300"
+                      ? "bg-white text-indigo-900 hover:bg-white/90"
+                      : "bg-white/20 text-white border-white/30 hover:bg-white/30"
                   }
                   data-testid={`category-${category.toLowerCase()}`}
                 >
@@ -101,7 +101,7 @@ export default function Blog() {
             </div>
           ) : filteredPosts.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-lg text-slate-600">No articles found matching your criteria.</p>
+              <p className="text-lg text-white/80">No articles found matching your criteria.</p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -114,7 +114,7 @@ export default function Blog() {
           {/* Results Count */}
           {!isLoading && (
             <div className="text-center mt-12">
-              <p className="text-slate-600">
+              <p className="text-white/70">
                 Showing {filteredPosts.length} of {blogPosts.length} articles
               </p>
             </div>

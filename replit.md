@@ -5,6 +5,8 @@ This is a modern full-stack web application for an instructional designer's port
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
+Design aesthetic: Bold, modern gradient design inspired by sanimani.com with dramatic visual impact.
+Color palette: Indigo-purple-pink-amber gradient background with white text and glassmorphism effects.
 
 # System Architecture
 
@@ -13,6 +15,8 @@ Preferred communication style: Simple, everyday language.
 - **Routing**: Wouter for client-side routing with pages for Home, About, Portfolio, Blog, and Contact
 - **State Management**: TanStack Query (React Query) for server state management and API caching
 - **UI Framework**: shadcn/ui components built on Radix UI primitives with Tailwind CSS for styling
+- **Design System**: Modern gradient-based design with indigo-purple-pink-amber color palette
+- **Visual Effects**: Glassmorphism navigation, backdrop blur effects, and dramatic typography
 - **Forms**: React Hook Form with Zod validation for type-safe form handling
 - **TypeScript**: Full TypeScript support with path aliases for clean imports
 

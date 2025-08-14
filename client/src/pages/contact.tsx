@@ -59,14 +59,14 @@ export default function Contact() {
   };
 
   return (
-    <div className="py-20">
+    <div className="py-20 bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400 min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-50 to-blue-50 py-20">
+      <section className="py-20 relative">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold text-brand-slate mb-6">
+          <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6 drop-shadow-lg">
             Let's Create Something Amazing
           </h1>
-          <p className="text-xl text-slate-600 leading-relaxed">
+          <p className="text-xl text-white/90 leading-relaxed">
             Ready to transform your training programs? Let's discuss how we can create engaging learning experiences that drive real results.
           </p>
         </div>
@@ -80,35 +80,35 @@ export default function Contact() {
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold text-brand-slate mb-6">Get In Touch</h3>
+                <h3 className="text-2xl font-bold text-white mb-6 drop-shadow-lg">Get In Touch</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Mail className="h-6 w-6 text-brand-blue" />
+                    <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Mail className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <p className="font-semibold text-brand-slate">Email</p>
-                      <p className="text-slate-600" data-testid="contact-email">kazeem.salau@example.com</p>
+                      <p className="font-semibold text-white">Email</p>
+                      <p className="text-white/80" data-testid="contact-email">kazeem.salau@example.com</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Linkedin className="h-6 w-6 text-brand-purple" />
+                    <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Linkedin className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <p className="font-semibold text-brand-slate">LinkedIn</p>
-                      <p className="text-slate-600" data-testid="contact-linkedin">linkedin.com/in/kazeemsalau-id</p>
+                      <p className="font-semibold text-white">LinkedIn</p>
+                      <p className="text-white/80" data-testid="contact-linkedin">linkedin.com/in/kazeemsalau-id</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <MapPin className="h-6 w-6 text-green-600" />
+                    <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <p className="font-semibold text-brand-slate">Location</p>
-                      <p className="text-slate-600" data-testid="contact-location">San Francisco Bay Area</p>
+                      <p className="font-semibold text-white">Location</p>
+                      <p className="text-white/80" data-testid="contact-location">San Francisco Bay Area</p>
                     </div>
                   </div>
                 </div>
@@ -116,11 +116,11 @@ export default function Contact() {
               
               {/* Quick Links */}
               <div>
-                <h4 className="text-lg font-semibold text-brand-slate mb-4">Quick Links</h4>
+                <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
                 <div className="flex flex-wrap gap-4">
                   <Button 
                     variant="outline"
-                    className="border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white"
+                    className="border-white/40 text-white hover:bg-white hover:text-indigo-900"
                     data-testid="download-resume"
                   >
                     <Download className="mr-2 h-4 w-4" />
@@ -128,7 +128,7 @@ export default function Contact() {
                   </Button>
                   <Button 
                     variant="outline"
-                    className="border-brand-purple text-brand-purple hover:bg-brand-purple hover:text-white"
+                    className="border-white/40 text-white hover:bg-white hover:text-indigo-900"
                     data-testid="schedule-call"
                   >
                     <Calendar className="mr-2 h-4 w-4" />
@@ -139,7 +139,7 @@ export default function Contact() {
             </div>
             
             {/* Contact Form */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-lg border border-white/20">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid grid-cols-2 gap-4">
@@ -148,11 +148,12 @@ export default function Contact() {
                       name="firstName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>First Name</FormLabel>
+                          <FormLabel className="text-white">First Name</FormLabel>
                           <FormControl>
                             <Input 
                               placeholder="Your first name" 
                               {...field}
+                              className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
                               data-testid="input-firstName"
                             />
                           </FormControl>
@@ -165,11 +166,12 @@ export default function Contact() {
                       name="lastName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Last Name</FormLabel>
+                          <FormLabel className="text-white">Last Name</FormLabel>
                           <FormControl>
                             <Input 
                               placeholder="Your last name" 
                               {...field}
+                              className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
                               data-testid="input-lastName"
                             />
                           </FormControl>
@@ -184,12 +186,13 @@ export default function Contact() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel className="text-white">Email</FormLabel>
                         <FormControl>
                           <Input 
                             type="email"
                             placeholder="your.email@company.com" 
                             {...field}
+                            className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
                             data-testid="input-email"
                           />
                         </FormControl>
@@ -203,12 +206,13 @@ export default function Contact() {
                     name="company"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Company</FormLabel>
+                        <FormLabel className="text-white">Company</FormLabel>
                         <FormControl>
                           <Input 
                             placeholder="Your company name" 
                             {...field}
                             value={field.value || ""}
+                            className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
                             data-testid="input-company"
                           />
                         </FormControl>
@@ -222,14 +226,14 @@ export default function Contact() {
                     name="projectType"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Project Type</FormLabel>
+                        <FormLabel className="text-white">Project Type</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value || undefined}>
                           <FormControl>
-                            <SelectTrigger data-testid="select-projectType">
-                              <SelectValue placeholder="Select project type" />
+                            <SelectTrigger className="bg-white/20 border-white/30 text-white" data-testid="select-projectType">
+                              <SelectValue placeholder="Select project type" className="text-white/60" />
                             </SelectTrigger>
                           </FormControl>
-                          <SelectContent>
+                          <SelectContent className="bg-white/95 backdrop-blur-md">
                             {projectTypes.map((type) => (
                               <SelectItem key={type} value={type}>
                                 {type}
@@ -247,12 +251,12 @@ export default function Contact() {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Message</FormLabel>
+                        <FormLabel className="text-white">Message</FormLabel>
                         <FormControl>
                           <Textarea 
                             rows={5}
                             placeholder="Tell me about your project..."
-                            className="resize-none"
+                            className="resize-none bg-white/20 border-white/30 text-white placeholder:text-white/60"
                             {...field}
                             data-testid="textarea-message"
                           />
@@ -264,7 +268,7 @@ export default function Contact() {
                   
                   <Button 
                     type="submit" 
-                    className="w-full bg-brand-blue hover:bg-blue-600 text-white"
+                    className="w-full bg-white text-indigo-900 hover:bg-white/90 font-semibold"
                     disabled={contactMutation.isPending}
                     data-testid="submit-contact-form"
                   >

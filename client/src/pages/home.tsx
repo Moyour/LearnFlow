@@ -72,71 +72,87 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center pt-20">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <div className="mb-12">
-            <img
-              src={aboutUsImage}
-              alt="Kazeem Salau"
-              className="w-40 h-40 rounded-full mx-auto mb-8 border-4 border-white/20 shadow-2xl object-cover"
-              data-testid="profile-image"
-            />
-          </div>
-          
-          <div 
-            className="space-y-8"
-            style={{ 
-              transform: isLoaded ? 'translateY(0)' : 'translateY(50px)', 
-              opacity: isLoaded ? 1 : 0,
-              transition: 'all 1s ease-out'
-            }}
-          >
-            <h1 className="text-6xl lg:text-8xl font-bold leading-tight tracking-tight">
-              <div className="mb-4">KAZEEM SALAU</div>
-            </h1>
-            
-            <h2 className="text-4xl lg:text-6xl font-bold leading-tight">
-              <div className="mb-2">I DO UX,</div>
-              <div className="mb-2">THAT DRIVES</div>
-              <div className="text-blue-400">Learning Success</div>
-            </h2>
-            
-            <p className="text-xl lg:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              Real empathy means solving for learners, not just content.
-            </p>
-            
-            <p className="text-lg text-gray-400 max-w-xl mx-auto">
-              Empathy isn't emotion—it's execution. I make learning feel natural.
-            </p>
-          </div>
-          
-          <div 
-            className="mt-16 flex flex-col sm:flex-row gap-6 justify-center"
-            style={{ 
-              transform: isLoaded ? 'translateY(0)' : 'translateY(30px)', 
-              opacity: isLoaded ? 1 : 0,
-              transition: 'all 1s ease-out 0.5s'
-            }}
-          >
-            <Link href="/portfolio">
-              <Button 
-                size="lg" 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
-                data-testid="view-work-button"
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Content - Text */}
+            <div className="text-left space-y-8">
+              <div 
+                className="space-y-8"
+                style={{ 
+                  transform: isLoaded ? 'translateY(0)' : 'translateY(50px)', 
+                  opacity: isLoaded ? 1 : 0,
+                  transition: 'all 1s ease-out'
+                }}
               >
-                View My Work
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-2 border-white/30 text-white hover:bg-white hover:text-black px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
-                data-testid="contact-button"
+                <p className="text-xl text-gray-300 leading-relaxed">
+                  Real empathy means solving for learners, not personas.
+                </p>
+                
+                <p className="text-lg text-gray-400">
+                  Empathy isn't emotion—it's execution. I made digital learning feel natural.
+                </p>
+                
+                <h1 className="text-6xl lg:text-8xl font-bold leading-tight tracking-tight">
+                  <div className="mb-4">KAZEEM SALAU</div>
+                </h1>
+                
+                <h2 className="text-4xl lg:text-6xl font-bold leading-tight">
+                  <div className="mb-2">I DO UX,</div>
+                  <div className="mb-2">THAT DRIVES</div>
+                  <div className="text-blue-400">Learning Success</div>
+                </h2>
+              </div>
+              
+              <div 
+                className="flex flex-col sm:flex-row gap-6"
+                style={{ 
+                  transform: isLoaded ? 'translateY(0)' : 'translateY(30px)', 
+                  opacity: isLoaded ? 1 : 0,
+                  transition: 'all 1s ease-out 0.5s'
+                }}
               >
-                Let's Connect
-              </Button>
-            </Link>
+                <Link href="/portfolio">
+                  <Button 
+                    size="lg" 
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
+                    data-testid="view-work-button"
+                  >
+                    View My Work
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="border-2 border-white/30 text-white hover:bg-white hover:text-black px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
+                    data-testid="contact-button"
+                  >
+                    Let's Connect
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            
+            {/* Right Content - Large Image */}
+            <div 
+              className="relative"
+              style={{ 
+                transform: isLoaded ? 'translateX(0)' : 'translateX(50px)', 
+                opacity: isLoaded ? 1 : 0,
+                transition: 'all 1s ease-out 0.3s'
+              }}
+            >
+              <div className="relative">
+                <img
+                  src={aboutUsImage}
+                  alt="Kazeem Salau"
+                  className="w-full h-auto max-w-lg mx-auto rounded-2xl shadow-2xl object-cover"
+                  data-testid="profile-image"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -1,4 +1,5 @@
 import { Tag, Lightbulb, GraduationCap, Code } from "lucide-react";
+import aboutUsImage from "@assets/About us.PNG";
 
 export default function About() {
   return (
@@ -34,7 +35,7 @@ export default function About() {
             
             <div className="relative">
               <img 
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600" 
+                src={aboutUsImage} 
                 alt="Professional instructional designer"
                 className="rounded-2xl shadow-2xl w-full h-auto"
                 data-testid="about-portrait"

@@ -69,92 +69,147 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
+      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div className="absolute inset-0 bg-black"></div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Content - Text */}
-            <div className="text-left space-y-8">
-              <div 
-                className="space-y-8"
-                style={{ 
-                  transform: isLoaded ? 'translateY(0)' : 'translateY(50px)', 
-                  opacity: isLoaded ? 1 : 0,
-                  transition: 'all 1s ease-out'
-                }}
-              >
-                <p className="text-xl text-gray-300 leading-relaxed">
-                  Real empathy means solving for learners, not personas.
-                </p>
-                
-                <p className="text-lg text-gray-400">
-                  Empathy isn't emotion—it's execution. I made digital learning feel natural.
-                </p>
-                
-                <h1 className="text-6xl lg:text-8xl font-bold leading-tight tracking-tight">
-                  <div className="mb-4">KAZEEM SALAU</div>
-                </h1>
-                
-                <h2 className="text-4xl lg:text-6xl font-bold leading-tight">
-                  <div className="mb-2">I DO UX,</div>
-                  <div className="mb-2">THAT DRIVES</div>
-                  <div className="text-blue-400">Learning Success</div>
-                </h2>
-              </div>
-              
-              <div 
-                className="flex flex-col sm:flex-row gap-6"
-                style={{ 
-                  transform: isLoaded ? 'translateY(0)' : 'translateY(30px)', 
-                  opacity: isLoaded ? 1 : 0,
-                  transition: 'all 1s ease-out 0.5s'
-                }}
-              >
-                <Link href="/portfolio">
-                  <Button 
-                    size="lg" 
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
-                    data-testid="view-work-button"
-                  >
-                    View My Work
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                <Link href="/contact">
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
-                    className="border-2 border-white/30 text-white hover:bg-white hover:text-black px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
-                    data-testid="contact-button"
-                  >
-                    Let's Connect
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            
-            {/* Right Content - Large Image */}
-            <div 
-              className="relative"
-              style={{ 
-                transform: isLoaded ? 'translateX(0)' : 'translateX(50px)', 
-                opacity: isLoaded ? 1 : 0,
-                transition: 'all 1s ease-out 0.3s'
-              }}
-            >
-              <div className="relative">
-                <img
-                  src={aboutUsImage}
-                  alt="Kazeem Salau"
-                  className="w-full h-auto max-w-lg mx-auto rounded-2xl shadow-2xl object-cover"
-                  data-testid="profile-image"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
-              </div>
-            </div>
+        {/* Animated Text Background */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div 
+            className="text-[20vw] lg:text-[15vw] font-black text-white/5 select-none pointer-events-none leading-none"
+            style={{
+              transform: isLoaded ? 'translateX(-50px)' : 'translateX(0px)',
+              transition: 'transform 20s linear infinite',
+              animation: 'float 20s ease-in-out infinite'
+            }}
+          >
+            LEARNING DESIGN LEARNING DESIGN
           </div>
         </div>
+        
+        {/* Moving Text Elements */}
+        <div className="absolute top-1/4 left-0 w-full overflow-hidden">
+          <div 
+            className="text-4xl lg:text-6xl font-bold text-white/10 whitespace-nowrap"
+            style={{
+              transform: 'translateX(-100%)',
+              animation: 'slide-right 25s linear infinite'
+            }}
+          >
+            INSTRUCTIONAL DESIGN • UX DESIGN • LEARNING EXPERIENCE • SCORM DEVELOPMENT •
+          </div>
+        </div>
+        
+        <div className="absolute bottom-1/4 right-0 w-full overflow-hidden">
+          <div 
+            className="text-4xl lg:text-6xl font-bold text-white/10 whitespace-nowrap"
+            style={{
+              transform: 'translateX(100%)',
+              animation: 'slide-left 30s linear infinite'
+            }}
+          >
+            EMPATHY • INNOVATION • CREATIVITY • IMPACT • RESULTS •
+          </div>
+        </div>
+        
+        {/* Central Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
+          {/* Large Centered Image */}
+          <div 
+            className="mb-12"
+            style={{ 
+              transform: isLoaded ? 'scale(1)' : 'scale(0.8)', 
+              opacity: isLoaded ? 1 : 0,
+              transition: 'all 1.5s ease-out'
+            }}
+          >
+            <img
+              src={aboutUsImage}
+              alt="Kazeem Salau"
+              className="w-80 h-80 lg:w-96 lg:h-96 mx-auto object-cover shadow-2xl"
+              style={{
+                clipPath: 'circle(50% at 50% 50%)',
+                filter: 'contrast(1.1) brightness(1.1)'
+              }}
+              data-testid="profile-image"
+            />
+          </div>
+          
+          {/* Text Content */}
+          <div 
+            className="space-y-8"
+            style={{ 
+              transform: isLoaded ? 'translateY(0)' : 'translateY(50px)', 
+              opacity: isLoaded ? 1 : 0,
+              transition: 'all 1s ease-out 0.5s'
+            }}
+          >
+            <p className="text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Real empathy means solving for learners, not personas.
+            </p>
+            
+            <h1 className="text-6xl lg:text-8xl font-bold leading-tight tracking-tight">
+              <div className="mb-4">KAZEEM SALAU</div>
+            </h1>
+            
+            <h2 className="text-4xl lg:text-6xl font-bold leading-tight">
+              <div className="mb-2">I DO UX,</div>
+              <div className="mb-2">THAT DRIVES</div>
+              <div className="text-blue-400">Learning Success</div>
+            </h2>
+            
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Empathy isn't emotion—it's execution. I make learning feel natural.
+            </p>
+          </div>
+          
+          <div 
+            className="mt-16 flex flex-col sm:flex-row gap-6 justify-center"
+            style={{ 
+              transform: isLoaded ? 'translateY(0)' : 'translateY(30px)', 
+              opacity: isLoaded ? 1 : 0,
+              transition: 'all 1s ease-out 1s'
+            }}
+          >
+            <Link href="/portfolio">
+              <Button 
+                size="lg" 
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
+                data-testid="view-work-button"
+              >
+                View My Work
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-2 border-white/30 text-white hover:bg-white hover:text-black px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
+                data-testid="contact-button"
+              >
+                Let's Connect
+              </Button>
+            </Link>
+          </div>
+        </div>
+        
+        {/* CSS Animations */}
+        <style jsx>{`
+          @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+          }
+          
+          @keyframes slide-right {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+          }
+          
+          @keyframes slide-left {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+          }
+        `}</style>
       </section>
 
       {/* Testimonials Section */}

@@ -20,7 +20,7 @@ export default function Navigation() {
   };
 
   return (
-    <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-auto max-w-none">
+    <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-auto max-w-none hidden">
       <nav className="bg-gray-900/95 backdrop-blur-md rounded-2xl px-6 py-3 shadow-xl border border-gray-800/50 w-auto min-w-max">
         <div className="flex items-center gap-6 md:gap-8">
           {/* Logo */}

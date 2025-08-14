@@ -68,40 +68,38 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Full Black Screen Section */}
-      <section className="relative min-h-screen bg-black flex items-center justify-center">
+      {/* Full Black Screen Section with Image */}
+      <section className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-black"></div>
+        
+        {/* Full Screen Image */}
+        <div 
+          className="absolute inset-0"
+          style={{ 
+            transform: isLoaded ? 'scale(1)' : 'scale(0.8)', 
+            opacity: isLoaded ? 1 : 0,
+            transition: 'all 1.5s ease-out',
+            zIndex: 5
+          }}
+        >
+          <img
+            src={aboutMeImage}
+            alt="Kazeem Salau"
+            className="w-full h-full object-contain"
+            style={{
+              filter: 'contrast(1.1) brightness(1.1)'
+            }}
+            data-testid="profile-image"
+          />
+        </div>
       </section>
 
-      {/* Hero Section */}
+      {/* Hero Section with Text */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         <div className="absolute inset-0 bg-black"></div>
         
-
-        
         {/* Central Content */}
         <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          {/* Full Screen Image */}
-          <div 
-            className="absolute inset-0"
-            style={{ 
-              transform: isLoaded ? 'scale(1)' : 'scale(0.8)', 
-              opacity: isLoaded ? 1 : 0,
-              transition: 'all 1.5s ease-out',
-              zIndex: 5
-            }}
-          >
-            <img
-              src={aboutMeImage}
-              alt="Kazeem Salau"
-              className="w-full object-contain"
-              style={{
-                filter: 'contrast(1.1) brightness(1.1)',
-                height: '120vh'
-              }}
-              data-testid="profile-image"
-            />
-          </div>
           
           {/* Text Content */}
           <div 

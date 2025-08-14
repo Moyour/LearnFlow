@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Quote } from "lucide-react";
-const aboutUsImage = "/about-us.png";
+import aboutMeImage from "../assets/About Me.png";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -124,7 +124,7 @@ export default function Home() {
             }}
           >
             <img
-              src={aboutUsImage}
+              src={aboutMeImage}
               alt="Kazeem Salau"
               className="w-96 h-auto lg:w-[500px] lg:h-auto xl:w-[600px] xl:h-auto object-cover shadow-2xl rounded-2xl"
               style={{

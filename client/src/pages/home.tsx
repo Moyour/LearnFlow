@@ -70,7 +70,7 @@ export default function Home() {
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Full Black Screen Section with Image */}
       <section className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-gray-900"></div>
         
         {/* Name Background Text */}
         <div className="absolute inset-0 flex items-center justify-center">
@@ -111,7 +111,7 @@ export default function Home() {
 
       {/* Hero Section with Text */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div className="absolute inset-0 bg-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-black to-black"></div>
         
         {/* Central Content */}
         <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 text-center">

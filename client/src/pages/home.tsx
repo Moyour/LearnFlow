@@ -72,88 +72,81 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Enhanced Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
         
-        {/* Profile Image with Enhanced Effects */}
+        {/* Profile Image - Centered and Clean */}
         <div 
-          className="absolute right-0 top-0 h-full w-3/5 lg:w-1/2"
+          className="absolute inset-0 flex items-center justify-center"
           style={{ 
-            transform: isLoaded ? 'translateX(0) scale(1)' : 'translateX(100px) scale(1.1)', 
+            transform: isLoaded ? 'scale(1)' : 'scale(0.9)', 
             opacity: isLoaded ? 1 : 0,
-            transition: 'all 2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s'
+            transition: 'all 1.5s ease-out 0.5s'
           }}
         >
-          <div className="relative w-full h-full">
-            <img
-              src={aboutMeImage}
-              alt="Kazeem Salau"
-              className="w-full h-full object-cover object-center"
-              style={{
-                filter: 'contrast(1.3) brightness(0.8) saturate(1.1)',
-                maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-                WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)'
-              }}
-              data-testid="profile-image"
-            />
-            {/* Subtle overlay for depth */}
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-purple-900/10 to-purple-900/30"></div>
-          </div>
+          <img
+            src={aboutMeImage}
+            alt="Kazeem Salau"
+            className="max-w-lg max-h-screen object-contain"
+            style={{
+              filter: 'contrast(1.1) brightness(1.0)'
+            }}
+            data-testid="profile-image"
+          />
         </div>
 
-        {/* Content Container */}
-        <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-12 py-20 flex items-center min-h-screen">
-          <div className="w-full lg:w-3/5 xl:w-1/2">
-            {/* Large Typography with Enhanced Styling */}
+        {/* Content Container - Far Left Positioning */}
+        <div className="relative z-10 px-8 lg:px-16 py-20 flex items-center min-h-screen">
+          <div className="max-w-2xl">
+            {/* Large Typography - Bigger and Far Left */}
             <div 
               className="mb-12"
               style={{ 
-                transform: isLoaded ? 'translateY(0) rotateX(0)' : 'translateY(80px) rotateX(10deg)', 
+                transform: isLoaded ? 'translateX(0)' : 'translateX(-100px)', 
                 opacity: isLoaded ? 1 : 0,
                 transition: 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s'
               }}
             >
-              <h1 className="text-[11vw] lg:text-[7.5vw] xl:text-[5.5vw] font-black leading-[0.85] tracking-tighter mb-6 text-white drop-shadow-lg">
+              <h1 className="text-[15vw] lg:text-[12vw] xl:text-[10vw] font-black leading-[0.8] tracking-tighter mb-8 text-white drop-shadow-2xl">
                 FOR<br />
                 <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">LEARNING</span><br />
                 DESIGN
               </h1>
               
               {/* Subtitle */}
-              <div className="text-white/80 text-lg lg:text-xl font-medium tracking-wide mb-2">
+              <div className="text-white/90 text-xl lg:text-2xl font-bold tracking-wide mb-4">
                 KAZEEM SALAU
               </div>
-              <div className="w-16 h-1 bg-white/60 rounded-full"></div>
+              <div className="w-20 h-1.5 bg-white/70 rounded-full"></div>
             </div>
 
             {/* Description Text */}
             <div 
-              className="max-w-xl"
+              className="max-w-lg"
               style={{ 
-                transform: isLoaded ? 'translateY(0)' : 'translateY(40px)', 
+                transform: isLoaded ? 'translateX(0)' : 'translateX(-50px)', 
                 opacity: isLoaded ? 1 : 0,
                 transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s'
               }}
             >
-              <p className="text-lg lg:text-xl leading-relaxed mb-10 text-white/90 font-light">
+              <p className="text-xl lg:text-2xl leading-relaxed mb-12 text-white/95 font-light">
                 An experienced Instructional Designer and Learning Experience Designer specializing in contemporary and functional design. I bring learning solutions to life with purposeful, visually compelling experiences.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-5">
+              <div className="flex flex-col sm:flex-row gap-6">
                 <Link href="/portfolio">
                   <Button 
                     size="lg" 
-                    className="bg-white text-black hover:bg-white/90 hover:scale-105 px-10 py-5 rounded-full font-semibold transition-all duration-300 shadow-2xl"
+                    className="bg-white text-black hover:bg-white/90 hover:scale-105 px-12 py-6 rounded-full font-bold text-lg transition-all duration-300 shadow-2xl"
                     data-testid="view-work-button"
                   >
                     View My Work
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <ArrowRight className="ml-3 h-6 w-6" />
                   </Button>
                 </Link>
                 <Link href="/contact">
                   <Button 
                     variant="outline" 
                     size="lg" 
-                    className="border-2 border-white/80 text-white hover:bg-white hover:text-black hover:scale-105 px-10 py-5 rounded-full font-semibold transition-all duration-300 backdrop-blur-sm"
+                    className="border-2 border-white text-white hover:bg-white hover:text-black hover:scale-105 px-12 py-6 rounded-full font-bold text-lg transition-all duration-300 backdrop-blur-sm"
                     data-testid="contact-button"
                   >
                     Let's Connect

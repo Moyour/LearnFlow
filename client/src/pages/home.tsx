@@ -125,9 +125,8 @@ export default function Home() {
             <img
               src={aboutUsImage}
               alt="Kazeem Salau"
-              className="w-80 h-80 lg:w-96 lg:h-96 mx-auto object-cover shadow-2xl"
+              className="w-80 h-auto lg:w-96 lg:h-auto mx-auto object-cover shadow-2xl rounded-2xl"
               style={{
-                clipPath: 'circle(50% at 50% 50%)',
                 filter: 'contrast(1.1) brightness(1.1)'
               }}
               data-testid="profile-image"

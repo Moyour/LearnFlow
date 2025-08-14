@@ -113,23 +113,23 @@ export default function Home() {
         </div>
         
         {/* Central Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          {/* Large Centered Image */}
+        <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 text-center">
+          {/* Full Screen Image */}
           <div 
-            className="mb-16 flex justify-center items-center"
+            className="absolute inset-0 flex justify-center items-center"
             style={{ 
               transform: isLoaded ? 'scale(1)' : 'scale(0.8)', 
               opacity: isLoaded ? 1 : 0,
-              transition: 'all 1.5s ease-out'
+              transition: 'all 1.5s ease-out',
+              zIndex: 5
             }}
           >
             <img
               src={aboutMeImage}
               alt="Kazeem Salau"
-              className="w-96 h-auto lg:w-[500px] lg:h-auto xl:w-[600px] xl:h-auto object-cover shadow-2xl rounded-2xl"
+              className="w-full h-full object-cover"
               style={{
-                filter: 'contrast(1.1) brightness(1.1)',
-                maxWidth: '90vw'
+                filter: 'contrast(1.1) brightness(1.1)'
               }}
               data-testid="profile-image"
             />
@@ -137,7 +137,7 @@ export default function Home() {
           
           {/* Text Content */}
           <div 
-            className="space-y-8"
+            className="space-y-8 mt-16"
             style={{ 
               transform: isLoaded ? 'translateY(0)' : 'translateY(50px)', 
               opacity: isLoaded ? 1 : 0,

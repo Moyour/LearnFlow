@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Quote } from "lucide-react";
-// import aboutUsImage from "@/assets/About us.PNG";
+const aboutUsImage = "/about-us.png";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -74,9 +74,12 @@ export default function Home() {
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <div className="mb-12">
-            <div className="w-32 h-32 rounded-full mx-auto mb-8 border-4 border-white/20 shadow-2xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
-              <span className="text-white font-bold text-2xl">KS</span>
-            </div>
+            <img
+              src={aboutUsImage}
+              alt="Kazeem Salau"
+              className="w-40 h-40 rounded-full mx-auto mb-8 border-4 border-white/20 shadow-2xl object-cover"
+              data-testid="profile-image"
+            />
           </div>
           
           <div 

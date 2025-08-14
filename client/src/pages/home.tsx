@@ -75,20 +75,21 @@ export default function Home() {
 
         
         {/* Central Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          {/* Centered Portrait Image */}
+        <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 text-center">
+          {/* Full Screen Image */}
           <div 
-            className="mb-16 flex justify-center items-center"
+            className="absolute inset-0"
             style={{ 
               transform: isLoaded ? 'scale(1)' : 'scale(0.8)', 
               opacity: isLoaded ? 1 : 0,
-              transition: 'all 1.5s ease-out'
+              transition: 'all 1.5s ease-out',
+              zIndex: 5
             }}
           >
             <img
               src={aboutMeImage}
               alt="Kazeem Salau"
-              className="w-[400px] lg:w-[500px] xl:w-[600px] h-auto shadow-2xl"
+              className="w-full h-full object-contain"
               style={{
                 filter: 'contrast(1.1) brightness(1.1)'
               }}

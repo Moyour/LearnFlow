@@ -133,28 +133,7 @@ export default function Home() {
                 An experienced Instructional Designer and Learning Experience Designer specializing in contemporary and functional design. I bring learning solutions to life with purposeful, visually compelling experiences.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-6">
-                <Link href="/portfolio">
-                  <Button 
-                    size="lg" 
-                    className="bg-white text-black hover:bg-white/90 hover:scale-105 px-12 py-6 rounded-full font-bold text-lg transition-all duration-300 shadow-2xl"
-                    data-testid="view-work-button"
-                  >
-                    View My Work
-                    <ArrowRight className="ml-3 h-6 w-6" />
-                  </Button>
-                </Link>
-                <Link href="/contact">
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
-                    className="border-2 border-white text-white hover:bg-white hover:text-black hover:scale-105 px-12 py-6 rounded-full font-bold text-lg transition-all duration-300 backdrop-blur-sm"
-                    data-testid="contact-button"
-                  >
-                    Let's Connect
-                  </Button>
-                </Link>
-              </div>
+
             </div>
           </div>
         </div>

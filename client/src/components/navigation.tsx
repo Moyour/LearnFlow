@@ -20,25 +20,25 @@ export default function Navigation() {
   };
 
   return (
-    <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
-      <nav className="bg-gray-900/95 backdrop-blur-md rounded-2xl px-6 py-4 shadow-xl border border-gray-800/50">
-        <div className="flex items-center justify-between">
+    <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-auto">
+      <nav className="bg-gray-900/95 backdrop-blur-md rounded-2xl px-8 py-4 shadow-xl border border-gray-800/50 min-w-fit">
+        <div className="flex items-center justify-between gap-8">
           {/* Logo */}
           <Link href="/" data-testid="logo-link">
-            <div className="text-white font-semibold text-lg hover:text-gray-300 transition-colors duration-200">
+            <div className="text-white font-semibold text-lg hover:text-gray-300 transition-colors duration-200 whitespace-nowrap">
               Kazeem.
             </div>
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8 mx-8">
+          <div className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 data-testid={`nav-${item.name.toLowerCase()}`}
                 className={cn(
-                  "text-gray-300 hover:text-white transition-colors duration-200 font-medium flex items-center space-x-1",
+                  "text-gray-300 hover:text-white transition-colors duration-200 font-medium flex items-center space-x-1 whitespace-nowrap",
                   isActive(item.href) && "text-white"
                 )}
               >
@@ -49,10 +49,10 @@ export default function Navigation() {
           </div>
           
           {/* Contact Button */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Link href="/contact">
               <Button 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition-all duration-200 hover:scale-105"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition-all duration-200 hover:scale-105 whitespace-nowrap"
                 data-testid="contact-button"
               >
                 Contact
@@ -61,7 +61,7 @@ export default function Navigation() {
           </div>
           
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <Button
               variant="ghost"
               size="sm"
@@ -80,7 +80,7 @@ export default function Navigation() {
         
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pt-4 border-t border-gray-800">
+          <div className="lg:hidden mt-4 pt-4 border-t border-gray-800">
             <div className="space-y-3">
               {navigation.map((item) => (
                 <Link
@@ -88,13 +88,15 @@ export default function Navigation() {
                   href={item.href}
                   data-testid={`mobile-nav-${item.name.toLowerCase()}`}
                   className={cn(
-                    "block text-gray-300 hover:text-white transition-colors duration-200 font-medium flex items-center space-x-2",
+                    "block text-gray-300 hover:text-white transition-colors duration-200 font-medium",
                     isActive(item.href) && "text-white"
                   )}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  <span>{item.name}</span>
-                  {item.external && <ExternalLink className="w-3 h-3" />}
+                  <div className="flex items-center space-x-2">
+                    <span>{item.name}</span>
+                    {item.external && <ExternalLink className="w-3 h-3" />}
+                  </div>
                 </Link>
               ))}
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>

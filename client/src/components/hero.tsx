@@ -10,7 +10,7 @@ export default function Hero() {
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-6xl font-bold text-brand-slate leading-tight">
-                Hi, I'm <span className="text-brand-blue">Sarah</span>.
+                Hi, I'm <span className="text-brand-blue">Kazeem</span>.
               </h1>
               <p className="text-xl lg:text-2xl text-slate-600 leading-relaxed">
                 I specialize in creating high-impact learning solutions that drive engagement and support performance across corporate and tech environments.

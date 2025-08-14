@@ -116,7 +116,7 @@ export default function Home() {
         <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 text-center">
           {/* Full Screen Image */}
           <div 
-            className="absolute inset-0 flex justify-center items-center"
+            className="absolute inset-0"
             style={{ 
               transform: isLoaded ? 'scale(1)' : 'scale(0.8)', 
               opacity: isLoaded ? 1 : 0,
@@ -127,9 +127,10 @@ export default function Home() {
             <img
               src={aboutMeImage}
               alt="Kazeem Salau"
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover"
               style={{
-                filter: 'contrast(1.1) brightness(1.1)'
+                filter: 'contrast(1.1) brightness(1.1)',
+                objectPosition: 'center center'
               }}
               data-testid="profile-image"
             />

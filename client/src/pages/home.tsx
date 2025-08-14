@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Quote } from "lucide-react";
-import aboutMeImage from "../assets/About Me.png";
+import aboutMeImage from "../assets/about-me.png";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);

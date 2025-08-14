@@ -75,7 +75,7 @@ export default function Home() {
         {/* Animated Text Background */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div 
-            className="text-[25vw] lg:text-[20vw] font-black text-white/8 select-none pointer-events-none leading-none tracking-wider"
+            className="text-[12vw] lg:text-[8vw] font-black text-white/8 select-none pointer-events-none leading-none tracking-wider whitespace-nowrap"
             style={{
               transform: isLoaded ? 'translateY(0px)' : 'translateY(20px)',
               opacity: isLoaded ? 1 : 0,

@@ -67,112 +67,107 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Full Black Screen Section with Image */}
-      <section className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-gray-900"></div>
+    <div className="min-h-screen text-white overflow-x-hidden">
+      {/* Hero Section with Gradient and Image */}
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900 via-pink-500 to-orange-400"></div>
         
-        {/* Name Background Text */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div 
-            className="text-[12vw] lg:text-[8vw] font-black text-white/8 select-none pointer-events-none leading-none tracking-wider whitespace-nowrap"
-            style={{
-              transform: isLoaded ? 'translateY(0px)' : 'translateY(20px)',
-              opacity: isLoaded ? 1 : 0,
-              transition: 'all 2s ease-out 0.5s',
-              animation: 'float 15s ease-in-out infinite'
-            }}
-          >
-            KAZEEM SALAU
-          </div>
-        </div>
-        
-        {/* Full Screen Image */}
+        {/* Profile Image */}
         <div 
-          className="absolute inset-0"
+          className="absolute right-0 top-0 h-full w-1/2 lg:w-2/5"
           style={{ 
-            transform: isLoaded ? 'scale(1)' : 'scale(0.8)', 
+            transform: isLoaded ? 'translateX(0)' : 'translateX(50px)', 
             opacity: isLoaded ? 1 : 0,
-            transition: 'all 1.5s ease-out',
-            zIndex: 5
+            transition: 'all 1.5s ease-out 0.3s'
           }}
         >
           <img
             src={aboutMeImage}
             alt="Kazeem Salau"
-            className="w-full h-full object-contain"
+            className="w-full h-full object-cover object-center"
             style={{
-              filter: 'contrast(1.1) brightness(1.1)'
+              filter: 'contrast(1.2) brightness(0.9)',
+              maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%)',
+              WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%)'
             }}
             data-testid="profile-image"
           />
         </div>
-      </section>
 
-      {/* Hero Section with Text */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-black to-black"></div>
-        
-        {/* Central Content */}
-        <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          
-          {/* Text Content */}
-          <div 
-            className="space-y-8 mt-16"
-            style={{ 
-              transform: isLoaded ? 'translateY(0)' : 'translateY(50px)', 
-              opacity: isLoaded ? 1 : 0,
-              transition: 'all 1s ease-out 0.5s'
-            }}
-          >
-            <p className="text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Real empathy means solving for learners, not personas.
-            </p>
-            
+        {/* Content Container */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 flex items-center min-h-screen">
+          <div className="w-full lg:w-3/5">
+            {/* Large Typography */}
+            <div 
+              className="mb-8"
+              style={{ 
+                transform: isLoaded ? 'translateY(0)' : 'translateY(50px)', 
+                opacity: isLoaded ? 1 : 0,
+                transition: 'all 1s ease-out 0.5s'
+              }}
+            >
+              <h1 className="text-[12vw] lg:text-[8vw] xl:text-[6vw] font-black leading-none tracking-tight mb-4">
+                FOR<br />
+                LEARNING<br />
+                DESIGN
+              </h1>
+            </div>
 
-            
-            <h2 className="text-4xl lg:text-6xl font-bold leading-tight">
-              <div className="mb-2">I DO UX,</div>
-              <div className="mb-2">THAT DRIVES</div>
-              <div className="text-blue-400">Learning Success</div>
-            </h2>
-            
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              Empathy isn't emotion—it's execution. I make learning feel natural.
-            </p>
-          </div>
-          
-          <div 
-            className="mt-16 flex flex-col sm:flex-row gap-6 justify-center"
-            style={{ 
-              transform: isLoaded ? 'translateY(0)' : 'translateY(30px)', 
-              opacity: isLoaded ? 1 : 0,
-              transition: 'all 1s ease-out 1s'
-            }}
-          >
-            <Link href="/portfolio">
-              <Button 
-                size="lg" 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
-                data-testid="view-work-button"
-              >
-                View My Work
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-2 border-white/30 text-white hover:bg-white hover:text-black px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
-                data-testid="contact-button"
-              >
-                Let's Connect
-              </Button>
-            </Link>
+            {/* Description Text */}
+            <div 
+              className="max-w-lg"
+              style={{ 
+                transform: isLoaded ? 'translateY(0)' : 'translateY(30px)', 
+                opacity: isLoaded ? 1 : 0,
+                transition: 'all 1s ease-out 0.8s'
+              }}
+            >
+              <p className="text-lg lg:text-xl leading-relaxed mb-8">
+                An experienced Instructional Designer and Learning Experience Designer specializing in contemporary and functional design. I bring learning solutions to life with purposeful, visually compelling experiences.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/portfolio">
+                  <Button 
+                    size="lg" 
+                    className="bg-white text-black hover:bg-gray-100 px-8 py-4 rounded-full font-semibold transition-all duration-300"
+                    data-testid="view-work-button"
+                  >
+                    View My Work
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 rounded-full font-semibold transition-all duration-300"
+                    data-testid="contact-button"
+                  >
+                    Let's Connect
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Navigation */}
+        <nav className="absolute top-8 left-8 right-8 z-20">
+          <div className="flex justify-between items-center">
+            <div className="text-2xl font-bold">kazeem</div>
+            <div className="hidden md:flex items-center gap-8 text-sm">
+              <Link href="/portfolio" className="hover:opacity-70 transition-opacity">Design</Link>
+              <Link href="/blog" className="hover:opacity-70 transition-opacity">Blog</Link>  
+              <Link href="/about" className="hover:opacity-70 transition-opacity">About</Link>
+              <Link href="/contact" className="hover:opacity-70 transition-opacity">Contact</Link>
+              <Link href="/contact" className="hover:opacity-70 transition-opacity">Let's talk ↗</Link>
+            </div>
+          </div>
+        </nav>
       </section>
+
 
       {/* Testimonials Section */}
       <section className="py-32 bg-black">

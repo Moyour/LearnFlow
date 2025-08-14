@@ -73,12 +73,10 @@ export default function Home() {
         {/* Enhanced Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400"></div>
         
-        {/* Profile Image - Full Right Screen */}
+        {/* Profile Image - Full Height Hero Section */}
         <div 
-          className="absolute right-0 w-1/2 h-full flex items-start justify-center"
+          className="absolute right-0 top-0 w-1/2 h-full flex items-center justify-center"
           style={{ 
-            top: '120px', // Start below navbar
-            height: 'calc(100vh - 240px)', // End at intro text
             transform: isLoaded ? 'translateX(0) scale(1)' : 'translateX(50px) scale(0.9)', 
             opacity: isLoaded ? 1 : 0,
             transition: 'all 1.5s ease-out 0.5s'

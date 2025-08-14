@@ -73,9 +73,9 @@ export default function Home() {
         {/* Enhanced Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400"></div>
         
-        {/* Profile Image - Right Side, Below Navbar to Text End */}
+        {/* Profile Image - Far Right and Bigger */}
         <div 
-          className="absolute right-0 w-1/2 flex items-start justify-center"
+          className="absolute right-0 w-3/5 flex items-start justify-end pr-8"
           style={{ 
             top: '120px', // Start below navbar
             height: 'calc(100vh - 240px)', // End at intro text

@@ -9,7 +9,7 @@ export default function Footer() {
           
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold">Sarah Chen</h3>
+            <h3 className="text-2xl font-bold">Kazeem Salau</h3>
             <p className="text-slate-300">
               Creating impactful learning experiences through innovative instructional design and user-centered thinking.
             </p>
@@ -85,7 +85,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-slate-600 mt-8 pt-8 text-center text-slate-400">
-          <p>&copy; 2025 Sarah Chen. All rights reserved. Built with passion for learning and design.</p>
+          <p>&copy; 2025 Kazeem Salau. All rights reserved. Built with passion for learning and design.</p>
         </div>
       </div>
     </footer>

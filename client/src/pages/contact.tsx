@@ -88,7 +88,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="font-semibold text-brand-slate">Email</p>
-                      <p className="text-slate-600" data-testid="contact-email">sarah.chen@example.com</p>
+                      <p className="text-slate-600" data-testid="contact-email">kazeem.salau@example.com</p>
                     </div>
                   </div>
                   
@@ -98,7 +98,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="font-semibold text-brand-slate">LinkedIn</p>
-                      <p className="text-slate-600" data-testid="contact-linkedin">linkedin.com/in/sarahchen-id</p>
+                      <p className="text-slate-600" data-testid="contact-linkedin">linkedin.com/in/kazeemsalau-id</p>
                     </div>
                   </div>
                   

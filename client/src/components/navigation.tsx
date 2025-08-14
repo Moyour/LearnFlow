@@ -28,7 +28,7 @@ export default function Navigation() {
           <div className="flex-shrink-0">
             <Link href="/" data-testid="logo-link">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20">
-                <h1 className="text-2xl font-bold text-white tracking-tight">Sarah Chen</h1>
+                <h1 className="text-2xl font-bold text-white tracking-tight">Kazeem Salau</h1>
                 <p className="text-sm text-white/80 -mt-1 font-medium">Instructional Designer</p>
               </div>
             </Link>

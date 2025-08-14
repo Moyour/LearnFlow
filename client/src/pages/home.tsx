@@ -69,7 +69,7 @@ export default function Home() {
             
             <div className="relative">
               <img 
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600" 
+                src="/src/assets/About us.PNG" 
                 alt="Professional instructional designer portrait" 
                 className="rounded-2xl shadow-2xl w-full h-auto"
                 data-testid="about-image"

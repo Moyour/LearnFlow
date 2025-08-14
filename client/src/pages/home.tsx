@@ -116,7 +116,7 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
           {/* Large Centered Image */}
           <div 
-            className="mb-12"
+            className="mb-16 flex justify-center items-center"
             style={{ 
               transform: isLoaded ? 'scale(1)' : 'scale(0.8)', 
               opacity: isLoaded ? 1 : 0,
@@ -126,9 +126,10 @@ export default function Home() {
             <img
               src={aboutUsImage}
               alt="Kazeem Salau"
-              className="w-80 h-auto lg:w-96 lg:h-auto mx-auto object-cover shadow-2xl rounded-2xl"
+              className="w-96 h-auto lg:w-[500px] lg:h-auto xl:w-[600px] xl:h-auto object-cover shadow-2xl rounded-2xl"
               style={{
-                filter: 'contrast(1.1) brightness(1.1)'
+                filter: 'contrast(1.1) brightness(1.1)',
+                maxWidth: '90vw'
               }}
               data-testid="profile-image"
             />

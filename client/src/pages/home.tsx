@@ -85,7 +85,7 @@ export default function Home() {
           <img
             src={aboutMeImage}
             alt="Kazeem Salau"
-            className="w-4/5 h-4/5 object-contain"
+            className="w-full h-full object-contain"
             style={{
               filter: 'contrast(1.1) brightness(1.1)'
             }}

@@ -147,9 +147,7 @@ export default function Home() {
               Real empathy means solving for learners, not personas.
             </p>
             
-            <h1 className="text-6xl lg:text-8xl font-bold leading-tight tracking-tight">
-              <div className="mb-4">KAZEEM SALAU</div>
-            </h1>
+
             
             <h2 className="text-4xl lg:text-6xl font-bold leading-tight">
               <div className="mb-2">I DO UX,</div>

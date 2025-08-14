@@ -70,68 +70,79 @@ export default function Home() {
     <div className="min-h-screen text-white overflow-x-hidden">
       {/* Hero Section with Gradient and Image */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900 via-pink-500 to-orange-400"></div>
+        {/* Enhanced Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
         
-        {/* Profile Image */}
+        {/* Profile Image with Enhanced Effects */}
         <div 
-          className="absolute right-0 top-0 h-full w-1/2 lg:w-2/5"
+          className="absolute right-0 top-0 h-full w-3/5 lg:w-1/2"
           style={{ 
-            transform: isLoaded ? 'translateX(0)' : 'translateX(50px)', 
+            transform: isLoaded ? 'translateX(0) scale(1)' : 'translateX(100px) scale(1.1)', 
             opacity: isLoaded ? 1 : 0,
-            transition: 'all 1.5s ease-out 0.3s'
+            transition: 'all 2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s'
           }}
         >
-          <img
-            src={aboutMeImage}
-            alt="Kazeem Salau"
-            className="w-full h-full object-cover object-center"
-            style={{
-              filter: 'contrast(1.2) brightness(0.9)',
-              maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%)',
-              WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%)'
-            }}
-            data-testid="profile-image"
-          />
+          <div className="relative w-full h-full">
+            <img
+              src={aboutMeImage}
+              alt="Kazeem Salau"
+              className="w-full h-full object-cover object-center"
+              style={{
+                filter: 'contrast(1.3) brightness(0.8) saturate(1.1)',
+                maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)'
+              }}
+              data-testid="profile-image"
+            />
+            {/* Subtle overlay for depth */}
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-purple-900/10 to-purple-900/30"></div>
+          </div>
         </div>
 
         {/* Content Container */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 flex items-center min-h-screen">
-          <div className="w-full lg:w-3/5">
-            {/* Large Typography */}
+        <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-12 py-20 flex items-center min-h-screen">
+          <div className="w-full lg:w-3/5 xl:w-1/2">
+            {/* Large Typography with Enhanced Styling */}
             <div 
-              className="mb-8"
+              className="mb-12"
               style={{ 
-                transform: isLoaded ? 'translateY(0)' : 'translateY(50px)', 
+                transform: isLoaded ? 'translateY(0) rotateX(0)' : 'translateY(80px) rotateX(10deg)', 
                 opacity: isLoaded ? 1 : 0,
-                transition: 'all 1s ease-out 0.5s'
+                transition: 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s'
               }}
             >
-              <h1 className="text-[12vw] lg:text-[8vw] xl:text-[6vw] font-black leading-none tracking-tight mb-4">
+              <h1 className="text-[11vw] lg:text-[7.5vw] xl:text-[5.5vw] font-black leading-[0.85] tracking-tighter mb-6 text-white drop-shadow-lg">
                 FOR<br />
-                LEARNING<br />
+                <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">LEARNING</span><br />
                 DESIGN
               </h1>
+              
+              {/* Subtitle */}
+              <div className="text-white/80 text-lg lg:text-xl font-medium tracking-wide mb-2">
+                KAZEEM SALAU
+              </div>
+              <div className="w-16 h-1 bg-white/60 rounded-full"></div>
             </div>
 
             {/* Description Text */}
             <div 
-              className="max-w-lg"
+              className="max-w-xl"
               style={{ 
-                transform: isLoaded ? 'translateY(0)' : 'translateY(30px)', 
+                transform: isLoaded ? 'translateY(0)' : 'translateY(40px)', 
                 opacity: isLoaded ? 1 : 0,
-                transition: 'all 1s ease-out 0.8s'
+                transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s'
               }}
             >
-              <p className="text-lg lg:text-xl leading-relaxed mb-8">
+              <p className="text-lg lg:text-xl leading-relaxed mb-10 text-white/90 font-light">
                 An experienced Instructional Designer and Learning Experience Designer specializing in contemporary and functional design. I bring learning solutions to life with purposeful, visually compelling experiences.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-5">
                 <Link href="/portfolio">
                   <Button 
                     size="lg" 
-                    className="bg-white text-black hover:bg-gray-100 px-8 py-4 rounded-full font-semibold transition-all duration-300"
+                    className="bg-white text-black hover:bg-white/90 hover:scale-105 px-10 py-5 rounded-full font-semibold transition-all duration-300 shadow-2xl"
                     data-testid="view-work-button"
                   >
                     View My Work
@@ -142,7 +153,7 @@ export default function Home() {
                   <Button 
                     variant="outline" 
                     size="lg" 
-                    className="border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 rounded-full font-semibold transition-all duration-300"
+                    className="border-2 border-white/80 text-white hover:bg-white hover:text-black hover:scale-105 px-10 py-5 rounded-full font-semibold transition-all duration-300 backdrop-blur-sm"
                     data-testid="contact-button"
                   >
                     Let's Connect
@@ -153,16 +164,23 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Navigation */}
+        {/* Enhanced Navigation */}
         <nav className="absolute top-8 left-8 right-8 z-20">
-          <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold">kazeem</div>
-            <div className="hidden md:flex items-center gap-8 text-sm">
-              <Link href="/portfolio" className="hover:opacity-70 transition-opacity">Design</Link>
-              <Link href="/blog" className="hover:opacity-70 transition-opacity">Blog</Link>  
-              <Link href="/about" className="hover:opacity-70 transition-opacity">About</Link>
-              <Link href="/contact" className="hover:opacity-70 transition-opacity">Contact</Link>
-              <Link href="/contact" className="hover:opacity-70 transition-opacity">Let's talk ↗</Link>
+          <div 
+            className="flex justify-between items-center backdrop-blur-sm bg-white/5 rounded-2xl px-6 py-4 border border-white/10"
+            style={{
+              transform: isLoaded ? 'translateY(0)' : 'translateY(-20px)',
+              opacity: isLoaded ? 1 : 0,
+              transition: 'all 1s ease-out 0.1s'
+            }}
+          >
+            <div className="text-2xl font-bold text-white tracking-tight">kazeem</div>
+            <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+              <Link href="/portfolio" className="text-white/80 hover:text-white transition-all duration-300 hover:scale-105">Design</Link>
+              <Link href="/blog" className="text-white/80 hover:text-white transition-all duration-300 hover:scale-105">Blog</Link>  
+              <Link href="/about" className="text-white/80 hover:text-white transition-all duration-300 hover:scale-105">About</Link>
+              <Link href="/contact" className="text-white/80 hover:text-white transition-all duration-300 hover:scale-105">Contact</Link>
+              <Link href="/contact" className="bg-white/20 text-white px-4 py-2 rounded-full hover:bg-white/30 transition-all duration-300 hover:scale-105">Let's talk ↗</Link>
             </div>
           </div>
         </nav>

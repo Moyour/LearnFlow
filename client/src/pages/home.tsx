@@ -72,65 +72,25 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         <div className="absolute inset-0 bg-black"></div>
         
-        {/* Animated Text Background */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div 
-            className="text-[12vw] lg:text-[8vw] font-black text-white/8 select-none pointer-events-none leading-none tracking-wider whitespace-nowrap"
-            style={{
-              transform: isLoaded ? 'translateY(0px)' : 'translateY(20px)',
-              opacity: isLoaded ? 1 : 0,
-              transition: 'all 2s ease-out 0.5s',
-              animation: 'float 15s ease-in-out infinite'
-            }}
-          >
-            KAZEEM SALAU
-          </div>
-        </div>
-        
-        {/* Moving Text Elements */}
-        <div className="absolute top-1/4 left-0 w-full overflow-hidden">
-          <div 
-            className="text-4xl lg:text-6xl font-bold text-white/10 whitespace-nowrap"
-            style={{
-              transform: 'translateX(-100%)',
-              animation: 'slide-right 25s linear infinite'
-            }}
-          >
-            INSTRUCTIONAL DESIGN • UX DESIGN • LEARNING EXPERIENCE • SCORM DEVELOPMENT •
-          </div>
-        </div>
-        
-        <div className="absolute bottom-1/4 right-0 w-full overflow-hidden">
-          <div 
-            className="text-4xl lg:text-6xl font-bold text-white/10 whitespace-nowrap"
-            style={{
-              transform: 'translateX(100%)',
-              animation: 'slide-left 30s linear infinite'
-            }}
-          >
-            EMPATHY • INNOVATION • CREATIVITY • IMPACT • RESULTS •
-          </div>
-        </div>
+
         
         {/* Central Content */}
-        <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          {/* Full Screen Image */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
+          {/* Centered Portrait Image */}
           <div 
-            className="absolute inset-0"
+            className="mb-16 flex justify-center items-center"
             style={{ 
               transform: isLoaded ? 'scale(1)' : 'scale(0.8)', 
               opacity: isLoaded ? 1 : 0,
-              transition: 'all 1.5s ease-out',
-              zIndex: 5
+              transition: 'all 1.5s ease-out'
             }}
           >
             <img
               src={aboutMeImage}
               alt="Kazeem Salau"
-              className="w-full h-full object-cover"
+              className="w-[400px] h-[500px] lg:w-[500px] lg:h-[600px] xl:w-[600px] xl:h-[700px] object-cover object-center rounded-2xl shadow-2xl"
               style={{
-                filter: 'contrast(1.1) brightness(1.1)',
-                objectPosition: 'center center'
+                filter: 'contrast(1.1) brightness(1.1)'
               }}
               data-testid="profile-image"
             />

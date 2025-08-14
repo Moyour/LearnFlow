@@ -46,7 +46,7 @@ export default function Home() {
       />
       
       {/* Hero Section - Enhanced with Animations */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 min-h-screen flex items-center">
+      <section className="relative overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 min-h-screen flex items-center pt-20">
         <div className="absolute inset-0 bg-black/20"></div>
         
         {/* Animated Background Elements */}

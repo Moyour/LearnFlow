@@ -20,9 +20,9 @@ export default function Navigation() {
   };
 
   return (
-    <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-auto">
-      <nav className="bg-gray-900/95 backdrop-blur-md rounded-2xl px-8 py-4 shadow-xl border border-gray-800/50 min-w-fit">
-        <div className="flex items-center justify-between gap-8">
+    <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-auto max-w-none">
+      <nav className="bg-gray-900/95 backdrop-blur-md rounded-2xl px-6 py-3 shadow-xl border border-gray-800/50 w-auto min-w-max">
+        <div className="flex items-center gap-6 md:gap-8">
           {/* Logo */}
           <Link href="/" data-testid="logo-link">
             <div className="text-white font-semibold text-lg hover:text-gray-300 transition-colors duration-200 whitespace-nowrap">
@@ -31,7 +31,7 @@ export default function Navigation() {
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -49,7 +49,7 @@ export default function Navigation() {
           </div>
           
           {/* Contact Button */}
-          <div className="hidden lg:block">
+          <div className="hidden md:block">
             <Link href="/contact">
               <Button 
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition-all duration-200 hover:scale-105 whitespace-nowrap"
@@ -61,7 +61,7 @@ export default function Navigation() {
           </div>
           
           {/* Mobile menu button */}
-          <div className="lg:hidden">
+          <div className="md:hidden">
             <Button
               variant="ghost"
               size="sm"
@@ -80,7 +80,7 @@ export default function Navigation() {
         
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 pt-4 border-t border-gray-800">
+          <div className="md:hidden mt-4 pt-4 border-t border-gray-800">
             <div className="space-y-3">
               {navigation.map((item) => (
                 <Link

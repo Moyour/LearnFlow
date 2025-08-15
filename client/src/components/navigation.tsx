@@ -11,6 +11,7 @@ export default function Navigation() {
   const navigation = [
     { name: "Projects", href: "/portfolio" },
     { name: "About", href: "/about" },
+    { name: "Blog", href: "/blog" },
     { name: "Resume", href: "/resume", external: true },
   ];
 
@@ -52,7 +53,7 @@ export default function Navigation() {
           <div className="hidden md:block">
             <Link href="/contact">
               <Button 
-                className="bg-white text-indigo-900 hover:bg-white/90 px-6 py-2 rounded-full font-medium transition-all duration-200 hover:scale-105 whitespace-nowrap"
+                className="bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 text-white hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 px-6 py-2 rounded-full font-medium transition-all duration-200 hover:scale-105 whitespace-nowrap"
                 data-testid="contact-button"
               >
                 Contact
@@ -101,7 +102,7 @@ export default function Navigation() {
               ))}
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                 <Button 
-                  className="w-full bg-white text-indigo-900 hover:bg-white/90 px-6 py-2 rounded-full font-medium transition-colors duration-200 mt-4"
+                  className="w-full bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 text-white hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 px-6 py-2 rounded-full font-medium transition-colors duration-200 mt-4"
                   data-testid="mobile-contact-button"
                 >
                   Contact

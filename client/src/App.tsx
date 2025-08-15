@@ -24,7 +24,7 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/portfolio" component={Portfolio} />
-          <Route path="/projects/:id" component={ProjectDetail} />
+          <Route path="/portfolio/:id" component={ProjectDetail} />
           <Route path="/blog" component={Blog} />
           <Route path="/blog/:id" component={BlogPost} />
           <Route path="/contact" component={Contact} />

@@ -271,12 +271,11 @@ export default function Home() {
 
       {/* Testimonials Section with testimonial image background */}
       <section ref={testimonialsRef} className="py-32 relative overflow-hidden">
-        {/* Background Image with Overlay - Moderate zoom and reduced visibility */}
+        {/* Background Image with Overlay - Fill entire section */}
         <div 
-          className="absolute inset-0 bg-center bg-no-repeat opacity-40"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
           style={{
             backgroundImage: `url(${testiImage})`,
-            backgroundSize: '120%',
           }}
         ></div>
         {/* Dark overlay for text readability */}

@@ -245,7 +245,7 @@ export default function About() {
           </div>
         </div>
 
-        <style jsx>{`
+        <style>{`
           @keyframes slideIn {
             to {
               opacity: 1;

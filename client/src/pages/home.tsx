@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Quote } from "lucide-react";
 import aboutMeImage from "../assets/about-me.png";
+import testiImage from "../assets/Testi.jpg";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -268,8 +269,17 @@ export default function Home() {
       </section>
 
 
-      {/* Testimonials Section with grey/black background and abstract patterns */}
-      <section ref={testimonialsRef} className="py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
+      {/* Testimonials Section with testimonial image background */}
+      <section ref={testimonialsRef} className="py-32 relative overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${testiImage})`,
+          }}
+        ></div>
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/70"></div>
         {/* Enhanced Abstract geometric patterns covering entire section */}
         <div className="absolute inset-0 pointer-events-none opacity-15">
           {/* Large abstract shapes covering full area */}
@@ -338,7 +348,7 @@ export default function Home() {
           <div className="absolute top-3/4 right-1/6 w-32 h-32 border border-white/7 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }}></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-20">
           {testimonials.map((testimonial, index) => (
             <div 
               key={index} 

@@ -1,5 +1,8 @@
 import { type Project, type InsertProject, type BlogPost, type InsertBlogPost, type Testimonial, type InsertTestimonial, type ContactSubmission, type InsertContact } from "@shared/schema";
 import { randomUUID } from "crypto";
+import { db } from "./db";
+import { projects, blogPosts, testimonials, contactSubmissions } from "@shared/schema";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   // Projects
@@ -366,4 +369,110 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export class DatabaseStorage implements IStorage {
+  async getProjects(): Promise<Project[]> {
+    return await db.select().from(projects);
+  }
+
+  async getFeaturedProjects(): Promise<Project[]> {
+    return await db.select().from(projects).where(eq(projects.featured, true));
+  }
+
+  async getProjectsByCategory(category: string): Promise<Project[]> {
+    return await db.select().from(projects).where(eq(projects.category, category));
+  }
+
+  async getProject(id: string): Promise<Project | undefined> {
+    const [project] = await db.select().from(projects).where(eq(projects.id, id));
+    return project || undefined;
+  }
+
+  async createProject(project: InsertProject): Promise<Project> {
+    const [newProject] = await db.insert(projects).values({
+      ...project,
+      id: randomUUID(),
+      createdAt: new Date(),
+    }).returning();
+    return newProject;
+  }
+
+  async updateProject(id: string, project: Partial<InsertProject>): Promise<Project | undefined> {
+    const [updatedProject] = await db.update(projects)
+      .set(project)
+      .where(eq(projects.id, id))
+      .returning();
+    return updatedProject || undefined;
+  }
+
+  async deleteProject(id: string): Promise<boolean> {
+    const result = await db.delete(projects).where(eq(projects.id, id));
+    return result.rowCount > 0;
+  }
+
+  async getBlogPosts(): Promise<BlogPost[]> {
+    return await db.select().from(blogPosts);
+  }
+
+  async getPublishedBlogPosts(): Promise<BlogPost[]> {
+    return await db.select().from(blogPosts).where(eq(blogPosts.published, true));
+  }
+
+  async getBlogPost(id: string): Promise<BlogPost | undefined> {
+    const [post] = await db.select().from(blogPosts).where(eq(blogPosts.id, id));
+    return post || undefined;
+  }
+
+  async createBlogPost(post: InsertBlogPost): Promise<BlogPost> {
+    const [newPost] = await db.insert(blogPosts).values({
+      ...post,
+      id: randomUUID(),
+      createdAt: new Date(),
+    }).returning();
+    return newPost;
+  }
+
+  async updateBlogPost(id: string, post: Partial<InsertBlogPost>): Promise<BlogPost | undefined> {
+    const [updatedPost] = await db.update(blogPosts)
+      .set(post)
+      .where(eq(blogPosts.id, id))
+      .returning();
+    return updatedPost || undefined;
+  }
+
+  async deleteBlogPost(id: string): Promise<boolean> {
+    const result = await db.delete(blogPosts).where(eq(blogPosts.id, id));
+    return result.rowCount > 0;
+  }
+
+  async getTestimonials(): Promise<Testimonial[]> {
+    return await db.select().from(testimonials);
+  }
+
+  async getFeaturedTestimonials(): Promise<Testimonial[]> {
+    return await db.select().from(testimonials).where(eq(testimonials.featured, true));
+  }
+
+  async createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial> {
+    const [newTestimonial] = await db.insert(testimonials).values({
+      ...testimonial,
+      id: randomUUID(),
+      createdAt: new Date(),
+    }).returning();
+    return newTestimonial;
+  }
+
+  async createContactSubmission(contact: InsertContact): Promise<ContactSubmission> {
+    const [newSubmission] = await db.insert(contactSubmissions).values({
+      ...contact,
+      id: randomUUID(),
+      createdAt: new Date(),
+    }).returning();
+    return newSubmission;
+  }
+
+  async getContactSubmissions(): Promise<ContactSubmission[]> {
+    return await db.select().from(contactSubmissions);
+  }
+}
+
+export const storage = new DatabaseStorage();

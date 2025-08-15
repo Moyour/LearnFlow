@@ -12,6 +12,7 @@ import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
 import Contact from "@/pages/contact";
 import Resume from "@/pages/resume";
+import Admin from "@/pages/admin";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
@@ -29,6 +30,7 @@ function Router() {
           <Route path="/blog/:id" component={BlogPost} />
           <Route path="/contact" component={Contact} />
           <Route path="/resume" component={Resume} />
+          <Route path="/admin" component={Admin} />
           <Route component={NotFound} />
         </Switch>
       </main>

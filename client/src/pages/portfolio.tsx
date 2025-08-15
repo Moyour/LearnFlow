@@ -155,25 +155,21 @@ export default function Portfolio() {
                 onClick={() => setActiveFilter(category.id)}
                 className={`group text-left p-8 rounded-3xl border-2 transition-all duration-500 hover:scale-105 ${
                   activeFilter === category.id
-                    ? 'bg-white text-indigo-900 border-white shadow-2xl'
+                    ? 'bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 text-white border-transparent shadow-2xl'
                     : 'bg-white/5 text-white border-white/20 hover:bg-white/10 hover:border-white/40'
                 }`}
                 data-testid={`filter-${category.id}`}
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <category.icon className={`w-8 h-8 group-hover:scale-110 transition-transform duration-300 ${
-                      activeFilter === category.id ? 'text-indigo-900' : 'text-white'
-                    }`} />
+                    <category.icon className={`w-8 h-8 group-hover:scale-110 transition-transform duration-300 text-white`} />
                     <span className={`text-2xl font-black ${
-                      activeFilter === category.id ? 'text-indigo-900' : 'text-white/40'
+                      activeFilter === category.id ? 'text-white' : 'text-white/40'
                     }`}>
                       {category.count}
                     </span>
                   </div>
-                  <h3 className={`text-xl font-bold leading-tight ${
-                    activeFilter === category.id ? 'text-indigo-900' : 'text-white'
-                  }`}>
+                  <h3 className={`text-xl font-bold leading-tight text-white`}>
                     {category.label}
                   </h3>
                 </div>
@@ -248,7 +244,7 @@ export default function Portfolio() {
 
                         {/* Call to Action */}
                         <div className="flex items-center gap-6 pt-4">
-                          <button className="group/btn bg-white text-indigo-900 px-8 py-4 rounded-full font-bold hover:bg-white/90 transition-all duration-300 flex items-center gap-3 hover:scale-105">
+                          <button className="group/btn bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 text-white px-8 py-4 rounded-full font-bold hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 transition-all duration-300 flex items-center gap-3 hover:scale-105">
                             View Case Study
                             <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                           </button>
@@ -311,7 +307,7 @@ export default function Portfolio() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <a 
                 href="/contact"
-                className="group bg-white text-indigo-900 px-12 py-6 rounded-full font-bold text-lg hover:bg-white/90 transition-all duration-300 flex items-center justify-center gap-3 hover:scale-105"
+                className="group bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 text-white px-12 py-6 rounded-full font-bold text-lg hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 transition-all duration-300 flex items-center justify-center gap-3 hover:scale-105"
               >
                 Start Your Project
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />

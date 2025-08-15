@@ -76,7 +76,7 @@ export default function Blog() {
                   onClick={() => setActiveCategory(category)}
                   className={
                     activeCategory === category
-                      ? "bg-white text-indigo-900 hover:bg-white/90"
+                      ? "bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 text-white hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 border-transparent"
                       : "bg-white/20 text-white border-white/30 hover:bg-white/30"
                   }
                   data-testid={`category-${category.toLowerCase()}`}

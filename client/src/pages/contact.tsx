@@ -120,7 +120,7 @@ export default function Contact() {
                 <div className="flex flex-wrap gap-4">
                   <Button 
                     variant="outline"
-                    className="border-white/40 text-white hover:bg-white hover:text-indigo-900"
+                    className="border-white/40 text-white hover:bg-gradient-to-r hover:from-pink-400 hover:via-purple-500 hover:to-indigo-500 hover:text-white hover:border-transparent"
                     data-testid="download-resume"
                   >
                     <Download className="mr-2 h-4 w-4" />
@@ -128,7 +128,7 @@ export default function Contact() {
                   </Button>
                   <Button 
                     variant="outline"
-                    className="border-white/40 text-white hover:bg-white hover:text-indigo-900"
+                    className="border-white/40 text-white hover:bg-gradient-to-r hover:from-pink-400 hover:via-purple-500 hover:to-indigo-500 hover:text-white hover:border-transparent"
                     data-testid="schedule-call"
                   >
                     <Calendar className="mr-2 h-4 w-4" />
@@ -268,7 +268,7 @@ export default function Contact() {
                   
                   <Button 
                     type="submit" 
-                    className="w-full bg-white text-indigo-900 hover:bg-white/90 font-semibold"
+                    className="w-full bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 text-white hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 font-semibold"
                     disabled={contactMutation.isPending}
                     data-testid="submit-contact-form"
                   >

@@ -136,26 +136,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Enhanced Navigation - Fixed Position */}
-        <nav className="fixed top-8 left-8 right-8 z-20">
-          <div 
-            className="flex justify-between items-center backdrop-blur-sm bg-white/5 rounded-2xl px-6 py-4 border border-white/10"
-            style={{
-              transform: isLoaded ? 'translateY(0)' : 'translateY(-20px)',
-              opacity: isLoaded ? 1 : 0,
-              transition: 'all 1s ease-out 0.1s'
-            }}
-          >
-            <div className="text-2xl font-bold text-white tracking-tight">kazeem</div>
-            <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-              <Link href="/portfolio" className="text-white/80 hover:text-white transition-all duration-300 hover:scale-105">Design</Link>
-              <Link href="/blog" className="text-white/80 hover:text-white transition-all duration-300 hover:scale-105">Blog</Link>  
-              <Link href="/about" className="text-white/80 hover:text-white transition-all duration-300 hover:scale-105">About</Link>
-              <Link href="/contact" className="text-white/80 hover:text-white transition-all duration-300 hover:scale-105">Contact</Link>
-              <Link href="/contact" className="bg-white/20 text-white px-4 py-2 rounded-full hover:bg-white/30 transition-all duration-300 hover:scale-105">Let's talk ↗</Link>
-            </div>
-          </div>
-        </nav>
+
       </section>
 
 

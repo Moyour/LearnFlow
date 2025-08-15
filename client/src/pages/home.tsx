@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Quote } from "lucide-react";
 import aboutMeImage from "../assets/about-me.png";
-import testiImage from "../assets/Tes2.jpg";
+import testiImage from "../assets/Tes3.jpg";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);

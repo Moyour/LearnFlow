@@ -5,7 +5,7 @@ import { ResumeUploader } from "@/components/ResumeUploader";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export default function Resume() {
-  const [showUploader, setShowUploader] = useState(true);
+  const [showUploader, setShowUploader] = useState(false);
   const [resumeData, setResumeData] = useState(null);
   
   const handleUploadComplete = (data: any) => {
@@ -21,7 +21,7 @@ export default function Resume() {
             Resume
           </h1>
           <p className="text-xl text-white/90 leading-relaxed mb-8">
-            {resumeData ? 'Your Personalized Resume' : 'Upload Your Resume to Get Started'}
+            Experienced Instructional Designer & Learning Experience Designer
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -31,15 +31,15 @@ export default function Resume() {
               <Download className="w-4 h-4 mr-2" />
               Download PDF
             </Button>
-            {!showUploader && (
-              <Button 
-                onClick={() => setShowUploader(true)}
-                className="bg-purple-500/20 backdrop-blur-md border-purple-300/30 text-white hover:bg-purple-500/30 transition-all duration-300"
-              >
-                <Upload className="w-4 h-4 mr-2" />
-                Upload New Resume
-              </Button>
-            )}
+            {/* Admin upload button - hidden by default */}
+            <Button 
+              onClick={() => setShowUploader(!showUploader)}
+              className="bg-purple-500/20 backdrop-blur-md border-purple-300/30 text-white hover:bg-purple-500/30 transition-all duration-300"
+              title="Admin: Update resume content"
+            >
+              <Upload className="w-4 h-4 mr-2" />
+              {showUploader ? 'Hide Uploader' : 'Update Resume'}
+            </Button>
           </div>
         </div>
       </section>
@@ -50,11 +50,11 @@ export default function Resume() {
           
           {/* Upload Section */}
           {showUploader && (
-            <div className="mb-12">
+            <div className="mb-12 p-6 bg-blue-50 rounded-lg border-2 border-blue-200">
               <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Upload Your Resume</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">Admin: Update Resume Content</h2>
                 <p className="text-gray-600">
-                  Upload your resume file and I'll automatically extract and format your information
+                  Upload your resume file to automatically extract and update your portfolio information
                 </p>
               </div>
               <ResumeUploader onUploadComplete={handleUploadComplete} />
@@ -65,8 +65,8 @@ export default function Resume() {
           {resumeData && (
             <Alert className="mb-8 border-green-200 bg-green-50">
               <AlertDescription className="text-green-800">
-                Resume uploaded successfully! The information below has been extracted from your file. 
-                You can now download or share this formatted version.
+                Resume content updated! Your information has been extracted from the uploaded file. 
+                Review the details below and the content will be saved to your portfolio.
               </AlertDescription>
             </Alert>
           )}

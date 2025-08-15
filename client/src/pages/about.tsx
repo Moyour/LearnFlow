@@ -1,140 +1,166 @@
-import { Quote, Lightbulb, ArrowRight, Calendar, MapPin, Users } from "lucide-react";
+import { Brain, Heart, Sparkles, ArrowRight, Play, Star, Circle } from "lucide-react";
 import { useState, useEffect } from "react";
 import aboutMeImage from "../assets/about-me.png";
 
 export default function About() {
-  const [scrollY, setScrollY] = useState(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isLoaded, setIsLoaded] = useState(false);
+  const [activeSection, setActiveSection] = useState(0);
 
   useEffect(() => {
     setIsLoaded(true);
-    const handleScroll = () => setScrollY(window.scrollY);
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const newActiveSection = Math.floor(scrollPosition / windowHeight);
+      setActiveSection(newActiveSection);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
-  const journey = [
+  const beliefs = [
     {
-      year: "2019",
-      title: "Learning & Development Specialist",
-      company: "Educational Technology Firm",
-      description: "Developed comprehensive training programs for corporate clients, focusing on digital transformation and skill development."
+      title: "Learning is Transformation",
+      description: "Not information transfer, but profound change in how people think, feel, and act.",
+      emotion: "Wonder",
+      icon: Brain,
+      color: "from-purple-400 via-pink-400 to-rose-400"
     },
     {
-      year: "2021", 
-      title: "Senior Instructional Designer",
-      company: "Global Learning Solutions",
-      description: "Led cross-functional teams in creating scalable learning experiences, achieving 95% learner satisfaction across 50+ projects."
+      title: "Empathy Drives Design", 
+      description: "Every learner carries hopes, fears, and dreams. Great design honors their humanity.",
+      emotion: "Connection",
+      icon: Heart,
+      color: "from-blue-400 via-indigo-400 to-purple-400"
     },
     {
-      year: "2023",
-      title: "Learning Experience Designer", 
-      company: "Independent Consultant",
-      description: "Launched consultancy practice specializing in innovative learning solutions for Fortune 500 companies and emerging startups."
+      title: "Stories Shape Reality",
+      description: "The most powerful learning happens when we weave knowledge into narratives that resonate.",
+      emotion: "Inspiration",
+      icon: Sparkles,
+      color: "from-amber-400 via-orange-400 to-pink-400"
     }
   ];
 
-  const insights = [
-    {
-      question: "What drives exceptional learning design?",
-      answer: "Understanding that learning is fundamentally about transformation. Every touchpoint should move learners closer to their goals while respecting their cognitive load and context."
-    },
-    {
-      question: "How do you approach complex subject matter?",
-      answer: "I break complexity into progressive layers, using storytelling and visual design to create clear pathways. The goal is mastery, not just consumption."
-    },
-    {
-      question: "What role does technology play in your process?",
-      answer: "Technology amplifies great instructional design but never replaces it. I choose tools that serve the learning objectives, not the other way around."
-    }
+  const learnerTypes = [
+    { type: "The Skeptical Executive", challenge: "Prove value in 30 seconds", approach: "Data-driven storytelling" },
+    { type: "The Overwhelmed Employee", challenge: "No time for training", approach: "Micro-moments of brilliance" },
+    { type: "The Curious Creator", challenge: "Wants depth and exploration", approach: "Interactive discovery paths" },
+    { type: "The Practical Implementer", challenge: "Just tell me what to do", approach: "Clear, actionable frameworks" }
   ];
 
   return (
-    <div className="bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400 min-h-screen">
+    <div className="bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400 min-h-screen overflow-x-hidden">
       
-      {/* Floating Elements Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div 
-          className="absolute top-20 left-20 w-32 h-32 bg-white/5 rounded-full blur-xl"
-          style={{ transform: `translateY(${scrollY * 0.1}px)` }}
-        />
-        <div 
-          className="absolute top-40 right-32 w-48 h-48 bg-pink-400/10 rounded-full blur-2xl"
-          style={{ transform: `translateY(${scrollY * 0.15}px)` }}
-        />
-        <div 
-          className="absolute bottom-40 left-40 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"
-          style={{ transform: `translateY(${scrollY * -0.1}px)` }}
-        />
-      </div>
+      {/* Interactive Cursor Effect */}
+      <div 
+        className="fixed w-6 h-6 bg-white/30 rounded-full pointer-events-none z-50 mix-blend-difference"
+        style={{
+          left: mousePosition.x - 12,
+          top: mousePosition.y - 12,
+          transition: 'all 0.1s ease-out'
+        }}
+      />
 
-      {/* Hero Section - Minimalist Approach */}
-      <section className="relative min-h-screen flex items-center pt-20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
-          <div className="grid lg:grid-cols-12 gap-16 items-center">
+      {/* Hero Section - Emotional Introduction */}
+      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-2 h-2 bg-white/20 rounded-full animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${2 + Math.random() * 2}s`
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             
-            {/* Content Side - 7 columns */}
-            <div className="lg:col-span-7 space-y-12">
+            {/* Content Side */}
+            <div className="space-y-12">
               <div 
-                className="space-y-6"
+                className="space-y-8"
                 style={{
-                  transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
+                  transform: isLoaded ? 'translateY(0) rotateX(0deg)' : 'translateY(50px) rotateX(10deg)',
                   opacity: isLoaded ? 1 : 0,
-                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
+                  transition: 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s'
                 }}
               >
-                <div className="space-y-2">
-                  <p className="text-white/60 text-sm font-medium tracking-wide uppercase">
-                    Instructional Designer
-                  </p>
-                  <h1 className="text-6xl lg:text-8xl font-black text-white leading-[0.85] tracking-tight">
-                    KAZEEM
+                <div className="relative">
+                  <h1 className="text-7xl lg:text-9xl font-black text-white leading-[0.8] tracking-tighter">
+                    I DESIGN
                     <br />
-                    <span className="text-white/20">SALAU</span>
+                    <span className="relative">
+                      MOMENTS
+                      <div className="absolute -bottom-4 left-0 w-full h-1 bg-gradient-to-r from-pink-400 to-amber-400 rounded-full" />
+                    </span>
+                    <br />
+                    <span className="text-white/40">OF CLARITY</span>
                   </h1>
                 </div>
                 
-                <div className="max-w-md space-y-6">
-                  <p className="text-xl text-white/90 leading-relaxed font-light">
-                    Crafting learning experiences that bridge the gap between knowledge and transformation through strategic design and human psychology.
+                <div className="max-w-lg space-y-6">
+                  <p className="text-2xl text-white/90 leading-relaxed font-light">
+                    When complex ideas suddenly <span className="font-bold text-white">click</span>. 
+                    When impossible concepts become <span className="italic">inevitable</span>. 
+                    When learners discover they're <span className="underline decoration-pink-400">capable of more</span>.
                   </p>
                   
-                  <div className="flex items-center gap-6 text-white/70">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4" />
-                      <span className="text-sm">Lagos, Nigeria</span>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                      <Play className="w-5 h-5 text-white ml-1" />
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      <span className="text-sm">5+ Years</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Users className="w-4 h-4" />
-                      <span className="text-sm">50K+ Learners</span>
+                    <div>
+                      <p className="text-white font-medium">That's what I create.</p>
+                      <p className="text-white/70 text-sm">Learning experiences that transform lives.</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Image Side - 5 columns */}
-            <div className="lg:col-span-5">
+            {/* Image Side with Creative Frame */}
+            <div className="relative">
               <div 
                 className="relative"
                 style={{
-                  transform: isLoaded ? 'translateY(0) scale(1)' : 'translateY(50px) scale(0.95)',
+                  transform: isLoaded ? 'translateY(0) scale(1) rotateY(0deg)' : 'translateY(30px) scale(0.95) rotateY(-10deg)',
                   opacity: isLoaded ? 1 : 0,
-                  transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s'
+                  transition: 'all 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.6s'
                 }}
               >
-                <div className="relative overflow-hidden rounded-3xl">
-                  <img 
-                    src={aboutMeImage}
-                    alt="Kazeem Salau"
-                    className="w-full h-auto filter contrast-110 brightness-105"
-                    data-testid="about-portrait"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                {/* Creative Frame */}
+                <div className="relative">
+                  <div className="absolute -inset-4 bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 rounded-3xl blur-xl opacity-30" />
+                  <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-4 border border-white/20">
+                    <img 
+                      src={aboutMeImage}
+                      alt="Kazeem Salau"
+                      className="w-full h-auto rounded-2xl"
+                      data-testid="about-portrait"
+                    />
+                    <div className="absolute top-8 right-8 bg-gradient-to-r from-amber-400 to-orange-400 rounded-full p-3">
+                      <Star className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -142,78 +168,129 @@ export default function About() {
         </div>
       </section>
 
-      {/* Journey Timeline */}
-      <section className="py-32 bg-black/20 backdrop-blur-sm relative">
+      {/* Core Beliefs - Emotional Journey */}
+      <section className="py-32 relative">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6">
-              The Journey
+            <h2 className="text-6xl lg:text-7xl font-black text-white mb-8 leading-tight">
+              WHAT I
+              <br />
+              <span className="bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+                BELIEVE
+              </span>
             </h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              From educational technology to independent consulting, each role has shaped my approach to learning design.
+            <p className="text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+              Design is not just about aesthetics. It's about creating emotional connections that spark transformation.
             </p>
           </div>
           
-          <div className="space-y-16">
-            {journey.map((item, index) => (
-              <div 
-                key={index} 
-                className="relative grid lg:grid-cols-12 gap-8 items-center group"
-              >
-                {/* Year */}
-                <div className="lg:col-span-2">
-                  <div className="text-4xl font-black text-white/30 group-hover:text-white/60 transition-colors duration-300">
-                    {item.year}
-                  </div>
-                </div>
-                
-                {/* Content */}
-                <div className="lg:col-span-10 bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10 group-hover:bg-white/10 transition-all duration-300">
-                  <div className="space-y-4">
-                    <div>
-                      <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
-                      <p className="text-lg text-white/80 font-medium">{item.company}</p>
-                    </div>
-                    <p className="text-white/70 leading-relaxed">{item.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Philosophy & Insights */}
-      <section className="py-32">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6">
-              Design Philosophy
-            </h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Three key questions that guide every project and inform my approach to creating meaningful learning experiences.
-            </p>
-          </div>
-          
-          <div className="space-y-12">
-            {insights.map((insight, index) => (
+          <div className="space-y-20">
+            {beliefs.map((belief, index) => (
               <div 
                 key={index}
-                className="bg-white/5 backdrop-blur-md rounded-3xl p-8 lg:p-12 border border-white/10 hover:bg-white/10 transition-all duration-500 group"
+                className="group relative"
+                style={{
+                  transform: `translateX(${index % 2 === 0 ? '-20px' : '20px'})`,
+                  opacity: 0,
+                  animation: `slideIn 1s ease-out ${0.5 + index * 0.3}s forwards`
+                }}
               >
-                <div className="flex items-start gap-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Quote className="w-6 h-6 text-white" />
-                    </div>
+                <div className="grid lg:grid-cols-12 gap-12 items-center">
+                  {index % 2 === 0 ? (
+                    <>
+                      <div className="lg:col-span-8 space-y-6">
+                        <div className="space-y-4">
+                          <div className={`inline-block px-6 py-2 bg-gradient-to-r ${belief.color} rounded-full text-white font-bold text-sm uppercase tracking-wide`}>
+                            {belief.emotion}
+                          </div>
+                          <h3 className="text-4xl lg:text-5xl font-black text-white leading-tight">
+                            {belief.title}
+                          </h3>
+                          <p className="text-xl text-white/80 leading-relaxed max-w-2xl">
+                            {belief.description}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="lg:col-span-4 flex justify-center">
+                        <div className={`w-32 h-32 bg-gradient-to-r ${belief.color} rounded-3xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}>
+                          <belief.icon className="w-16 h-16 text-white" />
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="lg:col-span-4 flex justify-center order-2 lg:order-1">
+                        <div className={`w-32 h-32 bg-gradient-to-r ${belief.color} rounded-3xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}>
+                          <belief.icon className="w-16 h-16 text-white" />
+                        </div>
+                      </div>
+                      <div className="lg:col-span-8 space-y-6 order-1 lg:order-2">
+                        <div className="space-y-4 text-right">
+                          <div className={`inline-block px-6 py-2 bg-gradient-to-r ${belief.color} rounded-full text-white font-bold text-sm uppercase tracking-wide`}>
+                            {belief.emotion}
+                          </div>
+                          <h3 className="text-4xl lg:text-5xl font-black text-white leading-tight">
+                            {belief.title}
+                          </h3>
+                          <p className="text-xl text-white/80 leading-relaxed max-w-2xl ml-auto">
+                            {belief.description}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <style jsx>{`
+          @keyframes slideIn {
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+        `}</style>
+      </section>
+
+      {/* The Humans I Design For */}
+      <section className="py-32 bg-black/30 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl lg:text-6xl font-black text-white mb-6">
+              THE HUMANS
+              <br />
+              <span className="text-white/50">I DESIGN FOR</span>
+            </h2>
+            <p className="text-xl text-white/70 max-w-3xl mx-auto">
+              Every learner is a universe of complexity. Understanding their reality is where great design begins.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {learnerTypes.map((learner, index) => (
+              <div 
+                key={index}
+                className="group bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105"
+              >
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-3 h-3 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full group-hover:scale-150 transition-transform duration-300" />
+                    <h3 className="text-2xl font-bold text-white">{learner.type}</h3>
                   </div>
-                  <div className="space-y-6">
-                    <h3 className="text-2xl lg:text-3xl font-bold text-white leading-tight">
-                      {insight.question}
-                    </h3>
-                    <p className="text-xl text-white/80 leading-relaxed">
-                      {insight.answer}
-                    </p>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <p className="text-sm text-white/60 uppercase tracking-wide font-medium mb-2">Their Challenge</p>
+                      <p className="text-lg text-white/90 italic">"{learner.challenge}"</p>
+                    </div>
+                    
+                    <div>
+                      <p className="text-sm text-white/60 uppercase tracking-wide font-medium mb-2">My Approach</p>
+                      <p className="text-lg text-white font-medium">{learner.approach}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -222,29 +299,44 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-32">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <div className="space-y-8">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white">
-              Let's Create Something Exceptional
-            </h2>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-              Ready to transform your learning programs? Let's discuss how strategic instructional design can drive real results for your organization.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+      {/* Call to Action - Emotional */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-indigo-500/20" />
+        
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
+          <div className="space-y-12">
+            <div className="space-y-8">
+              <h2 className="text-6xl lg:text-7xl font-black text-white leading-tight">
+                READY TO
+                <br />
+                <span className="bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+                  TRANSFORM
+                </span>
+                <br />
+                LEARNING?
+              </h2>
+              
+              <p className="text-2xl text-white/90 leading-relaxed max-w-2xl mx-auto">
+                Let's create learning experiences that don't just inform—they 
+                <span className="font-bold"> inspire</span>, 
+                <span className="italic"> engage</span>, and 
+                <span className="underline decoration-pink-400"> transform</span>.
+              </p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <a 
                 href="/contact"
-                className="group bg-white text-indigo-900 px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition-all duration-300 flex items-center justify-center gap-2"
+                className="group bg-white text-indigo-900 px-12 py-6 rounded-full font-bold text-lg hover:bg-white/90 transition-all duration-300 flex items-center justify-center gap-3 hover:scale-105"
               >
-                Start a Project
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                Let's Create Magic
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
               </a>
               <a 
                 href="/portfolio"
-                className="bg-white/10 text-white px-8 py-4 rounded-full font-semibold border border-white/30 hover:bg-white/20 transition-all duration-300"
+                className="bg-white/10 text-white px-12 py-6 rounded-full font-bold text-lg border-2 border-white/30 hover:bg-white/20 hover:border-white/50 transition-all duration-300 hover:scale-105"
               >
-                View Case Studies
+                See the Impact
               </a>
             </div>
           </div>

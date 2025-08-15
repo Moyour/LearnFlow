@@ -156,6 +156,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.patch("/api/blog/:id", async (req, res) => {
+    try {
+      const validatedData = insertBlogPostSchema.partial().parse(req.body);
+      const post = await storage.updateBlogPost(req.params.id, validatedData);
+      if (!post) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      res.json(post);
+    } catch (error) {
+      res.status(400).json({ message: "Invalid blog post data" });
+    }
+  });
+
+  app.delete("/api/blog/:id", async (req, res) => {
+    try {
+      const success = await storage.deleteBlogPost(req.params.id);
+      if (!success) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ message: "Failed to delete blog post" });
+    }
+  });
+
+  app.post("/api/blog", async (req, res) => {
+    try {
+      const validatedData = insertBlogPostSchema.parse(req.body);
+      const post = await storage.createBlogPost(validatedData);
+      res.status(201).json(post);
+    } catch (error) {
+      res.status(400).json({ message: "Invalid blog post data" });
+    }
+  });
+
   app.put("/api/blog/:id", async (req, res) => {
     try {
       const validatedData = insertBlogPostSchema.partial().parse(req.body);
@@ -204,7 +239,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Contact route
+  app.delete("/api/testimonials/:id", async (req, res) => {
+    try {
+      const success = await storage.deleteTestimonial(req.params.id);
+      if (!success) {
+        return res.status(404).json({ message: "Testimonial not found" });
+      }
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ message: "Failed to delete testimonial" });
+    }
+  });
+
+  // Contact routes
   app.post("/api/contact", async (req, res) => {
     try {
       const validatedData = insertContactSchema.parse(req.body);
@@ -215,7 +262,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/contact", async (req, res) => {
+  app.get("/api/contacts", async (req, res) => {
     try {
       const submissions = await storage.getContactSubmissions();
       res.json(submissions);

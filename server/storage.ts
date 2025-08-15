@@ -26,6 +26,7 @@ export interface IStorage {
   getTestimonials(): Promise<Testimonial[]>;
   getFeaturedTestimonials(): Promise<Testimonial[]>;
   createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial>;
+  deleteTestimonial(id: string): Promise<boolean>;
 
   // Contact
   createContactSubmission(contact: InsertContact): Promise<ContactSubmission>;
@@ -459,6 +460,11 @@ export class DatabaseStorage implements IStorage {
       createdAt: new Date(),
     }).returning();
     return newTestimonial;
+  }
+
+  async deleteTestimonial(id: string): Promise<boolean> {
+    const result = await db.delete(testimonials).where(eq(testimonials.id, id));
+    return result.rowCount > 0;
   }
 
   async createContactSubmission(contact: InsertContact): Promise<ContactSubmission> {

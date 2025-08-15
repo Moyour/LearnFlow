@@ -268,22 +268,57 @@ export default function Home() {
       </section>
 
 
-      {/* Testimonials Section with scroll animations */}
-      <section ref={testimonialsRef} className="py-32 bg-black relative overflow-hidden">
-        {/* Floating elements */}
+      {/* Testimonials Section with grey/black background and abstract patterns */}
+      <section ref={testimonialsRef} className="py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
+        {/* Abstract geometric patterns */}
+        <div className="absolute inset-0 pointer-events-none opacity-10">
+          {/* Large abstract shapes */}
+          <div className="absolute top-20 left-10 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-40 right-20 w-80 h-80 bg-white/3 transform rotate-45 blur-2xl"></div>
+          <div className="absolute bottom-32 left-1/3 w-64 h-64 bg-white/4 transform rotate-12 rounded-3xl blur-2xl"></div>
+          
+          {/* Geometric lines and shapes */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 800">
+            <defs>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+            
+            {/* Abstract lines */}
+            <path d="M0,200 Q300,100 600,200 T1200,150" stroke="rgba(255,255,255,0.05)" strokeWidth="2" fill="none" />
+            <path d="M0,400 Q400,300 800,350 T1200,300" stroke="rgba(255,255,255,0.03)" strokeWidth="1" fill="none" />
+            <path d="M200,0 Q400,200 600,100 T1000,150" stroke="rgba(255,255,255,0.02)" strokeWidth="1" fill="none" />
+            
+            {/* Geometric shapes */}
+            <circle cx="100" cy="150" r="30" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+            <rect x="900" y="500" width="60" height="60" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" transform="rotate(45 930 530)" />
+            <polygon points="300,600 350,550 400,600 350,650" fill="rgba(255,255,255,0.02)" />
+          </svg>
+        </div>
+
+        {/* Animated floating elements with enhanced patterns */}
         <div className="absolute inset-0 pointer-events-none">
-          {[...Array(10)].map((_, i) => (
+          {[...Array(15)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-white/5 rounded-full"
+              className="absolute bg-white/8 rounded-full"
               style={{
+                width: `${Math.random() * 4 + 2}px`,
+                height: `${Math.random() * 4 + 2}px`,
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                animation: `floatSlow ${5 + Math.random() * 5}s ease-in-out infinite`,
+                animation: `floatSlow ${5 + Math.random() * 5}s ease-in-out infinite, pulse ${3 + Math.random() * 2}s ease-in-out infinite`,
                 animationDelay: `${Math.random() * 3}s`,
               }}
             />
           ))}
+          
+          {/* Additional geometric elements */}
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 border border-white/5 rounded-full animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/3 w-24 h-24 border border-white/3 transform rotate-45 animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-2/3 left-2/3 w-16 h-16 bg-white/2 rounded-lg transform rotate-12 animate-pulse" style={{ animationDelay: '2s' }}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">

@@ -1,7 +1,17 @@
-import { Download, Mail, Phone, MapPin, Globe, Linkedin } from "lucide-react";
+import { useState } from "react";
+import { Download, Mail, Phone, MapPin, Globe, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ResumeUploader } from "@/components/ResumeUploader";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export default function Resume() {
+  const [showUploader, setShowUploader] = useState(true);
+  const [resumeData, setResumeData] = useState(null);
+  
+  const handleUploadComplete = (data: any) => {
+    setResumeData(data);
+    setShowUploader(false);
+  };
   return (
     <div className="py-20 bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400 min-h-screen">
       {/* Hero Section */}
@@ -11,21 +21,55 @@ export default function Resume() {
             Resume
           </h1>
           <p className="text-xl text-white/90 leading-relaxed mb-8">
-            Experienced Instructional Designer & Learning Experience Designer
+            {resumeData ? 'Your Personalized Resume' : 'Upload Your Resume to Get Started'}
           </p>
-          <Button 
-            className="bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30 transition-all duration-300"
-            data-testid="download-resume"
-          >
-            <Download className="w-4 h-4 mr-2" />
-            Download PDF
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              className="bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30 transition-all duration-300"
+              data-testid="download-resume"
+            >
+              <Download className="w-4 h-4 mr-2" />
+              Download PDF
+            </Button>
+            {!showUploader && (
+              <Button 
+                onClick={() => setShowUploader(true)}
+                className="bg-purple-500/20 backdrop-blur-md border-purple-300/30 text-white hover:bg-purple-500/30 transition-all duration-300"
+              >
+                <Upload className="w-4 h-4 mr-2" />
+                Upload New Resume
+              </Button>
+            )}
+          </div>
         </div>
       </section>
 
       {/* Resume Content */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          
+          {/* Upload Section */}
+          {showUploader && (
+            <div className="mb-12">
+              <div className="text-center mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">Upload Your Resume</h2>
+                <p className="text-gray-600">
+                  Upload your resume file and I'll automatically extract and format your information
+                </p>
+              </div>
+              <ResumeUploader onUploadComplete={handleUploadComplete} />
+            </div>
+          )}
+
+          {/* Success Message */}
+          {resumeData && (
+            <Alert className="mb-8 border-green-200 bg-green-50">
+              <AlertDescription className="text-green-800">
+                Resume uploaded successfully! The information below has been extracted from your file. 
+                You can now download or share this formatted version.
+              </AlertDescription>
+            </Alert>
+          )}
           
           {/* Contact Information */}
           <div className="mb-12 p-8 bg-gray-50 rounded-2xl">

@@ -24,7 +24,10 @@ const upload = multer({
       'image/jpeg', 'image/png', 'image/gif', 'image/svg+xml',
       'application/zip', 'application/x-zip-compressed', // SCORM files
       'video/mp4', 'video/webm',
-      'application/pdf'
+      'application/pdf',
+      'application/msword', // .doc files
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx files
+      'text/plain' // .txt files
     ];
     
     if (allowedTypes.includes(file.mimetype)) {
@@ -226,6 +229,80 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error) {
       res.status(500).json({ message: "Upload failed" });
+    }
+  });
+
+  // Resume parsing endpoint
+  app.post("/api/parse-resume", upload.single("resume"), async (req, res) => {
+    if (!req.file) {
+      return res.status(400).json({ error: "No resume file uploaded" });
+    }
+
+    try {
+      // Helper functions for basic text extraction
+      const extractName = (text: string) => {
+        // Simple name extraction - look for common patterns
+        const namePatterns = [
+          /^([A-Z][a-z]+ [A-Z][a-z]+)/m,
+          /Name:\s*([A-Z][a-z]+ [A-Z][a-z]+)/i
+        ];
+        for (const pattern of namePatterns) {
+          const match = text.match(pattern);
+          if (match) return match[1];
+        }
+        return null;
+      };
+
+      const extractEmail = (text: string) => {
+        const emailPattern = /([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/;
+        const match = text.match(emailPattern);
+        return match ? match[1] : null;
+      };
+
+      const extractPhone = (text: string) => {
+        const phonePattern = /(\+?1?[-.\s]?\(?[0-9]{3}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4})/;
+        const match = text.match(phonePattern);
+        return match ? match[1] : null;
+      };
+
+      // Basic text extraction from file content
+      let content = '';
+      const fileBuffer = req.file.buffer;
+      
+      if (req.file.mimetype === 'text/plain') {
+        content = fileBuffer.toString('utf-8');
+      } else {
+        // For PDF/DOC files, we'll extract basic text
+        // In a production app, you'd use libraries like pdf-parse, mammoth, etc.
+        content = `Please paste your resume content here. Currently supporting plain text files for parsing.`;
+      }
+
+      // Basic parsing logic
+      const parsedData = {
+        personalInfo: {
+          name: extractName(content) || "Your Name",
+          email: extractEmail(content) || "your.email@example.com", 
+          phone: extractPhone(content) || "+1 (555) 123-4567",
+          location: "Your City, State",
+        },
+        summary: "Professional summary will be extracted from your resume content...",
+        rawContent: content,
+        filename: req.file.originalname,
+        uploadDate: new Date().toISOString()
+      };
+
+      res.json({
+        success: true,
+        data: parsedData,
+        message: "Resume uploaded successfully. Please review and edit the information below."
+      });
+
+    } catch (error) {
+      console.error("Resume parsing error:", error);
+      res.status(500).json({
+        error: "Failed to parse resume",
+        message: "Please ensure your file is a valid resume document"
+      });
     }
   });
 

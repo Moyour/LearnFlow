@@ -1,116 +1,140 @@
-import { Brain, Users, Target, Sparkles, Award, BookOpen, Lightbulb, Zap, Heart } from "lucide-react";
+import { Quote, Lightbulb, ArrowRight, Calendar, MapPin, Users } from "lucide-react";
 import { useState, useEffect } from "react";
 import aboutMeImage from "../assets/about-me.png";
 
 export default function About() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    setIsLoaded(true);
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const skills = [
-    { icon: Brain, title: "Learning Psychology", level: 95 },
-    { icon: Users, title: "Stakeholder Management", level: 90 },
-    { icon: Target, title: "Learning Objectives", level: 98 },
-    { icon: Sparkles, title: "Creative Design", level: 92 },
-  ];
-
-  const achievements = [
-    { number: "150+", label: "Projects Delivered", icon: Target },
-    { number: "98%", label: "Client Satisfaction", icon: Heart },
-    { number: "5+", label: "Years Experience", icon: Award },
-    { number: "50K+", label: "Learners Impacted", icon: Users },
-  ];
-
-  const philosophy = [
+  const journey = [
     {
-      title: "Human-Centered",
-      description: "Every learning experience starts with understanding the learner's needs, motivations, and context.",
-      icon: Heart,
-      color: "from-pink-400 to-purple-500"
+      year: "2019",
+      title: "Learning & Development Specialist",
+      company: "Educational Technology Firm",
+      description: "Developed comprehensive training programs for corporate clients, focusing on digital transformation and skill development."
     },
     {
-      title: "Evidence-Based",
-      description: "Grounding design decisions in learning science and measurable outcomes drives effectiveness.",
-      icon: Brain,
-      color: "from-blue-400 to-indigo-500"
+      year: "2021", 
+      title: "Senior Instructional Designer",
+      company: "Global Learning Solutions",
+      description: "Led cross-functional teams in creating scalable learning experiences, achieving 95% learner satisfaction across 50+ projects."
     },
     {
-      title: "Innovation-Driven",
-      description: "Embracing emerging technologies and methodologies to push the boundaries of what's possible.",
-      icon: Zap,
-      color: "from-amber-400 to-orange-500"
+      year: "2023",
+      title: "Learning Experience Designer", 
+      company: "Independent Consultant",
+      description: "Launched consultancy practice specializing in innovative learning solutions for Fortune 500 companies and emerging startups."
+    }
+  ];
+
+  const insights = [
+    {
+      question: "What drives exceptional learning design?",
+      answer: "Understanding that learning is fundamentally about transformation. Every touchpoint should move learners closer to their goals while respecting their cognitive load and context."
+    },
+    {
+      question: "How do you approach complex subject matter?",
+      answer: "I break complexity into progressive layers, using storytelling and visual design to create clear pathways. The goal is mastery, not just consumption."
+    },
+    {
+      question: "What role does technology play in your process?",
+      answer: "Technology amplifies great instructional design but never replaces it. I choose tools that serve the learning objectives, not the other way around."
     }
   ];
 
   return (
     <div className="bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400 min-h-screen">
       
-      {/* Hero Section with Split Design */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            
-            {/* Content Side */}
-            <div 
-              className="space-y-8"
-              style={{
-                transform: isVisible ? 'translateX(0)' : 'translateX(-50px)',
-                opacity: isVisible ? 1 : 0,
-                transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
-              }}
-            >
-              <div className="space-y-4">
-                <div className="text-white/70 text-sm uppercase tracking-widest font-semibold">
-                  About Kazeem
-                </div>
-                <h1 className="text-5xl lg:text-7xl font-black text-white leading-tight">
-                  CRAFTING
-                  <br />
-                  <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
-                    LEARNING
-                  </span>
-                  <br />
-                  EXPERIENCES
-                </h1>
-              </div>
-              
-              <p className="text-xl text-white/90 leading-relaxed font-light max-w-lg">
-                An experienced Instructional Designer passionate about transforming complex concepts into engaging, memorable learning journeys that drive real behavioral change.
-              </p>
+      {/* Floating Elements Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div 
+          className="absolute top-20 left-20 w-32 h-32 bg-white/5 rounded-full blur-xl"
+          style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+        />
+        <div 
+          className="absolute top-40 right-32 w-48 h-48 bg-pink-400/10 rounded-full blur-2xl"
+          style={{ transform: `translateY(${scrollY * 0.15}px)` }}
+        />
+        <div 
+          className="absolute bottom-40 left-40 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"
+          style={{ transform: `translateY(${scrollY * -0.1}px)` }}
+        />
+      </div>
 
-              <div className="flex flex-wrap gap-4">
-                <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-3 border border-white/30">
-                  <span className="text-white font-medium">🎓 Certified ID</span>
+      {/* Hero Section - Minimalist Approach */}
+      <section className="relative min-h-screen flex items-center pt-20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+          <div className="grid lg:grid-cols-12 gap-16 items-center">
+            
+            {/* Content Side - 7 columns */}
+            <div className="lg:col-span-7 space-y-12">
+              <div 
+                className="space-y-6"
+                style={{
+                  transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
+                  opacity: isLoaded ? 1 : 0,
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
+                }}
+              >
+                <div className="space-y-2">
+                  <p className="text-white/60 text-sm font-medium tracking-wide uppercase">
+                    Instructional Designer
+                  </p>
+                  <h1 className="text-6xl lg:text-8xl font-black text-white leading-[0.85] tracking-tight">
+                    KAZEEM
+                    <br />
+                    <span className="text-white/20">SALAU</span>
+                  </h1>
                 </div>
-                <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-3 border border-white/30">
-                  <span className="text-white font-medium">💡 Design Thinking</span>
-                </div>
-                <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-3 border border-white/30">
-                  <span className="text-white font-medium">🧠 Learning Science</span>
+                
+                <div className="max-w-md space-y-6">
+                  <p className="text-xl text-white/90 leading-relaxed font-light">
+                    Crafting learning experiences that bridge the gap between knowledge and transformation through strategic design and human psychology.
+                  </p>
+                  
+                  <div className="flex items-center gap-6 text-white/70">
+                    <div className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4" />
+                      <span className="text-sm">Lagos, Nigeria</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-4 h-4" />
+                      <span className="text-sm">5+ Years</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Users className="w-4 h-4" />
+                      <span className="text-sm">50K+ Learners</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Image Side */}
-            <div 
-              className="relative"
-              style={{
-                transform: isVisible ? 'translateX(0) scale(1)' : 'translateX(50px) scale(0.9)',
-                opacity: isVisible ? 1 : 0,
-                transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s'
-              }}
-            >
-              <div className="relative">
-                <img 
-                  src={aboutMeImage}
-                  alt="Kazeem Salau - Instructional Designer"
-                  className="w-full h-auto rounded-3xl shadow-2xl border-4 border-white/20"
-                  data-testid="about-portrait"
-                />
-                <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r from-pink-400 to-purple-500 rounded-2xl flex items-center justify-center">
-                  <Sparkles className="w-12 h-12 text-white" />
+            {/* Image Side - 5 columns */}
+            <div className="lg:col-span-5">
+              <div 
+                className="relative"
+                style={{
+                  transform: isLoaded ? 'translateY(0) scale(1)' : 'translateY(50px) scale(0.95)',
+                  opacity: isLoaded ? 1 : 0,
+                  transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s'
+                }}
+              >
+                <div className="relative overflow-hidden rounded-3xl">
+                  <img 
+                    src={aboutMeImage}
+                    alt="Kazeem Salau"
+                    className="w-full h-auto filter contrast-110 brightness-105"
+                    data-testid="about-portrait"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 </div>
               </div>
             </div>
@@ -118,51 +142,78 @@ export default function About() {
         </div>
       </section>
 
-      {/* Achievements Section */}
-      <section className="py-20 bg-black/20 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {achievements.map((achievement, index) => (
+      {/* Journey Timeline */}
+      <section className="py-32 bg-black/20 backdrop-blur-sm relative">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6">
+              The Journey
+            </h2>
+            <p className="text-xl text-white/70 max-w-2xl mx-auto">
+              From educational technology to independent consulting, each role has shaped my approach to learning design.
+            </p>
+          </div>
+          
+          <div className="space-y-16">
+            {journey.map((item, index) => (
+              <div 
+                key={index} 
+                className="relative grid lg:grid-cols-12 gap-8 items-center group"
+              >
+                {/* Year */}
+                <div className="lg:col-span-2">
+                  <div className="text-4xl font-black text-white/30 group-hover:text-white/60 transition-colors duration-300">
+                    {item.year}
+                  </div>
+                </div>
+                
+                {/* Content */}
+                <div className="lg:col-span-10 bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10 group-hover:bg-white/10 transition-all duration-300">
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
+                      <p className="text-lg text-white/80 font-medium">{item.company}</p>
+                    </div>
+                    <p className="text-white/70 leading-relaxed">{item.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Philosophy & Insights */}
+      <section className="py-32">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6">
+              Design Philosophy
+            </h2>
+            <p className="text-xl text-white/70 max-w-2xl mx-auto">
+              Three key questions that guide every project and inform my approach to creating meaningful learning experiences.
+            </p>
+          </div>
+          
+          <div className="space-y-12">
+            {insights.map((insight, index) => (
               <div 
                 key={index}
-                className="text-center p-8 bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 hover:scale-105 transition-all duration-300"
+                className="bg-white/5 backdrop-blur-md rounded-3xl p-8 lg:p-12 border border-white/10 hover:bg-white/10 transition-all duration-500 group"
               >
-                <achievement.icon className="w-12 h-12 text-white mx-auto mb-4" />
-                <div className="text-4xl font-black text-white mb-2">{achievement.number}</div>
-                <div className="text-white/80 font-medium">{achievement.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">Core Expertise</h2>
-            <p className="text-xl text-white/80">Areas where I deliver exceptional results</p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {skills.map((skill, index) => (
-              <div key={index} className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                    <skill.icon className="w-6 h-6 text-white" />
+                <div className="flex items-start gap-6">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Quote className="w-6 h-6 text-white" />
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-white">{skill.title}</h3>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-white/80">
-                    <span>Proficiency</span>
-                    <span>{skill.level}%</span>
-                  </div>
-                  <div className="w-full bg-white/20 rounded-full h-3">
-                    <div 
-                      className="bg-gradient-to-r from-white to-white/80 h-3 rounded-full transition-all duration-1000"
-                      style={{ width: `${skill.level}%` }}
-                    ></div>
+                  <div className="space-y-6">
+                    <h3 className="text-2xl lg:text-3xl font-bold text-white leading-tight">
+                      {insight.question}
+                    </h3>
+                    <p className="text-xl text-white/80 leading-relaxed">
+                      {insight.answer}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -171,51 +222,29 @@ export default function About() {
         </div>
       </section>
 
-      {/* Philosophy Section */}
-      <section className="py-20 bg-white/5 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">Design Philosophy</h2>
-            <p className="text-xl text-white/80">The principles that guide every learning experience I create</p>
-          </div>
-          
-          <div className="grid lg:grid-cols-3 gap-8">
-            {philosophy.map((item, index) => (
-              <div key={index} className="text-center group">
-                <div className={`w-24 h-24 bg-gradient-to-r ${item.color} rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-300`}>
-                  <item.icon className="w-12 h-12 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-4">{item.title}</h3>
-                <p className="text-white/80 leading-relaxed">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20">
+      {/* CTA */}
+      <section className="py-32">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20">
-            <BookOpen className="w-16 h-16 text-white mx-auto mb-6" />
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-              Ready to Transform Learning?
+          <div className="space-y-8">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white">
+              Let's Create Something Exceptional
             </h2>
-            <p className="text-xl text-white/80 mb-8 leading-relaxed">
-              Let's collaborate to create learning experiences that don't just inform, but inspire and transform your learners.
+            <p className="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+              Ready to transform your learning programs? Let's discuss how strategic instructional design can drive real results for your organization.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
               <a 
                 href="/contact"
-                className="bg-white text-indigo-900 px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition-all duration-300 hover:scale-105"
+                className="group bg-white text-indigo-900 px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition-all duration-300 flex items-center justify-center gap-2"
               >
-                Start a Conversation
+                Start a Project
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <a 
                 href="/portfolio"
-                className="bg-white/20 text-white px-8 py-4 rounded-full font-semibold border border-white/30 hover:bg-white/30 transition-all duration-300 hover:scale-105"
+                className="bg-white/10 text-white px-8 py-4 rounded-full font-semibold border border-white/30 hover:bg-white/20 transition-all duration-300"
               >
-                View My Work
+                View Case Studies
               </a>
             </div>
           </div>

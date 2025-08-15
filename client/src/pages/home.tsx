@@ -270,43 +270,58 @@ export default function Home() {
 
       {/* Testimonials Section with grey/black background and abstract patterns */}
       <section ref={testimonialsRef} className="py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
-        {/* Abstract geometric patterns */}
-        <div className="absolute inset-0 pointer-events-none opacity-10">
-          {/* Large abstract shapes */}
-          <div className="absolute top-20 left-10 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-          <div className="absolute top-40 right-20 w-80 h-80 bg-white/3 transform rotate-45 blur-2xl"></div>
-          <div className="absolute bottom-32 left-1/3 w-64 h-64 bg-white/4 transform rotate-12 rounded-3xl blur-2xl"></div>
+        {/* Enhanced Abstract geometric patterns covering entire section */}
+        <div className="absolute inset-0 pointer-events-none opacity-15">
+          {/* Large abstract shapes covering full area */}
+          <div className="absolute -top-32 -left-32 w-[600px] h-[600px] bg-white/8 rounded-full blur-3xl"></div>
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/6 transform rotate-45 blur-2xl"></div>
+          <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-white/7 transform rotate-12 rounded-3xl blur-2xl"></div>
+          <div className="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-white/5 transform -rotate-12 blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-0 w-[350px] h-[350px] bg-white/6 rounded-full blur-2xl"></div>
           
-          {/* Geometric lines and shapes */}
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 800">
+          {/* Enhanced grid and geometric patterns */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1400 1000">
             <defs>
-              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1"/>
+              <pattern id="largeGrid" width="80" height="80" patternUnits="userSpaceOnUse">
+                <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1"/>
+                <circle cx="40" cy="40" r="2" fill="rgba(255,255,255,0.03)" />
+              </pattern>
+              <pattern id="dots" width="60" height="60" patternUnits="userSpaceOnUse">
+                <circle cx="30" cy="30" r="1.5" fill="rgba(255,255,255,0.04)" />
               </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
+            <rect width="100%" height="100%" fill="url(#largeGrid)" />
+            <rect width="100%" height="100%" fill="url(#dots)" />
             
-            {/* Abstract lines */}
-            <path d="M0,200 Q300,100 600,200 T1200,150" stroke="rgba(255,255,255,0.05)" strokeWidth="2" fill="none" />
-            <path d="M0,400 Q400,300 800,350 T1200,300" stroke="rgba(255,255,255,0.03)" strokeWidth="1" fill="none" />
-            <path d="M200,0 Q400,200 600,100 T1000,150" stroke="rgba(255,255,255,0.02)" strokeWidth="1" fill="none" />
+            {/* Large flowing abstract lines */}
+            <path d="M0,100 Q350,50 700,150 T1400,100" stroke="rgba(255,255,255,0.08)" strokeWidth="3" fill="none" />
+            <path d="M0,300 Q400,200 800,350 T1400,250" stroke="rgba(255,255,255,0.06)" strokeWidth="2" fill="none" />
+            <path d="M0,500 Q450,400 900,550 T1400,450" stroke="rgba(255,255,255,0.04)" strokeWidth="2" fill="none" />
+            <path d="M0,700 Q300,600 600,750 T1400,650" stroke="rgba(255,255,255,0.05)" strokeWidth="2" fill="none" />
+            <path d="M0,900 Q500,800 1000,950 T1400,850" stroke="rgba(255,255,255,0.03)" strokeWidth="1" fill="none" />
             
-            {/* Geometric shapes */}
-            <circle cx="100" cy="150" r="30" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
-            <rect x="900" y="500" width="60" height="60" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" transform="rotate(45 930 530)" />
-            <polygon points="300,600 350,550 400,600 350,650" fill="rgba(255,255,255,0.02)" />
+            {/* Large geometric shapes */}
+            <circle cx="200" cy="200" r="80" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="2" />
+            <rect x="1000" y="150" width="120" height="120" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="2" transform="rotate(45 1060 210)" />
+            <polygon points="600,800 700,700 800,800 700,900" fill="rgba(255,255,255,0.03)" />
+            <circle cx="300" cy="700" r="60" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+            <rect x="900" y="600" width="100" height="100" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1" transform="rotate(30 950 650)" />
+            
+            {/* Additional abstract elements */}
+            <path d="M100,400 L300,400 L200,600 Z" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+            <ellipse cx="1200" cy="400" rx="90" ry="50" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" transform="rotate(25 1200 400)" />
           </svg>
         </div>
 
-        {/* Animated floating elements with enhanced patterns */}
+        {/* Enhanced floating elements covering entire background */}
         <div className="absolute inset-0 pointer-events-none">
-          {[...Array(15)].map((_, i) => (
+          {[...Array(25)].map((_, i) => (
             <div
               key={i}
-              className="absolute bg-white/8 rounded-full"
+              className="absolute bg-white/10 rounded-full"
               style={{
-                width: `${Math.random() * 4 + 2}px`,
-                height: `${Math.random() * 4 + 2}px`,
+                width: `${Math.random() * 8 + 3}px`,
+                height: `${Math.random() * 8 + 3}px`,
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
                 animation: `floatSlow ${5 + Math.random() * 5}s ease-in-out infinite, pulse ${3 + Math.random() * 2}s ease-in-out infinite`,
@@ -315,10 +330,12 @@ export default function Home() {
             />
           ))}
           
-          {/* Additional geometric elements */}
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 border border-white/5 rounded-full animate-pulse"></div>
-          <div className="absolute bottom-1/3 right-1/3 w-24 h-24 border border-white/3 transform rotate-45 animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-2/3 left-2/3 w-16 h-16 bg-white/2 rounded-lg transform rotate-12 animate-pulse" style={{ animationDelay: '2s' }}></div>
+          {/* Large geometric accent elements */}
+          <div className="absolute top-1/6 left-1/5 w-48 h-48 border border-white/8 rounded-full animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-36 h-36 border border-white/6 transform rotate-45 animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-3/4 w-28 h-28 bg-white/3 rounded-lg transform rotate-12 animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute bottom-1/6 left-1/3 w-40 h-40 border-2 border-white/5 transform rotate-45 animate-pulse" style={{ animationDelay: '3s' }}></div>
+          <div className="absolute top-3/4 right-1/6 w-32 h-32 border border-white/7 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">

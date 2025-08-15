@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Quote } from "lucide-react";
@@ -6,9 +6,67 @@ import aboutMeImage from "../assets/about-me.png";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const heroRef = useRef<HTMLElement>(null);
+  const testimonialsRef = useRef<HTMLElement>(null);
+  const projectsRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setIsLoaded(true);
+    
+    // Mouse tracking for parallax effects
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 2 - 1,
+        y: (e.clientY / window.innerHeight) * 2 - 1,
+      });
+    };
+
+    // Scroll-triggered animations
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      // Testimonials reveal
+      if (testimonialsRef.current) {
+        const testimonialsTop = testimonialsRef.current.offsetTop;
+        const testimonialsOffset = scrollY - testimonialsTop + windowHeight;
+        if (testimonialsOffset > 0) {
+          const testimonialCards = testimonialsRef.current.querySelectorAll('.testimonial-card');
+          testimonialCards.forEach((card: any, index: number) => {
+            const delay = index * 200;
+            setTimeout(() => {
+              card.style.transform = 'translateY(0) scale(1)';
+              card.style.opacity = '1';
+            }, delay);
+          });
+        }
+      }
+
+      // Projects reveal
+      if (projectsRef.current) {
+        const projectsTop = projectsRef.current.offsetTop;
+        const projectsOffset = scrollY - projectsTop + windowHeight;
+        if (projectsOffset > 0) {
+          const projectCards = projectsRef.current.querySelectorAll('.project-card');
+          projectCards.forEach((card: any, index: number) => {
+            const delay = index * 300;
+            setTimeout(() => {
+              card.style.transform = 'translateY(0) rotateX(0)';
+              card.style.opacity = '1';
+            }, delay);
+          });
+        }
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const testimonials = [
@@ -68,66 +126,136 @@ export default function Home() {
 
   return (
     <div className="min-h-screen text-white overflow-x-hidden">
+      {/* Floating background elements */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 bg-white/10 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animation: `float ${3 + Math.random() * 4}s ease-in-out infinite`,
+              animationDelay: `${Math.random() * 2}s`,
+              transform: `translate(${mousePosition.x * 10}px, ${mousePosition.y * 10}px)`,
+              transition: 'transform 0.1s ease-out',
+            }}
+          />
+        ))}
+      </div>
+
       {/* Hero Section with Gradient and Image */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Enhanced Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400"></div>
+      <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Enhanced Gradient Background with subtle movement */}
+        <div 
+          className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400"
+          style={{
+            transform: `translate(${mousePosition.x * 5}px, ${mousePosition.y * 5}px)`,
+            transition: 'transform 0.3s ease-out',
+          }}
+        ></div>
         
-        {/* Profile Image - Full Height Hero Section */}
+        {/* Profile Image - Full Height Hero Section with parallax */}
         <div 
           className="absolute right-0 top-0 w-1/2 h-full flex items-center justify-center"
           style={{ 
-            transform: isLoaded ? 'translateX(0) scale(1)' : 'translateX(50px) scale(0.9)', 
+            transform: isLoaded 
+              ? `translateX(${mousePosition.x * -10}px) scale(1)` 
+              : 'translateX(50px) scale(0.9)', 
             opacity: isLoaded ? 1 : 0,
-            transition: 'all 1.5s ease-out 0.5s'
+            transition: isLoaded ? 'transform 0.3s ease-out' : 'all 1.5s ease-out 0.5s'
           }}
         >
-          <img
-            src={aboutMeImage}
-            alt="Kazeem Salau"
-            className="w-full h-full object-cover"
+          <div 
+            className="relative w-full h-full overflow-hidden"
             style={{
-              filter: 'contrast(1.1) brightness(1.0)'
+              transform: `translateY(${mousePosition.y * -5}px)`,
+              transition: 'transform 0.3s ease-out',
             }}
-            data-testid="profile-image"
-          />
+          >
+            <img
+              src={aboutMeImage}
+              alt="Kazeem Salau"
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              style={{
+                filter: 'contrast(1.1) brightness(1.0)'
+              }}
+              data-testid="profile-image"
+            />
+          </div>
         </div>
 
         {/* Content Container - Far Left Positioning */}
         <div className="relative z-10 px-8 lg:px-16 py-20 flex items-center min-h-screen">
           <div className="max-w-2xl">
-            {/* Large Typography - Bigger and Far Left */}
+            {/* Large Typography with staggered reveal */}
             <div 
               className="mb-12"
               style={{ 
-                transform: isLoaded ? 'translateX(0)' : 'translateX(-100px)', 
+                transform: isLoaded ? `translateX(${mousePosition.x * 5}px)` : 'translateX(-100px)', 
                 opacity: isLoaded ? 1 : 0,
-                transition: 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s'
+                transition: isLoaded ? 'transform 0.3s ease-out' : 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s'
               }}
             >
               <h1 className="text-[15vw] lg:text-[12vw] xl:text-[10vw] font-black leading-[0.8] tracking-tighter mb-8 text-white drop-shadow-2xl">
-                FOR<br />
-                <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">LEARNING</span><br />
-                DESIGN
+                <span 
+                  className="inline-block"
+                  style={{
+                    animation: isLoaded ? 'slideInLeft 1s ease-out 0.5s both' : 'none'
+                  }}
+                >
+                  FOR
+                </span><br />
+                <span 
+                  className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent inline-block"
+                  style={{
+                    animation: isLoaded ? 'slideInLeft 1s ease-out 0.8s both, shimmer 3s ease-in-out infinite' : 'none'
+                  }}
+                >
+                  LEARNING
+                </span><br />
+                <span 
+                  className="inline-block"
+                  style={{
+                    animation: isLoaded ? 'slideInLeft 1s ease-out 1.1s both' : 'none'
+                  }}
+                >
+                  DESIGN
+                </span>
               </h1>
               
-              {/* Subtitle */}
-              <div className="text-white/90 text-xl lg:text-2xl font-bold tracking-wide mb-4">
+              {/* Subtitle with reveal animation */}
+              <div 
+                className="text-white/90 text-xl lg:text-2xl font-bold tracking-wide mb-4"
+                style={{
+                  animation: isLoaded ? 'fadeInUp 1s ease-out 1.4s both' : 'none'
+                }}
+              >
                 KAZEEM SALAU
               </div>
-              <div className="w-20 h-1.5 bg-white/70 rounded-full"></div>
+              <div 
+                className="w-20 h-1.5 bg-white/70 rounded-full"
+                style={{
+                  animation: isLoaded ? 'expandWidth 1s ease-out 1.7s both' : 'none'
+                }}
+              ></div>
             </div>
 
-            {/* Description Text */}
+            {/* Description Text with floating effect */}
             <div 
               className="max-w-lg"
               style={{ 
-                transform: isLoaded ? 'translateX(0)' : 'translateX(-50px)', 
+                transform: isLoaded ? `translateX(${mousePosition.x * 3}px) translateY(${mousePosition.y * 3}px)` : 'translateX(-50px)', 
                 opacity: isLoaded ? 1 : 0,
-                transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s'
+                transition: isLoaded ? 'transform 0.3s ease-out' : 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s'
               }}
             >
-              <p className="text-xl lg:text-2xl leading-relaxed mb-12 text-white/95 font-light">
+              <p 
+                className="text-xl lg:text-2xl leading-relaxed mb-12 text-white/95 font-light"
+                style={{
+                  animation: isLoaded ? 'fadeInUp 1s ease-out 2s both' : 'none'
+                }}
+              >
                 An experienced Instructional Designer and Learning Experience Designer specializing in contemporary and functional design. I bring learning solutions to life with purposeful, visually compelling experiences.
               </p>
               
@@ -140,14 +268,44 @@ export default function Home() {
       </section>
 
 
-      {/* Testimonials Section */}
-      <section className="py-32 bg-black">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* Testimonials Section with scroll animations */}
+      <section ref={testimonialsRef} className="py-32 bg-black relative overflow-hidden">
+        {/* Floating elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(10)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-white/5 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animation: `floatSlow ${5 + Math.random() * 5}s ease-in-out infinite`,
+                animationDelay: `${Math.random() * 3}s`,
+              }}
+            />
+          ))}
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="mb-32 last:mb-0">
-              {/* Large Word */}
-              <div className="text-center mb-16">
-                <h2 className="text-8xl lg:text-9xl font-black text-white/10 tracking-wider">
+            <div 
+              key={index} 
+              className="testimonial-card mb-32 last:mb-0"
+              style={{
+                transform: 'translateY(50px) scale(0.9)',
+                opacity: '0',
+                transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+              }}
+            >
+              {/* Large Word with perspective effect */}
+              <div className="text-center mb-16 perspective-1000">
+                <h2 
+                  className="text-8xl lg:text-9xl font-black text-white/10 tracking-wider hover:text-white/20 transition-all duration-700"
+                  style={{
+                    transform: `rotateX(${mousePosition.y * 5}deg) rotateY(${mousePosition.x * 5}deg)`,
+                    transition: 'transform 0.3s ease-out, color 0.7s ease-out',
+                  }}
+                >
                   {testimonial.word}
                 </h2>
               </div>
@@ -155,13 +313,13 @@ export default function Home() {
               {/* Testimonial Content */}
               <div className="grid lg:grid-cols-2 gap-16 items-center">
                 <div className="space-y-8">
-                  <Quote className="h-12 w-12 text-blue-400" />
+                  <Quote className="h-12 w-12 text-white/70" />
                   <blockquote className="text-2xl lg:text-3xl leading-relaxed text-gray-300">
                     "{testimonial.quote}"
                   </blockquote>
                   <div className="space-y-2">
                     <div className="text-xl font-bold text-white">{testimonial.name}</div>
-                    <div className="text-lg text-blue-400">{testimonial.title}</div>
+                    <div className="text-lg text-white/80">{testimonial.title}</div>
                     <div className="text-gray-400">{testimonial.company}</div>
                   </div>
                 </div>
@@ -183,43 +341,94 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section className="py-32 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* Projects Section with scroll reveal */}
+      <section ref={projectsRef} className="py-32 bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400 relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(15)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-3 h-3 bg-white/5 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animation: `pulse ${2 + Math.random() * 3}s ease-in-out infinite`,
+                animationDelay: `${Math.random() * 2}s`,
+              }}
+            />
+          ))}
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-20">
+            <h2 
+              className="text-5xl lg:text-6xl font-black text-white mb-8 drop-shadow-lg"
+              style={{
+                animation: 'fadeInUp 1s ease-out both',
+              }}
+            >
+              Featured Projects
+            </h2>
+            <p 
+              className="text-xl text-white/90 leading-relaxed max-w-3xl mx-auto"
+              style={{
+                animation: 'fadeInUp 1s ease-out 0.3s both',
+              }}
+            >
+              Transformative learning experiences that drive measurable results and engage learners at every level.
+            </p>
+          </div>
+
           {projects.map((project, index) => (
-            <div key={index} className="mb-32 last:mb-0">
-              <div className="grid lg:grid-cols-2 gap-16 items-center">
-                <div className="space-y-8">
-                  <div className="space-y-4">
-                    <div className="text-sm uppercase tracking-widest text-blue-400 font-semibold">
-                      {project.company}
+            <div 
+              key={index} 
+              className="project-card mb-32 last:mb-0"
+              style={{
+                transform: 'translateY(100px) rotateX(30deg)',
+                opacity: '0',
+                transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1)',
+              }}
+            >
+              <div 
+                className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-500 hover:scale-105"
+                style={{
+                  transform: `perspective(1000px) rotateY(${mousePosition.x * 2}deg) rotateX(${mousePosition.y * 2}deg)`,
+                  transition: 'transform 0.3s ease-out, background 0.5s ease-out',
+                }}
+              >
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
+                  <div className="space-y-8">
+                    <div className="space-y-4">
+                      <div className="text-sm uppercase tracking-widest text-white/70 font-semibold">
+                        {project.company}
+                      </div>
+                      <h3 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
+                        {project.title}
+                      </h3>
+                      <div className="text-2xl lg:text-3xl font-bold text-white/80">
+                        {project.subtitle}
+                      </div>
                     </div>
-                    <h3 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
-                      {project.title}
-                    </h3>
-                    <div className="text-2xl lg:text-3xl font-bold text-blue-400">
-                      {project.subtitle}
+                    
+                    <p className="text-xl text-white/90 leading-relaxed">
+                      {project.description}
+                    </p>
+                    
+                    <div className="flex flex-wrap gap-3">
+                      {project.tags.map((tag, tagIndex) => (
+                        <span 
+                          key={tagIndex}
+                          className="px-4 py-2 bg-white/20 rounded-full text-sm font-medium text-white border border-white/30 hover:bg-white/30 transition-all duration-300"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                   </div>
                   
-                  <p className="text-xl text-gray-300 leading-relaxed">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-3">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span 
-                        key={tagIndex}
-                        className="px-4 py-2 bg-white/10 rounded-full text-sm font-medium text-gray-300 border border-white/20"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                  <div className="bg-white/10 rounded-2xl p-8 h-80 flex items-center justify-center backdrop-blur-sm border border-white/20">
+                    <div className="text-white/60 text-lg">Project Visual</div>
                   </div>
-                </div>
-                
-                <div className="bg-gray-800 rounded-2xl p-8 h-80 flex items-center justify-center">
-                  <div className="text-gray-500 text-lg">Project Visual</div>
                 </div>
               </div>
             </div>

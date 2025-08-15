@@ -105,7 +105,7 @@ export default function BlogCard({ post }: BlogCardProps) {
             <img 
               src={post.imageUrl} 
               alt={post.title}
-              className="w-32 h-24 object-cover rounded-lg"
+              className="w-40 h-32 object-cover rounded-lg"
               data-testid={`blog-image-${post.id}`}
             />
           </div>

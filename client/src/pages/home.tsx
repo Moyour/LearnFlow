@@ -271,15 +271,16 @@ export default function Home() {
 
       {/* Testimonials Section with testimonial image background */}
       <section ref={testimonialsRef} className="py-32 relative overflow-hidden">
-        {/* Background Image with Overlay */}
+        {/* Background Image with Overlay - Zoomed out and reduced visibility */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-30"
           style={{
             backgroundImage: `url(${testiImage})`,
+            backgroundSize: '80%',
           }}
         ></div>
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="absolute inset-0 bg-black/80"></div>
         {/* Enhanced Abstract geometric patterns covering entire section */}
         <div className="absolute inset-0 pointer-events-none opacity-15">
           {/* Large abstract shapes covering full area */}

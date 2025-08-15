@@ -9,7 +9,7 @@ export default function Navigation() {
   const [location] = useLocation();
 
   const navigation = [
-    { name: "Cases", href: "/portfolio" },
+    { name: "Projects", href: "/portfolio" },
     { name: "About", href: "/about" },
     { name: "Resume", href: "/resume", external: true },
   ];

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Sparkles, ArrowRight, Target, Users, Brain, Zap, Calendar, ExternalLink, Filter } from "lucide-react";
+import { Sparkles, ArrowRight, Target, Users, Brain, Zap, Calendar, ExternalLink, Filter, Monitor } from "lucide-react";
 import { Project } from "@shared/schema";
 
 export default function Portfolio() {
@@ -243,18 +243,23 @@ export default function Portfolio() {
                         )}
 
                         {/* Call to Action */}
-                        <div className="flex items-center gap-6 pt-4">
-                          <button className="group/btn bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 text-white px-8 py-4 rounded-full font-bold hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 transition-all duration-300 flex items-center gap-3 hover:scale-105">
-                            View Case Study
-                            <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                          </button>
-                          
-                          {project.demoUrl && (
-                            <button className="group/btn text-white flex items-center gap-2 hover:text-white/80 transition-colors duration-300">
-                              <ExternalLink className="w-4 h-4" />
-                              Live Demo
-                            </button>
-                          )}
+                        <div className="flex flex-col gap-4">
+                          <div className="flex items-center gap-6">
+                            <a 
+                              href={`/portfolio/${project.id}`}
+                              className="group/btn bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 text-white px-8 py-4 rounded-full font-bold hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 transition-all duration-300 flex items-center gap-3 hover:scale-105"
+                            >
+                              View Case Study
+                              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                            </a>
+                            
+                            {project.scormUrl && (
+                              <div className="flex items-center gap-2 text-green-400">
+                                <Monitor className="w-4 h-4" />
+                                <span className="text-sm font-medium">Interactive Training Available</span>
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>

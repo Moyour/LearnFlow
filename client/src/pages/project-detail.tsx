@@ -1,13 +1,15 @@
 import { useParams, Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, ExternalLink, Download, Play } from "lucide-react";
+import { ArrowLeft, ExternalLink, Download, Play, Monitor } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Project } from "@shared/schema";
+import { useState } from "react";
 
 export default function ProjectDetail() {
   const { id } = useParams<{ id: string }>();
+  const [showScormEmbed, setShowScormEmbed] = useState(false);
   
   const { data: project, isLoading, error } = useQuery<Project>({
     queryKey: ["/api/projects", id],
@@ -106,16 +108,26 @@ export default function ProjectDetail() {
               </Button>
             )}
             {project.scormUrl && (
-              <Button 
-                variant="outline"
-                asChild
-                data-testid="scorm-button"
-              >
-                <a href={project.scormUrl} target="_blank" rel="noopener noreferrer">
-                  <Download className="mr-2 h-4 w-4" />
-                  SCORM Package
-                </a>
-              </Button>
+              <>
+                <Button 
+                  onClick={() => setShowScormEmbed(!showScormEmbed)}
+                  className="bg-green-600 hover:bg-green-700"
+                  data-testid="scorm-embed-button"
+                >
+                  <Monitor className="mr-2 h-4 w-4" />
+                  {showScormEmbed ? "Hide" : "Try"} Interactive Training
+                </Button>
+                <Button 
+                  variant="outline"
+                  asChild
+                  data-testid="scorm-button"
+                >
+                  <a href={project.scormUrl} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    Open in New Window
+                  </a>
+                </Button>
+              </>
             )}
           </div>
         </div>
@@ -129,6 +141,46 @@ export default function ProjectDetail() {
             data-testid="project-image"
           />
         </div>
+
+        {/* Embedded SCORM Content */}
+        {showScormEmbed && project.scormUrl && (
+          <div className="mb-12 bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-200">
+            <div className="bg-gradient-to-r from-green-500 to-emerald-600 px-6 py-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="bg-white/20 rounded-lg p-2">
+                    <Monitor className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white">Interactive Training Module</h3>
+                    <p className="text-white/80 text-sm">Try the actual learning content</p>
+                  </div>
+                </div>
+                <Button 
+                  onClick={() => setShowScormEmbed(false)}
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:bg-white/20"
+                >
+                  ✕
+                </Button>
+              </div>
+            </div>
+            <div className="relative bg-gray-50">
+              <iframe
+                src={project.scormUrl}
+                title={`${project.title} - Interactive Training`}
+                className="w-full h-[600px] border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                data-testid="scorm-iframe"
+              />
+              <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg text-xs text-slate-600">
+                Interactive content by {project.title}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Project Details */}
         <div className="prose prose-lg max-w-none">

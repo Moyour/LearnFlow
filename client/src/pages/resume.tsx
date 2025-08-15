@@ -1,17 +1,42 @@
 import { useState } from "react";
+import * as React from "react";
 import { Download, Mail, Phone, MapPin, Globe, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ResumeUploader } from "@/components/ResumeUploader";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
+interface ResumeData {
+  personalInfo: {
+    name: string;
+    email: string;
+    phone: string;
+    location: string;
+  };
+  summary: string;
+  rawContent: string;
+  filename: string;
+  uploadDate: string;
+}
+
 export default function Resume() {
   const [showUploader, setShowUploader] = useState(false);
-  const [resumeData, setResumeData] = useState(null);
+  const [resumeData, setResumeData] = useState<ResumeData | null>(null);
   
   const handleUploadComplete = (data: any) => {
-    setResumeData(data);
+    setResumeData(data.data);
     setShowUploader(false);
+    
+    // Save the parsed data for future use
+    localStorage.setItem('resumeData', JSON.stringify(data.data));
   };
+  
+  // Load saved resume data on component mount
+  React.useEffect(() => {
+    const savedData = localStorage.getItem('resumeData');
+    if (savedData) {
+      setResumeData(JSON.parse(savedData));
+    }
+  }, []);
   return (
     <div className="py-20 bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400 min-h-screen">
       {/* Hero Section */}
@@ -63,29 +88,42 @@ export default function Resume() {
 
           {/* Success Message */}
           {resumeData && (
-            <Alert className="mb-8 border-green-200 bg-green-50">
-              <AlertDescription className="text-green-800">
-                Resume content updated! Your information has been extracted from the uploaded file. 
-                Review the details below and the content will be saved to your portfolio.
-              </AlertDescription>
-            </Alert>
+            <div className="mb-8">
+              <Alert className="mb-4 border-green-200 bg-green-50">
+                <AlertDescription className="text-green-800">
+                  Resume content updated! Your information has been extracted from the uploaded file "{resumeData.filename}". 
+                  Review the details below and the content will be saved to your portfolio.
+                </AlertDescription>
+              </Alert>
+              
+              {/* Raw Content Preview */}
+              {resumeData.rawContent && (
+                <div className="p-4 bg-gray-100 rounded-lg border">
+                  <h4 className="font-semibold text-gray-900 mb-2">Extracted Content Preview:</h4>
+                  <p className="text-sm text-gray-700 font-mono whitespace-pre-wrap max-h-32 overflow-y-auto">
+                    {resumeData.rawContent.substring(0, 500)}
+                    {resumeData.rawContent.length > 500 && '...'}
+                  </p>
+                </div>
+              )}
+            </div>
           )}
           
           {/* Contact Information */}
           <div className="mb-12 p-8 bg-gray-50 rounded-2xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Kazeem Salau</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">{resumeData?.personalInfo?.name || "Kazeem Salau"}</h2>
             <div className="grid md:grid-cols-2 gap-4 text-gray-600">
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-purple-600" />
-                <span>kazeem.salau@email.com</span>
+                <span>{resumeData?.personalInfo?.email || "kazeem.salau@email.com"}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-purple-600" />
-                <span>+1 (555) 123-4567</span>
+                <span>{resumeData?.personalInfo?.phone || "+1 (555) 123-4567"}</span>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin className="w-5 h-5 text-purple-600" />
-                <span>San Francisco, CA</span>
+                <span>{resumeData?.personalInfo?.location || "San Francisco, CA"}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Globe className="w-5 h-5 text-purple-600" />
@@ -100,11 +138,11 @@ export default function Resume() {
               Professional Summary
             </h3>
             <p className="text-gray-700 leading-relaxed text-lg">
-              Results-driven Instructional Designer with 8+ years of experience creating engaging, 
+              {resumeData?.summary || `Results-driven Instructional Designer with 8+ years of experience creating engaging, 
               learner-centered educational experiences. Expert in applying learning science principles, 
               design thinking methodologies, and cutting-edge educational technologies to deliver 
               measurable learning outcomes. Proven track record of improving learner engagement by 
-              40% and knowledge retention by 35% through innovative design approaches.
+              40% and knowledge retention by 35% through innovative design approaches.`}
             </p>
           </div>
 

@@ -20,12 +20,12 @@ export default function Navigation() {
   };
 
   return (
-    <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-auto max-w-none hidden">
-      <nav className="bg-gray-900/95 backdrop-blur-md rounded-2xl px-6 py-3 shadow-xl border border-gray-800/50 w-auto min-w-max">
+    <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-auto max-w-none">
+      <nav className="bg-white/10 backdrop-blur-md rounded-2xl px-6 py-3 shadow-xl border border-white/20 w-auto min-w-max">
         <div className="flex items-center gap-6 md:gap-8">
           {/* Logo */}
           <Link href="/" data-testid="logo-link">
-            <div className="text-white font-semibold text-lg hover:text-gray-300 transition-colors duration-200 whitespace-nowrap">
+            <div className="text-white font-semibold text-lg hover:text-white/80 transition-colors duration-200 whitespace-nowrap">
               Kazeem.
             </div>
           </Link>
@@ -38,7 +38,7 @@ export default function Navigation() {
                 href={item.href}
                 data-testid={`nav-${item.name.toLowerCase()}`}
                 className={cn(
-                  "text-gray-300 hover:text-white transition-colors duration-200 font-medium flex items-center space-x-1 whitespace-nowrap",
+                  "text-white/80 hover:text-white transition-colors duration-200 font-medium flex items-center space-x-1 whitespace-nowrap",
                   isActive(item.href) && "text-white"
                 )}
               >
@@ -52,7 +52,7 @@ export default function Navigation() {
           <div className="hidden md:block">
             <Link href="/contact">
               <Button 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition-all duration-200 hover:scale-105 whitespace-nowrap"
+                className="bg-white text-indigo-900 hover:bg-white/90 px-6 py-2 rounded-full font-medium transition-all duration-200 hover:scale-105 whitespace-nowrap"
                 data-testid="contact-button"
               >
                 Contact
@@ -67,7 +67,7 @@ export default function Navigation() {
               size="sm"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               data-testid="mobile-menu-toggle"
-              className="text-white hover:bg-gray-800 hover:text-white"
+              className="text-white hover:bg-white/20 hover:text-white"
             >
               {isMobileMenuOpen ? (
                 <X className="h-5 w-5" />
@@ -80,7 +80,7 @@ export default function Navigation() {
         
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pt-4 border-t border-gray-800">
+          <div className="md:hidden mt-4 pt-4 border-t border-white/20">
             <div className="space-y-3">
               {navigation.map((item) => (
                 <Link
@@ -88,7 +88,7 @@ export default function Navigation() {
                   href={item.href}
                   data-testid={`mobile-nav-${item.name.toLowerCase()}`}
                   className={cn(
-                    "block text-gray-300 hover:text-white transition-colors duration-200 font-medium",
+                    "block text-white/80 hover:text-white transition-colors duration-200 font-medium",
                     isActive(item.href) && "text-white"
                   )}
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -101,7 +101,7 @@ export default function Navigation() {
               ))}
               <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                 <Button 
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition-colors duration-200 mt-4"
+                  className="w-full bg-white text-indigo-900 hover:bg-white/90 px-6 py-2 rounded-full font-medium transition-colors duration-200 mt-4"
                   data-testid="mobile-contact-button"
                 >
                   Contact

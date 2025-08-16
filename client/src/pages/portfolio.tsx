@@ -287,13 +287,15 @@ export default function Portfolio() {
                                 className="w-full h-full object-cover rounded-2xl group-hover/visual:scale-105 transition-transform duration-500"
                                 onError={(e) => {
                                   e.currentTarget.style.display = 'none';
-                                  e.currentTarget.nextElementSibling.style.display = 'flex';
+                                  const fallbackDiv = e.currentTarget.parentElement?.querySelector('.fallback-placeholder') as HTMLElement;
+                                  if (fallbackDiv) {
+                                    fallbackDiv.style.display = 'flex';
+                                  }
                                 }}
                               />
                             ) : null}
                             <div 
-                              className={`w-full h-full flex items-center justify-center ${project.imageUrl ? 'hidden' : 'flex'}`}
-                              style={{ display: project.imageUrl ? 'none' : 'flex' }}
+                              className={`fallback-placeholder w-full h-full flex items-center justify-center ${project.imageUrl ? 'hidden' : 'flex'}`}
                             >
                               <div className="text-center space-y-4">
                                 <Sparkles className="w-12 h-12 text-white/60 mx-auto" />

@@ -175,16 +175,10 @@ export default function Portfolio() {
               >
                 <div className="absolute -inset-4 bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
                 <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/20 group-hover:bg-white/10 group-hover:scale-[1.02] group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-500">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <category.icon className="w-8 h-8 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300 text-white" />
-                      <span className="text-2xl font-black text-white/70 group-hover:text-white group-hover:scale-110 transition-all duration-300">
-                        {category.count}
-                      </span>
-                    </div>
-                    <h3 className="text-xl font-bold leading-tight text-white group-hover:text-white/90 group-hover:translate-x-1 transition-all duration-300">
-                      {category.label}
-                    </h3>
+                  <div className="text-center space-y-4">
+                    <category.icon className="w-8 h-8 text-white mx-auto group-hover:scale-125 group-hover:rotate-6 transition-all duration-300" />
+                    <div className="text-3xl font-black text-white group-hover:scale-110 transition-all duration-300">{category.count}</div>
+                    <div className="text-white/80 font-medium text-sm group-hover:text-white group-hover:translate-y-0.5 transition-all duration-300">{category.label}</div>
                   </div>
                 </div>
               </div>

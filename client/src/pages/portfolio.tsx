@@ -115,11 +115,11 @@ export default function Portfolio() {
               }}
             >
               {impactStats.map((stat, index) => (
-                <div key={index} className="text-center group pointer-events-none select-none">
-                  <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                    <stat.icon className="w-8 h-8 text-white mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
-                    <div className="text-3xl font-black text-white mb-2">{stat.number}</div>
-                    <div className="text-white/80 font-medium text-sm">{stat.label}</div>
+                <div key={index} className="text-center pointer-events-none select-none">
+                  <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 border border-slate-200/50 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+                    <stat.icon className="w-8 h-8 text-brand-slate mx-auto mb-4 transition-transform duration-300" />
+                    <div className="text-3xl font-black text-brand-slate mb-2">{stat.number}</div>
+                    <div className="text-slate-600 font-medium text-sm">{stat.label}</div>
                   </div>
                 </div>
               ))}

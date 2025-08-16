@@ -115,13 +115,13 @@ export default function Portfolio() {
               }}
             >
               {impactStats.map((stat, index) => (
-                <div key={index} className="relative group pointer-events-none select-none" style={{ pointerEvents: 'none' }}>
-                  <div className="absolute -inset-4 bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none" />
-                  <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/20 group-hover:bg-white/10 transition-all duration-500 pointer-events-none select-none" style={{ pointerEvents: 'none' }}>
-                    <div className="text-center space-y-4 pointer-events-none select-none">
-                      <stat.icon className="w-8 h-8 text-white mx-auto group-hover:scale-110 transition-transform duration-300 pointer-events-none" />
-                      <div className="text-3xl font-black text-white pointer-events-none select-none">{stat.number}</div>
-                      <div className="text-white/80 font-medium text-sm pointer-events-none select-none">{stat.label}</div>
+                <div key={index} className="relative group impact-stat-card">
+                  <div className="absolute -inset-4 bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
+                  <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/20 group-hover:bg-white/10 transition-all duration-500">
+                    <div className="text-center space-y-4">
+                      <stat.icon className="w-8 h-8 text-white mx-auto group-hover:scale-110 transition-transform duration-300" />
+                      <div className="text-3xl font-black text-white">{stat.number}</div>
+                      <div className="text-white/80 font-medium text-sm">{stat.label}</div>
                     </div>
                   </div>
                 </div>
@@ -134,6 +134,20 @@ export default function Portfolio() {
           @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(180deg); }
+          }
+          .impact-stat-card {
+            pointer-events: none !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+          }
+          .impact-stat-card * {
+            pointer-events: none !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
           }
         `}</style>
       </section>

@@ -170,25 +170,22 @@ export default function Portfolio() {
             {categories.map((category, index) => (
               <div
                 key={category.id}
-                className={`group text-left p-8 rounded-3xl border-2 transition-all duration-500 hover:scale-105 pointer-events-none select-none ${
-                  activeFilter === category.id
-                    ? 'bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 text-white border-transparent shadow-2xl'
-                    : 'bg-white/5 text-white border-white/20 hover:bg-white/10 hover:border-white/40'
-                }`}
+                className="relative group pointer-events-none select-none"
                 data-testid={`filter-${category.id}`}
               >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <category.icon className={`w-8 h-8 group-hover:scale-110 transition-transform duration-300 text-white`} />
-                    <span className={`text-2xl font-black ${
-                      activeFilter === category.id ? 'text-white' : 'text-white/40'
-                    }`}>
-                      {category.count}
-                    </span>
+                <div className="absolute -inset-4 bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
+                <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/20 group-hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-lg">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <category.icon className="w-8 h-8 group-hover:scale-110 transition-transform duration-300 text-white" />
+                      <span className="text-2xl font-black text-white/70 group-hover:text-white transition-colors duration-300">
+                        {category.count}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-bold leading-tight text-white group-hover:text-white/90 transition-colors duration-300">
+                      {category.label}
+                    </h3>
                   </div>
-                  <h3 className={`text-xl font-bold leading-tight text-white`}>
-                    {category.label}
-                  </h3>
                 </div>
               </div>
             ))}

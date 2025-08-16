@@ -191,28 +191,28 @@ export default function ProjectDetail() {
 
           {/* Project Sections */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 border border-slate-200/50 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+            <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 border border-slate-200/50 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] pointer-events-none select-none">
               <h3 className="text-xl font-bold text-brand-slate mb-4">Challenge</h3>
               <p className="text-slate-600">
                 The project addressed the need for an innovative learning solution that could engage learners 
                 while delivering measurable performance improvements in a complex organizational environment.
               </p>
             </div>
-            <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 border border-slate-200/50 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+            <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 border border-slate-200/50 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] pointer-events-none select-none">
               <h3 className="text-xl font-bold text-brand-slate mb-4">Solution</h3>
               <p className="text-slate-600">
                 Through careful analysis and user-centered design, we developed a comprehensive learning 
                 experience that combines multiple modalities and leverages cutting-edge technology.
               </p>
             </div>
-            <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 border border-slate-200/50 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+            <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 border border-slate-200/50 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] pointer-events-none select-none">
               <h3 className="text-xl font-bold text-brand-slate mb-4">Process</h3>
               <p className="text-slate-600">
                 The project followed proven instructional design methodologies, incorporating stakeholder 
                 feedback and iterative testing to ensure optimal learning outcomes.
               </p>
             </div>
-            <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 border border-slate-200/50 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+            <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 border border-slate-200/50 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] pointer-events-none select-none">
               <h3 className="text-xl font-bold text-brand-slate mb-4">Results</h3>
               <p className="text-slate-600">
                 The final solution exceeded expectations, demonstrating significant improvements in learner 

@@ -117,11 +117,11 @@ export default function Portfolio() {
               {impactStats.map((stat, index) => (
                 <div key={index} className="relative group impact-stat-card">
                   <div className="absolute -inset-4 bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
-                  <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/20 group-hover:bg-white/10 transition-all duration-500">
+                  <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/20 group-hover:bg-white/10 group-hover:scale-[1.02] group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-500">
                     <div className="text-center space-y-4">
-                      <stat.icon className="w-8 h-8 text-white mx-auto group-hover:scale-110 transition-transform duration-300" />
-                      <div className="text-3xl font-black text-white">{stat.number}</div>
-                      <div className="text-white/80 font-medium text-sm">{stat.label}</div>
+                      <stat.icon className="w-8 h-8 text-white mx-auto group-hover:scale-125 group-hover:rotate-6 transition-all duration-300" />
+                      <div className="text-3xl font-black text-white group-hover:scale-110 transition-all duration-300">{stat.number}</div>
+                      <div className="text-white/80 font-medium text-sm group-hover:text-white group-hover:translate-y-0.5 transition-all duration-300">{stat.label}</div>
                     </div>
                   </div>
                 </div>
@@ -174,15 +174,15 @@ export default function Portfolio() {
                 data-testid={`filter-${category.id}`}
               >
                 <div className="absolute -inset-4 bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
-                <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/20 group-hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-lg">
+                <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/20 group-hover:bg-white/10 group-hover:scale-[1.02] group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-500">
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <category.icon className="w-8 h-8 group-hover:scale-110 transition-transform duration-300 text-white" />
-                      <span className="text-2xl font-black text-white/70 group-hover:text-white transition-colors duration-300">
+                      <category.icon className="w-8 h-8 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300 text-white" />
+                      <span className="text-2xl font-black text-white/70 group-hover:text-white group-hover:scale-110 transition-all duration-300">
                         {category.count}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold leading-tight text-white group-hover:text-white/90 transition-colors duration-300">
+                    <h3 className="text-xl font-bold leading-tight text-white group-hover:text-white/90 group-hover:translate-x-1 transition-all duration-300">
                       {category.label}
                     </h3>
                   </div>

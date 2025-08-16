@@ -168,10 +168,9 @@ export default function Portfolio() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((category, index) => (
-              <button
+              <div
                 key={category.id}
-                onClick={() => setActiveFilter(category.id)}
-                className={`group text-left p-8 rounded-3xl border-2 transition-all duration-500 hover:scale-105 ${
+                className={`group text-left p-8 rounded-3xl border-2 transition-all duration-500 hover:scale-105 pointer-events-none select-none ${
                   activeFilter === category.id
                     ? 'bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 text-white border-transparent shadow-2xl'
                     : 'bg-white/5 text-white border-white/20 hover:bg-white/10 hover:border-white/40'
@@ -191,7 +190,7 @@ export default function Portfolio() {
                     {category.label}
                   </h3>
                 </div>
-              </button>
+              </div>
             ))}
           </div>
         </div>

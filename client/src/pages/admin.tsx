@@ -68,7 +68,7 @@ export default function Admin() {
 
   const createProjectMutation = useMutation({
     mutationFn: async (data: InsertProject) => {
-      return await apiRequest("/api/projects", "POST", data);
+      return await apiRequest("POST", "/api/projects", data);
     },
     onSuccess: () => {
       toast({ title: "Project created successfully!" });
@@ -82,7 +82,7 @@ export default function Admin() {
 
   const updateProjectMutation = useMutation({
     mutationFn: async ({ id, data }: { id: string; data: Partial<InsertProject> }) => {
-      return await apiRequest(`/api/projects/${id}`, "PATCH", data);
+      return await apiRequest("PATCH", `/api/projects/${id}`, data);
     },
     onSuccess: () => {
       toast({ title: "Project updated successfully!" });
@@ -96,7 +96,7 @@ export default function Admin() {
 
   const deleteProjectMutation = useMutation({
     mutationFn: async (id: string) => {
-      return await apiRequest(`/api/projects/${id}`, "DELETE");
+      return await apiRequest("DELETE", `/api/projects/${id}`);
     },
     onSuccess: () => {
       toast({ title: "Project deleted successfully!" });
@@ -109,7 +109,7 @@ export default function Admin() {
 
   const createBlogMutation = useMutation({
     mutationFn: async (data: InsertBlogPost) => {
-      return await apiRequest("/api/blog", "POST", data);
+      return await apiRequest("POST", "/api/blog", data);
     },
     onSuccess: () => {
       toast({ title: "Blog post created successfully!" });
@@ -123,7 +123,7 @@ export default function Admin() {
 
   const updateBlogMutation = useMutation({
     mutationFn: async ({ id, data }: { id: string; data: Partial<InsertBlogPost> }) => {
-      return await apiRequest(`/api/blog/${id}`, "PATCH", data);
+      return await apiRequest("PATCH", `/api/blog/${id}`, data);
     },
     onSuccess: () => {
       toast({ title: "Blog post updated successfully!" });
@@ -137,7 +137,7 @@ export default function Admin() {
 
   const deleteBlogMutation = useMutation({
     mutationFn: async (id: string) => {
-      return await apiRequest(`/api/blog/${id}`, "DELETE");
+      return await apiRequest("DELETE", `/api/blog/${id}`);
     },
     onSuccess: () => {
       toast({ title: "Blog post deleted successfully!" });
@@ -150,7 +150,7 @@ export default function Admin() {
 
   const createTestimonialMutation = useMutation({
     mutationFn: async (data: InsertTestimonial) => {
-      return await apiRequest("/api/testimonials", "POST", data);
+      return await apiRequest("POST", "/api/testimonials", data);
     },
     onSuccess: () => {
       toast({ title: "Testimonial created successfully!" });
@@ -164,7 +164,7 @@ export default function Admin() {
 
   const deleteTestimonialMutation = useMutation({
     mutationFn: async (id: string) => {
-      return await apiRequest(`/api/testimonials/${id}`, "DELETE");
+      return await apiRequest("DELETE", `/api/testimonials/${id}`);
     },
     onSuccess: () => {
       toast({ title: "Testimonial deleted successfully!" });

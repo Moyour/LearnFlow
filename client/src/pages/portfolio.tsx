@@ -279,10 +279,28 @@ export default function Portfolio() {
                       <div className="relative group/visual">
                         <div className="absolute -inset-4 bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
                         <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/20 group-hover:bg-white/10 transition-all duration-500">
-                          <div className="aspect-video bg-gradient-to-br from-white/10 to-white/5 rounded-2xl flex items-center justify-center">
-                            <div className="text-center space-y-4">
-                              <Sparkles className="w-12 h-12 text-white/60 mx-auto" />
-                              <p className="text-white/60 font-medium">Project Preview</p>
+                          <div className="aspect-video bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden">
+                            {project.imageUrl ? (
+                              <img 
+                                src={project.imageUrl}
+                                alt={project.title}
+                                className="w-full h-full object-cover rounded-2xl group-hover/visual:scale-105 transition-transform duration-500"
+                                onError={(e) => {
+                                  e.currentTarget.style.display = 'none';
+                                  const fallbackDiv = e.currentTarget.parentElement?.querySelector('.fallback-placeholder') as HTMLElement;
+                                  if (fallbackDiv) {
+                                    fallbackDiv.style.display = 'flex';
+                                  }
+                                }}
+                              />
+                            ) : null}
+                            <div 
+                              className={`fallback-placeholder w-full h-full flex items-center justify-center ${project.imageUrl ? 'hidden' : 'flex'}`}
+                            >
+                              <div className="text-center space-y-4">
+                                <Sparkles className="w-12 h-12 text-white/60 mx-auto" />
+                                <p className="text-white/60 font-medium">Project Preview</p>
+                              </div>
                             </div>
                           </div>
                         </div>

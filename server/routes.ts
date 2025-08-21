@@ -271,6 +271,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Serve static files from uploads directory
+  app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
+
   // File upload routes
   app.post("/api/upload", upload.single("file"), (req, res) => {
     try {

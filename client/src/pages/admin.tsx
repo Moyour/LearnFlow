@@ -10,7 +10,8 @@ import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Trash2, Edit, Plus, Save, X, FileText, Users, Mail, FolderOpen } from "lucide-react";
+import { Trash2, Edit, Plus, Save, X, FileText, Users, Mail, FolderOpen, Eye, EyeOff, ImageIcon, Type, List, Quote } from "lucide-react";
+import MarkdownContent from "@/components/markdown-content";
 
 export default function Admin() {
   const [activeTab, setActiveTab] = useState("projects");
@@ -18,6 +19,7 @@ export default function Admin() {
   const [editingBlogPost, setEditingBlogPost] = useState<BlogPost | null>(null);
   const [editingTestimonial, setEditingTestimonial] = useState<Testimonial | null>(null);
   const [showForm, setShowForm] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
   const [formData, setFormData] = useState<InsertProject>({
     title: "",
     description: "",
@@ -545,24 +547,128 @@ export default function Admin() {
                       </div>
                       
                       <div>
-                        <label className="text-white text-sm font-medium">Content (Markdown supported)</label>
-                        <div className="bg-white/5 border border-white/10 rounded-lg p-3 mb-2 text-xs text-white/70">
-                          <p className="font-medium mb-2">Markdown formatting examples:</p>
-                          <div className="space-y-1">
-                            <p><strong>Images:</strong> ![Alt text](https://your-image-url.com/image.jpg)</p>
-                            <p><strong>Headings:</strong> ## Your Heading</p>
-                            <p><strong>Bold:</strong> **bold text**</p>
-                            <p><strong>Italic:</strong> *italic text*</p>
-                            <p><strong>Links:</strong> [Link text](https://example.com)</p>
+                        <div className="flex items-center justify-between mb-2">
+                          <label className="text-white text-sm font-medium">Content (Markdown supported)</label>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setShowPreview(!showPreview)}
+                            className="border-white/20 text-white hover:bg-white/10"
+                          >
+                            {showPreview ? <EyeOff className="w-4 h-4 mr-2" /> : <Eye className="w-4 h-4 mr-2" />}
+                            {showPreview ? 'Hide Preview' : 'Show Preview'}
+                          </Button>
+                        </div>
+
+                        {/* Formatting Toolbar */}
+                        <div className="bg-white/5 border border-white/10 rounded-lg p-3 mb-2">
+                          <div className="flex flex-wrap gap-2 mb-2">
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => {
+                                const textarea = document.querySelector('textarea[placeholder*="Write your blog content"]') as HTMLTextAreaElement;
+                                if (textarea) {
+                                  const start = textarea.selectionStart;
+                                  const end = textarea.selectionEnd;
+                                  const text = textarea.value;
+                                  const newText = text.substring(0, start) + '![Image description](https://your-image-url.com/image.jpg)\n\n' + text.substring(end);
+                                  setBlogFormData({...blogFormData, content: newText});
+                                }
+                              }}
+                              className="text-white/80 hover:bg-white/10 h-8"
+                            >
+                              <ImageIcon className="w-4 h-4 mr-1" />
+                              Image
+                            </Button>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => {
+                                const textarea = document.querySelector('textarea[placeholder*="Write your blog content"]') as HTMLTextAreaElement;
+                                if (textarea) {
+                                  const start = textarea.selectionStart;
+                                  const end = textarea.selectionEnd;
+                                  const text = textarea.value;
+                                  const newText = text.substring(0, start) + '## ' + text.substring(end);
+                                  setBlogFormData({...blogFormData, content: newText});
+                                }
+                              }}
+                              className="text-white/80 hover:bg-white/10 h-8"
+                            >
+                              <Type className="w-4 h-4 mr-1" />
+                              Heading
+                            </Button>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => {
+                                const textarea = document.querySelector('textarea[placeholder*="Write your blog content"]') as HTMLTextAreaElement;
+                                if (textarea) {
+                                  const start = textarea.selectionStart;
+                                  const end = textarea.selectionEnd;
+                                  const text = textarea.value;
+                                  const newText = text.substring(0, start) + '- List item\n- List item\n' + text.substring(end);
+                                  setBlogFormData({...blogFormData, content: newText});
+                                }
+                              }}
+                              className="text-white/80 hover:bg-white/10 h-8"
+                            >
+                              <List className="w-4 h-4 mr-1" />
+                              List
+                            </Button>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => {
+                                const textarea = document.querySelector('textarea[placeholder*="Write your blog content"]') as HTMLTextAreaElement;
+                                if (textarea) {
+                                  const start = textarea.selectionStart;
+                                  const end = textarea.selectionEnd;
+                                  const text = textarea.value;
+                                  const newText = text.substring(0, start) + '> Your quote here\n\n' + text.substring(end);
+                                  setBlogFormData({...blogFormData, content: newText});
+                                }
+                              }}
+                              className="text-white/80 hover:bg-white/10 h-8"
+                            >
+                              <Quote className="w-4 h-4 mr-1" />
+                              Quote
+                            </Button>
+                          </div>
+                          <div className="text-xs text-white/70 space-y-1">
+                            <p><strong>Quick reference:</strong></p>
+                            <p>**Bold** | *Italic* | [Link](url) | ![Image](url) | ## Heading | &gt; Quote</p>
                           </div>
                         </div>
-                        <Textarea 
-                          value={blogFormData.content}
-                          onChange={(e) => setBlogFormData({...blogFormData, content: e.target.value})}
-                          className="bg-white/10 border-white/20 text-white placeholder:text-white/60 mt-2"
-                          placeholder="Write your blog content here using Markdown formatting..."
-                          rows={12}
-                        />
+
+                        <div className="grid grid-cols-1 gap-4">
+                          {/* Editor */}
+                          <div className={showPreview ? "lg:grid lg:grid-cols-2 lg:gap-4" : ""}>
+                            <div>
+                              <Textarea 
+                                value={blogFormData.content}
+                                onChange={(e) => setBlogFormData({...blogFormData, content: e.target.value})}
+                                className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+                                placeholder="Write your blog content here using Markdown formatting..."
+                                rows={showPreview ? 20 : 12}
+                              />
+                            </div>
+                            
+                            {/* Preview */}
+                            {showPreview && (
+                              <div className="bg-white rounded-lg p-6 max-h-96 overflow-y-auto">
+                                <h4 className="text-lg font-semibold text-gray-900 mb-4">Preview</h4>
+                                <MarkdownContent content={blogFormData.content || "Start typing to see preview..."} />
+                              </div>
+                            )}
+                          </div>
+                        </div>
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

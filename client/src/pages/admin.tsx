@@ -545,12 +545,23 @@ export default function Admin() {
                       </div>
                       
                       <div>
-                        <label className="text-white text-sm font-medium">Content</label>
+                        <label className="text-white text-sm font-medium">Content (Markdown supported)</label>
+                        <div className="bg-white/5 border border-white/10 rounded-lg p-3 mb-2 text-xs text-white/70">
+                          <p className="font-medium mb-2">Markdown formatting examples:</p>
+                          <div className="space-y-1">
+                            <p><strong>Images:</strong> ![Alt text](https://your-image-url.com/image.jpg)</p>
+                            <p><strong>Headings:</strong> ## Your Heading</p>
+                            <p><strong>Bold:</strong> **bold text**</p>
+                            <p><strong>Italic:</strong> *italic text*</p>
+                            <p><strong>Links:</strong> [Link text](https://example.com)</p>
+                          </div>
+                        </div>
                         <Textarea 
                           value={blogFormData.content}
                           onChange={(e) => setBlogFormData({...blogFormData, content: e.target.value})}
                           className="bg-white/10 border-white/20 text-white placeholder:text-white/60 mt-2"
-                          rows={8}
+                          placeholder="Write your blog content here using Markdown formatting..."
+                          rows={12}
                         />
                       </div>
 

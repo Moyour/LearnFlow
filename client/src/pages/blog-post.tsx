@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { BlogPost } from "@shared/schema";
+import MarkdownContent from "@/components/markdown-content";
 
 export default function BlogPostPage() {
   const { id } = useParams<{ id: string }>();
@@ -75,7 +76,7 @@ export default function BlogPostPage() {
             <div className="flex items-center">
               <Calendar className="h-4 w-4 mr-2" />
               <span data-testid="post-date">
-                {new Date(post.createdAt).toLocaleDateString("en-US", {
+                {new Date(post.createdAt!).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long", 
                   day: "numeric"
@@ -104,11 +105,8 @@ export default function BlogPostPage() {
         )}
 
         {/* Article Content */}
-        <article className="prose prose-lg max-w-none">
-          <div 
-            dangerouslySetInnerHTML={{ __html: post.content }}
-            data-testid="post-content"
-          />
+        <article data-testid="post-content">
+          <MarkdownContent content={post.content} />
         </article>
 
         {/* Article Footer */}

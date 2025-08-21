@@ -554,6 +554,43 @@ export default function Admin() {
                         />
                       </div>
 
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <label className="text-white text-sm font-medium">Image URL</label>
+                          <Input 
+                            value={blogFormData.imageUrl || ''}
+                            onChange={(e) => setBlogFormData({...blogFormData, imageUrl: e.target.value})}
+                            className="bg-white/10 border-white/20 text-white placeholder:text-white/60 mt-2"
+                            placeholder="Optional image for the blog post"
+                          />
+                        </div>
+                        <div>
+                          <label className="text-white text-sm font-medium">Read Time</label>
+                          <Input 
+                            value={blogFormData.readTime || ''}
+                            onChange={(e) => setBlogFormData({...blogFormData, readTime: e.target.value})}
+                            className="bg-white/10 border-white/20 text-white placeholder:text-white/60 mt-2"
+                            placeholder="e.g., 5 min read"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex flex-row items-center justify-between rounded-lg border border-white/20 p-4">
+                        <div className="space-y-0.5">
+                          <label className="text-white text-sm font-medium">Publish Blog Post</label>
+                          <div className="text-sm text-white/60">
+                            Make this blog post visible on the blog page
+                          </div>
+                        </div>
+                        <input
+                          type="checkbox"
+                          checked={blogFormData.published || false}
+                          onChange={(e) => setBlogFormData({...blogFormData, published: e.target.checked})}
+                          className="h-4 w-4"
+                          data-testid="switch-published"
+                        />
+                      </div>
+
                       <div className="flex gap-4">
                         <Button type="submit" className="bg-gradient-to-r from-green-500 to-blue-500">
                           <Save className="w-4 h-4 mr-2" />
@@ -743,7 +780,7 @@ export default function Admin() {
                           </div>
                           <p className="text-white/80 mb-3">{contact.message}</p>
                           <p className="text-white/60 text-sm">
-                            Received: {new Date(contact.createdAt).toLocaleDateString()}
+                            Received: {contact.createdAt ? new Date(contact.createdAt).toLocaleDateString() : 'Date unknown'}
                           </p>
                         </div>
                       </div>

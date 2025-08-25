@@ -54,7 +54,7 @@ export default function MarkdownContent({ content, className = "" }: MarkdownCon
           
           // Customize blockquote styles
           blockquote: ({ children }) => (
-            <blockquote className="border-l-4 border-blue-500 pl-6 my-6 italic text-gray-700 bg-gray-50 py-4 rounded-r-lg">
+            <blockquote className="border-l-4 border-purple-500 pl-6 my-6 italic text-gray-700 bg-gray-50 py-4 rounded-r-lg">
               {children}
             </blockquote>
           ),
@@ -80,7 +80,7 @@ export default function MarkdownContent({ content, className = "" }: MarkdownCon
           a: ({ href, children }) => (
             <a
               href={href}
-              className="text-blue-600 hover:text-blue-800 underline"
+              className="text-purple-600 hover:text-purple-800 underline"
               target="_blank"
               rel="noopener noreferrer"
             >

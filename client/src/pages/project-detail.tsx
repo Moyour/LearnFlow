@@ -86,7 +86,7 @@ export default function ProjectDetail() {
             {project.demoUrl && (
               <Button 
                 asChild
-                className="bg-brand-blue hover:bg-blue-600"
+                className="bg-brand-purple hover:bg-purple-600"
                 data-testid="demo-button"
               >
                 <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
@@ -229,7 +229,7 @@ export default function ProjectDetail() {
             <Link href="/portfolio">
               <Button 
                 variant="outline"
-                className="border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white"
+                className="border-brand-purple text-brand-purple hover:bg-brand-purple hover:text-white"
                 data-testid="view-more-projects"
               >
                 View All Projects

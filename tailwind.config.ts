@@ -62,7 +62,6 @@ export default {
           ring: "var(--sidebar-ring)",
         },
         // Brand colors
-        'brand-blue': 'hsl(216, 100%, 63%)',
         'brand-purple': 'hsl(251, 79%, 68%)',
         'brand-slate': {
           DEFAULT: 'hsl(213, 25%, 12%)',

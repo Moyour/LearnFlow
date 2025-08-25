@@ -5,7 +5,7 @@ const skills = [
     icon: Brain,
     title: "Design Methodologies",
     items: ["ADDIE Model", "SAM (Successive Approximation)", "Design Thinking", "Agile Learning Design"],
-    color: "blue"
+    color: "purple"
   },
   {
     icon: Code,
@@ -28,7 +28,7 @@ const skills = [
 ];
 
 const colorClasses = {
-  blue: "bg-blue-100 text-brand-blue",
+  purple: "bg-purple-100 text-brand-purple",
   purple: "bg-purple-100 text-brand-purple", 
   green: "bg-green-100 text-green-600",
   orange: "bg-orange-100 text-orange-600"

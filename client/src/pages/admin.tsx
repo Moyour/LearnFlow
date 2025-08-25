@@ -408,7 +408,7 @@ export default function Admin() {
                       <Button
                         type="submit"
                         disabled={createProjectMutation.isPending || updateProjectMutation.isPending}
-                        className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600"
+                        className="bg-gradient-to-r from-green-500 to-purple-500 hover:from-green-600 hover:to-purple-600"
                         data-testid="button-save"
                       >
                         <Save className="w-4 h-4 mr-2" />
@@ -495,7 +495,7 @@ export default function Admin() {
                 <h2 className="text-2xl font-bold text-white">Blog Posts Management</h2>
                 <Button
                   onClick={() => {setShowForm(true); setActiveTab("blog")}}
-                  className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
+                  className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   Add Blog Post
@@ -709,7 +709,7 @@ export default function Admin() {
                       </div>
 
                       <div className="flex gap-4">
-                        <Button type="submit" className="bg-gradient-to-r from-green-500 to-blue-500">
+                        <Button type="submit" className="bg-gradient-to-r from-green-500 to-purple-500">
                           <Save className="w-4 h-4 mr-2" />
                           {editingBlogPost ? 'Update' : 'Create'} Blog Post
                         </Button>
@@ -825,7 +825,7 @@ export default function Admin() {
                       </div>
 
                       <div className="flex gap-4">
-                        <Button type="submit" className="bg-gradient-to-r from-green-500 to-blue-500">
+                        <Button type="submit" className="bg-gradient-to-r from-green-500 to-purple-500">
                           <Save className="w-4 h-4 mr-2" />
                           Create Testimonial
                         </Button>
@@ -890,7 +890,7 @@ export default function Admin() {
                               {contact.email}
                             </Badge>
                             {contact.company && (
-                              <Badge variant="outline" className="border-blue-500/30 text-blue-300">
+                              <Badge variant="outline" className="border-purple-500/30 text-purple-300">
                                 {contact.company}
                               </Badge>
                             )}

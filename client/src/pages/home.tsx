@@ -372,7 +372,6 @@ export default function Home() {
                   <div className="space-y-2 pt-6">
                     <div className="text-xl font-bold text-white">{testimonial.name}</div>
                     <div className="text-lg text-white/80">{testimonial.title}</div>
-                    <div className="text-gray-400">{testimonial.company}</div>
                   </div>
                 </div>
               </div>
@@ -489,13 +488,13 @@ export default function Home() {
           
           <div className="space-y-12">
             <div className="space-y-4">
-              <h3 className="text-xl text-blue-400 font-semibold">
+              <h3 className="text-xl text-white-400 font-semibold">
                 Let's create something that actually works.
               </h3>
               <Link href="/contact">
                 <Button 
                   size="lg" 
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-12 py-6 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105"
+                  className="bg-purple-600 hover:bg-purple-700 text-white px-12 py-6 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105"
                   data-testid="contact-cta-button"
                 >
                   Get In Touch
@@ -505,14 +504,14 @@ export default function Home() {
             </div>
             
             <div className="space-y-4">
-              <h3 className="text-xl text-blue-400 font-semibold">
+              <h3 className="text-xl text-white-400 font-semibold">
                 See how UX meets learning - connect with me.
               </h3>
               <Link href="/portfolio">
                 <Button 
                   variant="outline"
                   size="lg" 
-                  className="border-2 border-white/30 text-white hover:bg-white hover:text-black px-12 py-6 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105"
+                  className="border-2 border-white/30 text-white hover:bg-purple hover:text-black px-12 py-6 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105"
                   data-testid="portfolio-cta-button"
                 >
                   View Portfolio

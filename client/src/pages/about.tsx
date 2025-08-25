@@ -42,7 +42,7 @@ export default function About() {
       description: "Every learner carries hopes, fears, and dreams. Great design honors their humanity.",
       emotion: "Connection",
       icon: Heart,
-      color: "from-blue-400 via-indigo-400 to-purple-400"
+      color: "from-purple-400 via-indigo-400 to-pink-400"
     },
     {
       title: "Stories Shape Reality",

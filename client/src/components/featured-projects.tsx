@@ -65,7 +65,7 @@ export default function FeaturedProjects() {
               onClick={() => setActiveFilter(category.id)}
               className={
                 activeFilter === category.id
-                  ? "bg-brand-blue hover:bg-blue-600 text-white"
+                  ? "bg-brand-purple hover:bg-purple-600 text-white"
                   : "bg-slate-200 text-slate-700 hover:bg-slate-300"
               }
               data-testid={`filter-${category.id}`}
@@ -86,7 +86,7 @@ export default function FeaturedProjects() {
           <Link href="/portfolio">
             <Button 
               size="lg"
-              className="bg-brand-blue hover:bg-blue-600 text-white"
+              className="bg-brand-purple hover:bg-purple-600 text-white"
               data-testid="view-all-projects"
             >
               View All Projects

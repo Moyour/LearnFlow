@@ -121,7 +121,7 @@ export default function BlogPostPage() {
             <Link href="/blog">
               <Button 
                 variant="outline"
-                className="border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white"
+                className="border-brand-purple text-brand-purple hover:bg-brand-purple hover:text-white"
                 data-testid="more-articles-button"
               >
                 Read More Articles

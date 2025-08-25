@@ -95,8 +95,8 @@ export default function FileUpload({
       {...getRootProps()}
       className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors
         ${isDragActive 
-          ? "border-brand-blue bg-blue-50" 
-          : "border-slate-300 hover:border-brand-blue hover:bg-slate-50"
+          ? "border-brand-purple bg-purple-50" 
+          : "border-slate-300 hover:border-brand-purple hover:bg-slate-50"
         }
         ${uploading ? "opacity-50 cursor-not-allowed" : ""}
       `}

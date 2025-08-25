@@ -4,13 +4,13 @@ import { Link } from "wouter";
 
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-br from-slate-50 to-blue-50 py-20 lg:py-32">
+    <section className="bg-gradient-to-br from-slate-50 to-purple-50 py-20 lg:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-6xl font-bold text-brand-slate leading-tight">
-                Hi, I'm <span className="text-brand-blue">Kazeem</span>.
+                Hi, I'm <span className="text-brand-purple">Kazeem</span>.
               </h1>
               <p className="text-xl lg:text-2xl text-slate-600 leading-relaxed">
                 I specialize in creating high-impact learning solutions that drive engagement and support performance across corporate and tech environments.
@@ -18,7 +18,7 @@ export default function Hero() {
             </div>
             
             <div className="flex flex-wrap gap-3">
-              <span className="px-4 py-2 bg-brand-blue text-white rounded-full text-sm font-medium">
+              <span className="px-4 py-2 bg-brand-purple text-white rounded-full text-sm font-medium">
                 Instructional Design
               </span>
               <span className="px-4 py-2 bg-brand-purple text-white rounded-full text-sm font-medium">
@@ -33,7 +33,7 @@ export default function Hero() {
               <Link href="/portfolio">
                 <Button 
                   size="lg" 
-                  className="bg-brand-blue hover:bg-blue-600 text-white"
+                  className="bg-brand-purple hover:bg-purple-600 text-white"
                   data-testid="view-work-button"
                 >
                   <FolderOpen className="mr-2 h-5 w-5" />
@@ -44,7 +44,7 @@ export default function Hero() {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white"
+                  className="border-brand-purple text-brand-purple hover:bg-brand-purple hover:text-white"
                   data-testid="contact-button"
                 >
                   <Mail className="mr-2 h-5 w-5" />

@@ -120,7 +120,6 @@ body {
   --radius: 0.75rem;
   
   /* Brand Colors */
-  --brand-purple: hsl(307, 60%, 63%);
   --brand-purple: hsl(251, 79%, 68%);
   --brand-slate: hsl(213, 25%, 12%);
   --brand-slate-50: hsl(210, 6%, 98%);

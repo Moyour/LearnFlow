@@ -511,7 +511,7 @@ export default function Home() {
                 <Button 
                   variant="outline"
                   size="lg" 
-                  className="border-2 border-white/30 text-white hover:bg-purple hover:text-black px-12 py-6 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105"
+                  className="bg-purple-600 hover:bg-purple hover:text-white px-12 py-6 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105"
                   data-testid="portfolio-cta-button"
                 >
                   View Portfolio

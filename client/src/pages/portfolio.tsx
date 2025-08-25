@@ -24,10 +24,10 @@ export default function Portfolio() {
   });
 
   const categories = [
-    { id: "all", label: "All Impact", icon: Target, count: projects.length },
-    { id: "elearning", label: "Digital Learning", icon: Brain, count: projects.filter(p => p.category === "elearning").length },
-    { id: "mobile", label: "Mobile Experiences", icon: Zap, count: projects.filter(p => p.category === "mobile").length },
-    { id: "corporate", label: "Corporate Training", icon: Users, count: projects.filter(p => p.category === "corporate").length },
+    { id: "Digital", label: "Digital Learning", icon: Target, count: projects.length },
+    { id: "mobile", label: "Mobile Experiences", icon: Brain, count: projects.filter(p => p.category === "elearning").length },
+    { id: "Corporate", label: "Corporate Training", icon: Zap, count: projects.filter(p => p.category === "mobile").length },
+    { id: "Future", label: "Future-Ready Learning", icon: Users, count: projects.filter(p => p.category === "corporate").length },
   ];
 
   const filteredProjects = projects.filter((project: Project) => {
@@ -162,7 +162,7 @@ export default function Portfolio() {
               <span className="text-white/50">IMPACT</span>
             </h2>
             <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              Each domain requires unique approaches, but the goal remains the same: creating learning that sticks.
+              Learning solutions that inspire, engage, and deliver results with combination of creativity, strategy, and technology to design experiences that not only transfer knowledge but also drive real change in the way people learn and work.
             </p>
           </div>
           

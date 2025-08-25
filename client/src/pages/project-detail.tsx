@@ -152,60 +152,13 @@ export default function ProjectDetail() {
                 />
               ) : null}
               <div 
-                className={`fallback-placeholder w-full h-full ${project.imageUrl ? 'hidden' : 'block'}`}
+                className={`fallback-placeholder w-full h-full flex items-center justify-center ${project.imageUrl ? 'hidden' : 'flex'}`}
               >
-                {showScormEmbed && project.scormUrl ? (
-                  <div className="relative w-full h-full bg-white rounded-2xl overflow-hidden">
-                    <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-purple-500 to-pink-500 px-4 py-2 z-10">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <Monitor className="h-4 w-4 text-white" />
-                          <span className="text-white text-sm font-medium">Interactive Training</span>
-                        </div>
-                        <button 
-                          onClick={() => setShowScormEmbed(false)}
-                          className="text-white hover:bg-white/20 rounded p-1 transition-colors"
-                        >
-                          ✕
-                        </button>
-                      </div>
-                    </div>
-                    <iframe
-                      src={project.scormUrl}
-                      title={`${project.title} - Interactive Training`}
-                      className="w-full h-full border-0 pt-10"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      data-testid="scorm-iframe"
-                    />
-                  </div>
-                ) : project.scormUrl ? (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="text-center space-y-6">
-                      <button
-                        onClick={() => setShowScormEmbed(true)}
-                        className="group relative mx-auto block"
-                      >
-                        <div className="absolute -inset-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
-                        <div className="relative bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-6 group-hover:scale-110 transition-all duration-300 shadow-xl">
-                          <PlayCircle className="w-16 h-16 text-white" />
-                        </div>
-                      </button>
-                      <div className="space-y-2">
-                        <p className="text-slate-600 font-bold text-xl">Try Interactive Training</p>
-                        <p className="text-slate-500 text-sm">Click the play button to experience the learning module</p>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="text-center space-y-4">
-                      <Sparkles className="w-16 h-16 text-slate-400 mx-auto" />
-                      <p className="text-slate-500 font-medium text-lg">Project Preview</p>
-                      <p className="text-slate-400 text-sm">Visual content coming soon</p>
-                    </div>
-                  </div>
-                )}
+                <div className="text-center space-y-4">
+                  <Sparkles className="w-16 h-16 text-slate-400 mx-auto" />
+                  <p className="text-slate-500 font-medium text-lg">Project Preview</p>
+                  <p className="text-slate-400 text-sm">Visual content coming soon</p>
+                </div>
               </div>
             </div>
           </div>
@@ -251,6 +204,73 @@ export default function ProjectDetail() {
             </div>
           </div>
         </div>
+
+        {/* Interactive Training Section */}
+        {project.scormUrl && (
+          <div className="border-t border-slate-200 pt-12 mb-12">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold text-brand-slate mb-4">Interactive Training Experience</h2>
+              <p className="text-slate-600">Experience the actual learning content from this project</p>
+            </div>
+            
+            {showScormEmbed ? (
+              <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl shadow-lg overflow-hidden border border-slate-300">
+                <div className="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="bg-white/20 rounded-lg p-2">
+                        <Monitor className="h-5 w-5 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-white">Interactive Training Module</h3>
+                        <p className="text-white/80 text-sm">Experience the actual learning content</p>
+                      </div>
+                    </div>
+                    <Button 
+                      onClick={() => setShowScormEmbed(false)}
+                      variant="ghost"
+                      size="sm"
+                      className="text-white hover:bg-white/20"
+                    >
+                      ✕
+                    </Button>
+                  </div>
+                </div>
+                <div className="relative bg-white aspect-video">
+                  <iframe
+                    src={project.scormUrl}
+                    title={`${project.title} - Interactive Training`}
+                    className="w-full h-full border-0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    data-testid="scorm-iframe"
+                  />
+                  <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-sm px-3 py-2 rounded-lg text-xs text-white">
+                    Interactive content by {project.title}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="text-center">
+                <div className="inline-block">
+                  <button
+                    onClick={() => setShowScormEmbed(true)}
+                    className="group relative"
+                  >
+                    <div className="absolute -inset-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
+                    <div className="relative bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-8 group-hover:scale-110 transition-all duration-300 shadow-xl">
+                      <PlayCircle className="w-20 h-20 text-white" />
+                    </div>
+                  </button>
+                  <div className="mt-6 space-y-2">
+                    <p className="text-slate-600 font-bold text-2xl">Try Interactive Training</p>
+                    <p className="text-slate-500">Click the play button to experience the learning module</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Related Projects */}
         <div className="border-t border-slate-200 pt-12">

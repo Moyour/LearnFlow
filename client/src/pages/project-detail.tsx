@@ -1,6 +1,6 @@
 import { useParams, Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, ExternalLink, Download, Play, Monitor, Sparkles } from "lucide-react";
+import { ArrowLeft, ExternalLink, Download, Play, Monitor, Sparkles, PlayCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -154,11 +154,29 @@ export default function ProjectDetail() {
               <div 
                 className={`fallback-placeholder w-full h-full flex items-center justify-center ${project.imageUrl ? 'hidden' : 'flex'}`}
               >
-                <div className="text-center space-y-4">
-                  <Sparkles className="w-16 h-16 text-slate-400 mx-auto" />
-                  <p className="text-slate-500 font-medium text-lg">Project Preview</p>
-                  <p className="text-slate-400 text-sm">Visual content coming soon</p>
-                </div>
+                {project.scormUrl ? (
+                  <div className="text-center space-y-6">
+                    <button
+                      onClick={() => setShowScormEmbed(true)}
+                      className="group relative mx-auto block"
+                    >
+                      <div className="absolute -inset-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
+                      <div className="relative bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-6 group-hover:scale-110 transition-all duration-300 shadow-xl">
+                        <PlayCircle className="w-16 h-16 text-white" />
+                      </div>
+                    </button>
+                    <div className="space-y-2">
+                      <p className="text-slate-600 font-bold text-xl">Try Interactive Training</p>
+                      <p className="text-slate-500 text-sm">Click the play button to experience the learning module</p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center space-y-4">
+                    <Sparkles className="w-16 h-16 text-slate-400 mx-auto" />
+                    <p className="text-slate-500 font-medium text-lg">Project Preview</p>
+                    <p className="text-slate-400 text-sm">Visual content coming soon</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -166,8 +184,8 @@ export default function ProjectDetail() {
 
         {/* Embedded SCORM Content */}
         {showScormEmbed && project.scormUrl && (
-          <div className="mb-12 bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-200">
-            <div className="bg-gradient-to-r from-green-500 to-emerald-600 px-6 py-4">
+          <div className="mb-12 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl shadow-lg overflow-hidden border border-slate-300">
+            <div className="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <div className="bg-white/20 rounded-lg p-2">
@@ -175,7 +193,7 @@ export default function ProjectDetail() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-white">Interactive Training Module</h3>
-                    <p className="text-white/80 text-sm">Try the actual learning content</p>
+                    <p className="text-white/80 text-sm">Experience the actual learning content</p>
                   </div>
                 </div>
                 <Button 
@@ -188,16 +206,16 @@ export default function ProjectDetail() {
                 </Button>
               </div>
             </div>
-            <div className="relative bg-gray-50">
+            <div className="relative bg-white aspect-video">
               <iframe
                 src={project.scormUrl}
                 title={`${project.title} - Interactive Training`}
-                className="w-full h-[600px] border-0"
+                className="w-full h-full border-0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 data-testid="scorm-iframe"
               />
-              <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg text-xs text-slate-600">
+              <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-sm px-3 py-2 rounded-lg text-xs text-white">
                 Interactive content by {project.title}
               </div>
             </div>

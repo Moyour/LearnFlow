@@ -23,7 +23,7 @@ export default function Navigation() {
   return (
     <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-auto max-w-none">
       <nav className="bg-white/10 backdrop-blur-md rounded-2xl px-6 py-3 shadow-xl border border-white/20 w-auto min-w-max">
-        <div className="flex items-center gap-6 md:gap-8">
+        <div className="flex items-center justify-between w-full">
           {/* Logo */}
           <Link href="/" data-testid="logo-link">
             <div className="text-white font-semibold text-lg hover:text-white/80 transition-colors duration-200 whitespace-nowrap">
@@ -32,7 +32,7 @@ export default function Navigation() {
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-8 flex-1 justify-center">
             {navigation.map((item) => (
               <Link
                 key={item.name}

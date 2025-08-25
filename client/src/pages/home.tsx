@@ -363,28 +363,16 @@ export default function Home() {
               </div>
               
               {/* Testimonial Content */}
-              <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div className="text-center max-w-5xl mx-auto">
                 <div className="space-y-8">
-                  <Quote className="h-12 w-12 text-white/70" />
+                  <Quote className="h-12 w-12 text-white/70 mx-auto" />
                   <blockquote className="text-2xl lg:text-3xl leading-relaxed text-gray-300">
                     "{testimonial.quote}"
                   </blockquote>
-                  <div className="space-y-2">
+                  <div className="space-y-2 pt-6">
                     <div className="text-xl font-bold text-white">{testimonial.name}</div>
                     <div className="text-lg text-white/80">{testimonial.title}</div>
                     <div className="text-gray-400">{testimonial.company}</div>
-                  </div>
-                </div>
-                
-                <div className="text-center lg:text-right">
-                  <div className="text-4xl lg:text-5xl font-bold text-white mb-4">
-                    {testimonial.word}
-                  </div>
-                  <div className="text-xl text-gray-400">
-                    {testimonial.name}
-                  </div>
-                  <div className="text-lg text-blue-400">
-                    {testimonial.title}, {testimonial.company}
                   </div>
                 </div>
               </div>

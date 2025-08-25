@@ -72,32 +72,22 @@ export default function Home() {
 
   const testimonials = [
     {
-      word: "INNOVATIVE",
-      name: "Sarah Johnson",
-      title: "Learning Director",
-      company: "TechCorp",
-      quote: "Kazeem's innovative approach to instructional design transformed our entire training program. His ability to blend technology with pedagogy is exceptional.",
-    },
-    {
-      word: "MASTERFUL",
-      name: "David Chen",
-      title: "VP of Learning & Development",
-      company: "Global Solutions",
-      quote: "Working with Kazeem was a game-changer. His masterful understanding of learning psychology and design thinking elevated our content quality.",
-    },
-    {
-      word: "VISIONARY",
-      name: "Maria Rodriguez",
-      title: "Chief Learning Officer",
-      company: "InnovatED",
-      quote: "Kazeem's visionary approach to e-learning design helped us achieve a 300% increase in learner engagement and completion rates.",
+      word: "TALENTED",
+      name: "Ruby",
+      title: "Global Talent Leader",
+      quote: "Kazeem is a highly talented instructional designer and eLearning developer who consistently delivers exceptional results.I wholeheartedly recommend Kazeem for any project or role that requires top-notch eLearning development and instructional design skills.",
     },
     {
       word: "DEDICATED",
-      name: "James Wilson",
-      title: "Training Manager",
-      company: "SkillBridge",
-      quote: "His dedication to creating meaningful learning experiences is unmatched. Every project delivered exceeded our expectations.",
+      name: "Habeeb",
+      title: "Senior HR Analyst",
+      quote: "Kazeem is a good leader. He is a good communicator, a listener, dedicated to his work and a teacher. He is always ensuring everyone around him gets better.",
+    },
+    {
+      word: "MASTERY",
+      name: "Damilola",
+      title: "Senior Software Developer",
+      quote: "Kazeem is the best Product Designer I have ever worked with in my career.",
     },
   ];
 

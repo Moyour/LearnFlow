@@ -134,12 +134,34 @@ export default function ProjectDetail() {
 
         {/* Project Image */}
         <div className="mb-12">
-          <img 
-            src={project.imageUrl || "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600"} 
-            alt={project.title}
-            className="w-full h-96 object-cover rounded-2xl shadow-lg"
-            data-testid="project-image"
-          />
+          <div className="relative bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl overflow-hidden shadow-lg">
+            <div className="aspect-video bg-gradient-to-br from-slate-100 to-slate-200">
+              {project.imageUrl ? (
+                <img 
+                  src={project.imageUrl}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    const fallbackDiv = e.currentTarget.parentElement?.querySelector('.fallback-placeholder') as HTMLElement;
+                    if (fallbackDiv) {
+                      fallbackDiv.style.display = 'flex';
+                    }
+                  }}
+                  data-testid="project-image"
+                />
+              ) : null}
+              <div 
+                className={`fallback-placeholder w-full h-full flex items-center justify-center ${project.imageUrl ? 'hidden' : 'flex'}`}
+              >
+                <div className="text-center space-y-4">
+                  <Sparkles className="w-16 h-16 text-slate-400 mx-auto" />
+                  <p className="text-slate-500 font-medium text-lg">Project Preview</p>
+                  <p className="text-slate-400 text-sm">Visual content coming soon</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Embedded SCORM Content */}

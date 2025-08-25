@@ -107,28 +107,6 @@ export default function ProjectDetail() {
                 </a>
               </Button>
             )}
-            {project.scormUrl && (
-              <>
-                <Button 
-                  onClick={() => setShowScormEmbed(!showScormEmbed)}
-                  className="bg-purple-600 hover:bg-purple-700"
-                  data-testid="scorm-embed-button"
-                >
-                  <Monitor className="mr-2 h-4 w-4" />
-                  {showScormEmbed ? "Hide" : "Try"} Interactive Training
-                </Button>
-                <Button 
-                  variant="outline"
-                  asChild
-                  data-testid="scorm-button"
-                >
-                  <a href={project.scormUrl} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Open in New Window
-                  </a>
-                </Button>
-              </>
-            )}
           </div>
         </div>
 

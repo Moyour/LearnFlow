@@ -35,7 +35,7 @@ export default function BlogCard({ post }: BlogCardProps) {
             />
             <span className="text-sm text-gray-700 font-medium">{author.name}</span>
             {author.verified && (
-              <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+              <div className="w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center">
                 <div className="w-2 h-2 bg-white rounded-full"></div>
               </div>
             )}

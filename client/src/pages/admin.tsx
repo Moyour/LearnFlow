@@ -458,7 +458,7 @@ export default function Admin() {
                             </div>
                           )}
                           {project.scormUrl && (
-                            <Badge className="bg-green-500/20 text-green-300 border-green-500/30">
+                            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30">
                               Interactive Training Available
                             </Badge>
                           )}
@@ -735,7 +735,7 @@ export default function Admin() {
                               {post.category}
                             </Badge>
                             {post.published && (
-                              <Badge className="bg-green-500/20 text-green-300 border-green-500/30">
+                              <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30">
                                 Published
                               </Badge>
                             )}

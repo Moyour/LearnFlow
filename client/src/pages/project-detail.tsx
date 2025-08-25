@@ -111,7 +111,7 @@ export default function ProjectDetail() {
               <>
                 <Button 
                   onClick={() => setShowScormEmbed(!showScormEmbed)}
-                  className="bg-green-600 hover:bg-green-700"
+                  className="bg-purple-600 hover:bg-purple-700"
                   data-testid="scorm-embed-button"
                 >
                   <Monitor className="mr-2 h-4 w-4" />

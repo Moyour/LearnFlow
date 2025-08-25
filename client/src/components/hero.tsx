@@ -66,7 +66,7 @@ export default function Hero() {
             
             {/* Decorative elements */}
             <div className="absolute -top-4 -right-4 w-72 h-72 bg-brand-purple/10 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-8 -left-8 w-64 h-64 bg-brand-blue/10 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-8 -left-8 w-64 h-64 bg-brand-purple/10 rounded-full blur-3xl"></div>
           </div>
         </div>
       </div>

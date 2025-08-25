@@ -17,7 +17,7 @@ const skills = [
     icon: PaintbrushVertical,
     title: "UX & Design",
     items: ["User Experience Design", "Visual Design", "Prototyping", "Accessibility Standards"],
-    color: "green"
+    color: "amber"
   },
   {
     icon: TrendingUp,
@@ -29,7 +29,7 @@ const skills = [
 
 const colorClasses = {
   purple: "bg-purple-100 text-brand-purple",
-  green: "bg-green-100 text-green-600",
+  amber: "bg-amber-100 text-amber-600",
   orange: "bg-orange-100 text-orange-600"
 };
 

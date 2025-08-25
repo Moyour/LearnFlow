@@ -29,7 +29,6 @@ const skills = [
 
 const colorClasses = {
   purple: "bg-purple-100 text-brand-purple",
-  purple: "bg-purple-100 text-brand-purple", 
   green: "bg-green-100 text-green-600",
   orange: "bg-orange-100 text-orange-600"
 };

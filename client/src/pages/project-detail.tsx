@@ -140,19 +140,23 @@ export default function ProjectDetail() {
                 <img 
                   src={project.imageUrl}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-2xl"
                   onError={(e) => {
+                    console.log('Image failed to load:', project.imageUrl);
                     e.currentTarget.style.display = 'none';
                     const fallbackDiv = e.currentTarget.parentElement?.querySelector('.fallback-placeholder') as HTMLElement;
                     if (fallbackDiv) {
                       fallbackDiv.style.display = 'flex';
                     }
                   }}
+                  onLoad={() => {
+                    console.log('Image loaded successfully:', project.imageUrl);
+                  }}
                   data-testid="project-image"
                 />
               ) : null}
               <div 
-                className={`fallback-placeholder w-full h-full flex items-center justify-center ${project.imageUrl ? 'hidden' : 'flex'}`}
+                className={`fallback-placeholder w-full h-full flex items-center justify-center rounded-2xl ${project.imageUrl ? 'hidden' : 'flex'}`}
               >
                 <div className="text-center space-y-4">
                   <Sparkles className="w-16 h-16 text-slate-400 mx-auto" />

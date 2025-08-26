@@ -9,6 +9,9 @@ export default function MarkdownContent({ content, className = "" }: MarkdownCon
   return (
     <div className={`prose prose-lg max-w-none ${className}`}>
       <ReactMarkdown
+        remarkPlugins={[]}
+        rehypePlugins={[]}
+        skipHtml={false}
         components={{
           // Customize heading styles
           h1: ({ children }) => (
@@ -28,17 +31,17 @@ export default function MarkdownContent({ content, className = "" }: MarkdownCon
           
           // Customize image styles
           img: ({ src, alt }) => (
-            <div className="my-8">
-              <img
-                src={src}
-                alt={alt || ''}
-                className="w-full max-w-4xl mx-auto rounded-lg shadow-md"
-                loading="lazy"
-              />
-              {alt && (
-                <p className="text-center text-sm text-gray-500 mt-2 italic">{alt}</p>
-              )}
-            </div>
+            <img
+              src={src}
+              alt={alt || ''}
+              className="w-full max-w-4xl mx-auto rounded-lg shadow-md my-8 block"
+              loading="lazy"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                console.error('Failed to load image:', src);
+              }}
+            />
           ),
           
           // Customize list styles

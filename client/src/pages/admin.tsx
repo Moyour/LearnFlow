@@ -876,7 +876,7 @@ export default function Admin() {
                               variant="outline"
                               size="sm"
                               onClick={() => startBlogEdit(post)}
-                              className="border-white/20 text-white hover:bg-white/10"
+                              className="border-white/20 text-white hover:bg-white/10 bg-[#554491]"
                               data-testid={`button-edit-blog-${post.id}`}
                             >
                               <Edit className="w-4 h-4" />

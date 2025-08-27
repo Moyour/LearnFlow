@@ -53,10 +53,10 @@ export default function Admin() {
   });
 
   const [resumeFormData, setResumeFormData] = useState<InsertResume>({
-    fileName: "",
-    filePath: "",
-    extractedText: "",
-    parsedData: null,
+    filename: "",
+    originalName: "",
+    fileUrl: "",
+    parsedContent: "",
     isActive: false,
   });
   const { toast } = useToast();
@@ -274,10 +274,7 @@ export default function Admin() {
   // Resume mutations
   const createResumeMutation = useMutation({
     mutationFn: async (data: InsertResume) => {
-      return await apiRequest("/api/resumes", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
+      return await apiRequest("POST", "/api/resumes", data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/resumes"] });
@@ -291,9 +288,7 @@ export default function Admin() {
 
   const activateResumeMutation = useMutation({
     mutationFn: async (id: string) => {
-      return await apiRequest(`/api/resumes/${id}/activate`, {
-        method: "PATCH",
-      });
+      return await apiRequest("PATCH", `/api/resumes/${id}/activate`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/resumes"] });
@@ -306,7 +301,7 @@ export default function Admin() {
 
   const deleteResumeMutation = useMutation({
     mutationFn: async (id: string) => {
-      return await apiRequest(`/api/resumes/${id}`, { method: "DELETE" });
+      return await apiRequest("DELETE", `/api/resumes/${id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/resumes"] });
@@ -335,10 +330,10 @@ export default function Admin() {
       
       // Create resume record
       createResumeMutation.mutate({
-        fileName: file.name,
-        filePath: result.data.filename || file.name,
-        extractedText: result.data.rawContent || "",
-        parsedData: result.data,
+        filename: result.data.filename || file.name,
+        originalName: file.name,
+        fileUrl: result.data.fileUrl || `/uploads/${file.name}`,
+        parsedContent: result.data.rawContent || "",
         isActive: false,
       });
 
@@ -349,10 +344,10 @@ export default function Admin() {
 
   const resetResumeForm = () => {
     setResumeFormData({
-      fileName: "",
-      filePath: "",
-      extractedText: "",
-      parsedData: null,
+      filename: "",
+      originalName: "",
+      fileUrl: "",
+      parsedContent: "",
       isActive: false,
     });
   };
@@ -1015,7 +1010,7 @@ export default function Admin() {
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-3">
-                            <h3 className="text-xl font-bold text-white">{resume.fileName}</h3>
+                            <h3 className="text-xl font-bold text-white">{resume.originalName}</h3>
                             {resume.isActive && (
                               <Badge className="bg-green-500/20 text-green-300 border-green-500/30">
                                 Active
@@ -1023,14 +1018,11 @@ export default function Admin() {
                             )}
                           </div>
                           
-                          {resume.parsedData && (
+                          {resume.parsedContent && (
                             <div className="mb-4 p-4 bg-white/5 rounded-lg">
-                              <h4 className="text-white font-medium mb-2">Parsed Information:</h4>
-                              <div className="text-white/80 text-sm space-y-1">
-                                <p><strong>Name:</strong> {resume.parsedData.personalInfo?.name || 'Not extracted'}</p>
-                                <p><strong>Email:</strong> {resume.parsedData.personalInfo?.email || 'Not extracted'}</p>
-                                <p><strong>Phone:</strong> {resume.parsedData.personalInfo?.phone || 'Not extracted'}</p>
-                                <p><strong>Summary:</strong> {resume.parsedData.summary || 'Not extracted'}</p>
+                              <h4 className="text-white font-medium mb-2">Parsed Content Preview:</h4>
+                              <div className="text-white/80 text-sm">
+                                <p className="line-clamp-3">{resume.parsedContent.substring(0, 200)}...</p>
                               </div>
                             </div>
                           )}

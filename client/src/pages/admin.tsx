@@ -68,7 +68,9 @@ export default function Admin() {
 
   
   const { data: blogPosts = [], isLoading: blogLoading } = useQuery<BlogPost[]>({
-    queryKey: ["/api/blog"],
+    queryKey: ["/api/blog?all=true"],
+    staleTime: 0,
+    refetchOnWindowFocus: true,
   });
   
   const { data: testimonials = [], isLoading: testimonialsLoading } = useQuery<Testimonial[]>({
@@ -130,7 +132,7 @@ export default function Admin() {
     },
     onSuccess: () => {
       toast({ title: "Blog post created successfully!" });
-      queryClient.invalidateQueries({ queryKey: ["/api/blog"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/blog?all=true"] });
       resetBlogForm();
     },
     onError: (error) => {
@@ -144,7 +146,7 @@ export default function Admin() {
     },
     onSuccess: () => {
       toast({ title: "Blog post updated successfully!" });
-      queryClient.invalidateQueries({ queryKey: ["/api/blog"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/blog?all=true"] });
       resetBlogForm();
     },
     onError: (error) => {
@@ -158,7 +160,7 @@ export default function Admin() {
     },
     onSuccess: () => {
       toast({ title: "Blog post deleted successfully!" });
-      queryClient.invalidateQueries({ queryKey: ["/api/blog"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/blog?all=true"] });
     },
     onError: (error) => {
       toast({ title: "Error deleting blog post", description: error.message, variant: "destructive" });

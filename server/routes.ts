@@ -124,10 +124,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Blog posts routes
   app.get("/api/blog", async (req, res) => {
     try {
-      const published = req.query.published !== "false";
-      const posts = published 
-        ? await storage.getPublishedBlogPosts()
-        : await storage.getBlogPosts();
+      // For admin, show all posts (published and unpublished)
+      // For public blog page, filter by published=true
+      const showAll = req.query.all === "true";
+      const posts = showAll 
+        ? await storage.getBlogPosts()
+        : await storage.getPublishedBlogPosts();
       res.json(posts);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch blog posts" });

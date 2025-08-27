@@ -258,7 +258,7 @@ export default function Portfolio() {
                             </Link>
                             
                             {project.scormUrl && (
-                              <div className="flex items-center gap-2 text-purple-400">
+                              <div className="flex items-center gap-2 text-[#c4c4c4]">
                                 <Monitor className="w-4 h-4" />
                                 <span className="text-sm font-medium text-[#ffffff]">Interactive Training Available</span>
                               </div>

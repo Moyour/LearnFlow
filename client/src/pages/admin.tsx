@@ -579,7 +579,7 @@ export default function Admin() {
                             variant="outline"
                             size="sm"
                             onClick={() => deleteProjectMutation.mutate(project.id)}
-                            className="border-red-500/20 text-red-300 hover:bg-red-500/10"
+                            className="border-red-500/20 text-red-300 hover:bg-red-500/10 bg-[#57449100]"
                             data-testid={`button-delete-${project.id}`}
                           >
                             <Trash2 className="w-4 h-4" />

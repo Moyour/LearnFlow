@@ -520,7 +520,7 @@ export default function Admin() {
                         type="button"
                         variant="outline"
                         onClick={resetProjectForm}
-                        className="border-white/20 text-white hover:bg-white/10"
+                        className="border-white/20 text-white hover:bg-white/10 bg-[#ff00001a]"
                         data-testid="button-cancel"
                       >
                         <X className="w-4 h-4 mr-2" />

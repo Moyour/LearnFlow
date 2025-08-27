@@ -374,7 +374,7 @@ export default function Admin() {
           </div>
 
           <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-            <TabsList className="grid w-full grid-cols-5 bg-white/10 backdrop-blur-md border-white/20">
+            <TabsList className="h-10 items-center justify-center rounded-md p-1 grid w-full grid-cols-5 bg-white/10 backdrop-blur-md border-white/20 text-[#ffffff]">
               <TabsTrigger value="projects" className="data-[state=active]:bg-white/20">
                 <FolderOpen className="w-4 h-4 mr-2" />
                 Projects

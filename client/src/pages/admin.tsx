@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-import { Project, BlogPost, Testimonial, ContactSubmission, type InsertProject, type InsertBlogPost, type InsertTestimonial } from "@shared/schema";
+import { Project, BlogPost, Testimonial, ContactSubmission, Resume, type InsertProject, type InsertBlogPost, type InsertTestimonial, type InsertResume } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -51,6 +51,14 @@ export default function Admin() {
     rating: "5",
     featured: false,
   });
+
+  const [resumeFormData, setResumeFormData] = useState<InsertResume>({
+    fileName: "",
+    filePath: "",
+    extractedText: "",
+    parsedData: null,
+    isActive: false,
+  });
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -69,6 +77,10 @@ export default function Admin() {
   
   const { data: contacts = [], isLoading: contactsLoading } = useQuery<ContactSubmission[]>({
     queryKey: ["/api/contacts"],
+  });
+
+  const { data: resumes = [], isLoading: resumesLoading } = useQuery<Resume[]>({
+    queryKey: ["/api/resumes"],
   });
 
   const createProjectMutation = useMutation({
@@ -259,7 +271,93 @@ export default function Admin() {
     setBlogFormData({ ...post });
   };
 
-  const isLoading = projectsLoading || blogLoading || testimonialsLoading || contactsLoading;
+  // Resume mutations
+  const createResumeMutation = useMutation({
+    mutationFn: async (data: InsertResume) => {
+      return await apiRequest("/api/resumes", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/resumes"] });
+      toast({ title: "Resume saved successfully!" });
+      resetResumeForm();
+    },
+    onError: () => {
+      toast({ title: "Failed to save resume", variant: "destructive" });
+    },
+  });
+
+  const activateResumeMutation = useMutation({
+    mutationFn: async (id: string) => {
+      return await apiRequest(`/api/resumes/${id}/activate`, {
+        method: "PATCH",
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/resumes"] });
+      toast({ title: "Resume activated successfully!" });
+    },
+    onError: () => {
+      toast({ title: "Failed to activate resume", variant: "destructive" });
+    },
+  });
+
+  const deleteResumeMutation = useMutation({
+    mutationFn: async (id: string) => {
+      return await apiRequest(`/api/resumes/${id}`, { method: "DELETE" });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/resumes"] });
+      toast({ title: "Resume deleted successfully!" });
+    },
+    onError: () => {
+      toast({ title: "Failed to delete resume", variant: "destructive" });
+    },
+  });
+
+  const handleResumeUpload = async (file: File) => {
+    const formData = new FormData();
+    formData.append("resume", file);
+
+    try {
+      const response = await fetch("/api/parse-resume", {
+        method: "POST",
+        body: formData,
+      });
+      
+      if (!response.ok) {
+        throw new Error("Upload failed");
+      }
+
+      const result = await response.json();
+      
+      // Create resume record
+      createResumeMutation.mutate({
+        fileName: file.name,
+        filePath: result.data.filename || file.name,
+        extractedText: result.data.rawContent || "",
+        parsedData: result.data,
+        isActive: false,
+      });
+
+    } catch (error) {
+      toast({ title: "Failed to upload resume", variant: "destructive" });
+    }
+  };
+
+  const resetResumeForm = () => {
+    setResumeFormData({
+      fileName: "",
+      filePath: "",
+      extractedText: "",
+      parsedData: null,
+      isActive: false,
+    });
+  };
+
+  const isLoading = projectsLoading || blogLoading || testimonialsLoading || contactsLoading || resumesLoading;
 
   if (isLoading) {
     return (
@@ -279,7 +377,7 @@ export default function Admin() {
           </div>
 
           <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-            <TabsList className="grid w-full grid-cols-4 bg-white/10 backdrop-blur-md border-white/20">
+            <TabsList className="grid w-full grid-cols-5 bg-white/10 backdrop-blur-md border-white/20">
               <TabsTrigger value="projects" className="data-[state=active]:bg-white/20">
                 <FolderOpen className="w-4 h-4 mr-2" />
                 Projects
@@ -291,6 +389,10 @@ export default function Admin() {
               <TabsTrigger value="testimonials" className="data-[state=active]:bg-white/20">
                 <Users className="w-4 h-4 mr-2" />
                 Testimonials
+              </TabsTrigger>
+              <TabsTrigger value="resumes" className="data-[state=active]:bg-white/20">
+                <FileText className="w-4 h-4 mr-2" />
+                Resumes
               </TabsTrigger>
               <TabsTrigger value="contacts" className="data-[state=active]:bg-white/20">
                 <Mail className="w-4 h-4 mr-2" />
@@ -875,6 +977,112 @@ export default function Admin() {
                     </CardContent>
                   </Card>
                 ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="resumes" className="space-y-6">
+              <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-bold text-white">Resume Management</h2>
+                <div>
+                  <Input
+                    type="file"
+                    accept=".pdf,.doc,.docx,.txt"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        handleResumeUpload(file);
+                      }
+                    }}
+                    className="hidden"
+                    id="resume-upload"
+                    data-testid="input-resume-upload"
+                  />
+                  <Button
+                    onClick={() => document.getElementById('resume-upload')?.click()}
+                    className="bg-gradient-to-r from-pink-500 to-violet-500 hover:from-pink-600 hover:to-violet-600"
+                    data-testid="button-upload-resume"
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Upload Resume
+                  </Button>
+                </div>
+              </div>
+              
+              <div className="grid gap-6">
+                {resumes.map((resume) => (
+                  <Card key={resume.id} className="bg-white/10 backdrop-blur-md border-white/20">
+                    <CardContent className="p-6">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-3">
+                            <h3 className="text-xl font-bold text-white">{resume.fileName}</h3>
+                            {resume.isActive && (
+                              <Badge className="bg-green-500/20 text-green-300 border-green-500/30">
+                                Active
+                              </Badge>
+                            )}
+                          </div>
+                          
+                          {resume.parsedData && (
+                            <div className="mb-4 p-4 bg-white/5 rounded-lg">
+                              <h4 className="text-white font-medium mb-2">Parsed Information:</h4>
+                              <div className="text-white/80 text-sm space-y-1">
+                                <p><strong>Name:</strong> {resume.parsedData.personalInfo?.name || 'Not extracted'}</p>
+                                <p><strong>Email:</strong> {resume.parsedData.personalInfo?.email || 'Not extracted'}</p>
+                                <p><strong>Phone:</strong> {resume.parsedData.personalInfo?.phone || 'Not extracted'}</p>
+                                <p><strong>Summary:</strong> {resume.parsedData.summary || 'Not extracted'}</p>
+                              </div>
+                            </div>
+                          )}
+                          
+                          <p className="text-white/60 text-sm">
+                            Uploaded: {resume.uploadedAt ? new Date(resume.uploadedAt).toLocaleDateString() : 'Date unknown'}
+                          </p>
+                        </div>
+                        
+                        <div className="flex gap-2">
+                          {!resume.isActive && (
+                            <Button
+                              onClick={() => activateResumeMutation.mutate(resume.id)}
+                              size="sm"
+                              className="bg-green-500/20 hover:bg-green-500/30 text-green-300"
+                              data-testid={`button-activate-resume-${resume.id}`}
+                            >
+                              Set Active
+                            </Button>
+                          )}
+                          <Button
+                            onClick={() => deleteResumeMutation.mutate(resume.id)}
+                            size="sm"
+                            variant="destructive"
+                            className="bg-red-500/20 hover:bg-red-500/30"
+                            data-testid={`button-delete-resume-${resume.id}`}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+                
+                {resumes.length === 0 && (
+                  <Card className="bg-white/10 backdrop-blur-md border-white/20">
+                    <CardContent className="p-12 text-center">
+                      <FileText className="w-16 h-16 text-white/40 mx-auto mb-4" />
+                      <h3 className="text-xl font-bold text-white mb-2">No resumes uploaded</h3>
+                      <p className="text-white/60 mb-4">Upload your first resume to get started</p>
+                      <Button
+                        onClick={() => document.getElementById('resume-upload')?.click()}
+                        className="bg-gradient-to-r from-pink-500 to-violet-500 hover:from-pink-600 hover:to-violet-600"
+                        data-testid="button-upload-first-resume"
+                      >
+                        <Plus className="w-4 h-4 mr-2" />
+                        Upload Resume
+                      </Button>
+                    </CardContent>
+                  </Card>
+                )}
               </div>
             </TabsContent>
 

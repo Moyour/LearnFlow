@@ -53,6 +53,16 @@ export const contactSubmissions = pgTable("contact_submissions", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const resumes = pgTable("resumes", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  filename: text("filename").notNull(),
+  originalName: text("original_name").notNull(),
+  fileUrl: text("file_url").notNull(),
+  parsedContent: text("parsed_content"),
+  isActive: boolean("is_active").default(false),
+  uploadedAt: timestamp("uploaded_at").defaultNow(),
+});
+
 export const insertProjectSchema = createInsertSchema(projects).omit({
   id: true,
   createdAt: true,
@@ -73,6 +83,11 @@ export const insertContactSchema = createInsertSchema(contactSubmissions).omit({
   createdAt: true,
 });
 
+export const insertResumeSchema = createInsertSchema(resumes).omit({
+  id: true,
+  uploadedAt: true,
+});
+
 export type InsertProject = z.infer<typeof insertProjectSchema>;
 export type Project = typeof projects.$inferSelect;
 
@@ -84,3 +99,6 @@ export type Testimonial = typeof testimonials.$inferSelect;
 
 export type InsertContact = z.infer<typeof insertContactSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
+
+export type InsertResume = z.infer<typeof insertResumeSchema>;
+export type Resume = typeof resumes.$inferSelect;

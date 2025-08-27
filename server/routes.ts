@@ -2,7 +2,7 @@ import express from "express";
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertProjectSchema, insertBlogPostSchema, insertTestimonialSchema, insertContactSchema } from "@shared/schema";
+import { insertProjectSchema, insertBlogPostSchema, insertTestimonialSchema, insertContactSchema, insertResumeSchema } from "@shared/schema";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
@@ -181,38 +181,59 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/blog", async (req, res) => {
+  // Resume routes
+  app.get("/api/resumes", async (req, res) => {
     try {
-      const validatedData = insertBlogPostSchema.parse(req.body);
-      const post = await storage.createBlogPost(validatedData);
-      res.status(201).json(post);
+      const resumes = await storage.getResumes();
+      res.json(resumes);
     } catch (error) {
-      res.status(400).json({ message: "Invalid blog post data" });
+      res.status(500).json({ message: "Failed to fetch resumes" });
     }
   });
 
-  app.put("/api/blog/:id", async (req, res) => {
+  app.get("/api/resumes/active", async (req, res) => {
     try {
-      const validatedData = insertBlogPostSchema.partial().parse(req.body);
-      const post = await storage.updateBlogPost(req.params.id, validatedData);
-      if (!post) {
-        return res.status(404).json({ message: "Blog post not found" });
+      const activeResume = await storage.getActiveResume();
+      if (!activeResume) {
+        return res.status(404).json({ message: "No active resume found" });
       }
-      res.json(post);
+      res.json(activeResume);
     } catch (error) {
-      res.status(400).json({ message: "Invalid blog post data" });
+      res.status(500).json({ message: "Failed to fetch active resume" });
     }
   });
 
-  app.delete("/api/blog/:id", async (req, res) => {
+  app.post("/api/resumes", async (req, res) => {
     try {
-      const deleted = await storage.deleteBlogPost(req.params.id);
-      if (!deleted) {
-        return res.status(404).json({ message: "Blog post not found" });
+      const validatedData = insertResumeSchema.parse(req.body);
+      const resume = await storage.createResume(validatedData);
+      res.status(201).json(resume);
+    } catch (error) {
+      res.status(400).json({ message: "Invalid resume data" });
+    }
+  });
+
+  app.patch("/api/resumes/:id/activate", async (req, res) => {
+    try {
+      const success = await storage.setActiveResume(req.params.id);
+      if (!success) {
+        return res.status(404).json({ message: "Resume not found" });
+      }
+      res.json({ message: "Resume activated successfully" });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to activate resume" });
+    }
+  });
+
+  app.delete("/api/resumes/:id", async (req, res) => {
+    try {
+      const success = await storage.deleteResume(req.params.id);
+      if (!success) {
+        return res.status(404).json({ message: "Resume not found" });
       }
       res.status(204).send();
     } catch (error) {
-      res.status(500).json({ message: "Failed to delete blog post" });
+      res.status(500).json({ message: "Failed to delete resume" });
     }
   });
 

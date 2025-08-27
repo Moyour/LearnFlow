@@ -379,7 +379,7 @@ export default function Admin() {
                 <FolderOpen className="w-4 h-4 mr-2" />
                 Projects
               </TabsTrigger>
-              <TabsTrigger value="blog" className="data-[state=active]:bg-white/20">
+              <TabsTrigger value="blog" className="data-[state=active]:bg-white/20 text-[#ffffff]">
                 <FileText className="w-4 h-4 mr-2" />
                 Blog Posts
               </TabsTrigger>
@@ -631,7 +631,8 @@ export default function Admin() {
                             <SelectContent>
                               <SelectItem value="instructional-design">Instructional Design</SelectItem>
                               <SelectItem value="elearning">E-Learning</SelectItem>
-                              <SelectItem value="technology">Technology</SelectItem>
+                              <SelectItem value="book-review">Book Review</SelectItem>
+                              <SelectItem value="personal-development">Personal Development</SelectItem>
                               <SelectItem value="case-study">Case Study</SelectItem>
                             </SelectContent>
                           </Select>
@@ -815,7 +816,7 @@ export default function Admin() {
                           <Save className="w-4 h-4 mr-2" />
                           {editingBlogPost ? 'Update' : 'Create'} Blog Post
                         </Button>
-                        <Button type="button" variant="outline" onClick={resetBlogForm} className="border-white/20 text-white hover:bg-white/10">
+                        <Button type="button" variant="outline" onClick={resetBlogForm} className="border-red/20 text-white hover:bg-white/10">
                           <X className="w-4 h-4 mr-2" />
                           Cancel
                         </Button>

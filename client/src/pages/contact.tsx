@@ -98,7 +98,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="font-semibold text-white">LinkedIn</p>
-                      <p className="text-white/80" data-testid="contact-linkedin">linkedin.com/in/kazeemsalau-id</p>
+                      <p className="text-white/80" data-testid="contact-linkedin">https://www.linkedin.com/in/kazeem-salau-164b1087/</p>
                     </div>
                   </div>
                   
@@ -108,7 +108,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="font-semibold text-white">Location</p>
-                      <p className="text-white/80" data-testid="contact-location">San Francisco Bay Area</p>
+                      <p className="text-white/80" data-testid="contact-location">Manchester, United Kingdom</p>
                     </div>
                   </div>
                 </div>

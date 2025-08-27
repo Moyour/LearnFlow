@@ -119,10 +119,9 @@ export default function About() {
                 
                 <div className="max-w-lg space-y-6">
                   <p className="text-2xl text-white/90 leading-relaxed font-light">
-                    When complex ideas suddenly <span className="font-bold text-white">click</span>. 
-                    When impossible concepts become <span className="italic">inevitable</span>. 
-                    When learners discover they're <span className="underline decoration-pink-400">capable of more</span>.
-                  </p>
+                     
+                    Because learning should <span className="underline decoration-pink-400"> spark action.</span> I turn complexity into simplicity, so learners not only understand but apply, grow, and succeed. <span className="italic">inevitable</span>. 
+                         </p>
                   
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
@@ -180,7 +179,7 @@ export default function About() {
               </span>
             </h2>
             <p className="text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-              Design is not just about aesthetics. It's about creating emotional connections that spark transformation.
+              Design for learning is more than beautiful slides or sleek interfaces. It’s about shaping experiences that connect with people, spark curiosity, and turn knowledge into real-world skills that stick.
             </p>
           </div>
           

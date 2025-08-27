@@ -9,8 +9,12 @@ import MarkdownContent from "@/components/markdown-content";
 
 export default function BlogPostPage() {
   const { id } = useParams<{ id: string }>();
-  
-  const { data: post, isLoading, error } = useQuery<BlogPost>({
+
+  const {
+    data: post,
+    isLoading,
+    error,
+  } = useQuery<BlogPost>({
     queryKey: ["/api/blog", id],
     enabled: !!id,
   });
@@ -37,8 +41,12 @@ export default function BlogPostPage() {
     return (
       <div className="py-20">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h1 className="text-2xl font-bold text-brand-slate mb-4">Article Not Found</h1>
-          <p className="text-slate-600 mb-8">The article you're looking for doesn't exist.</p>
+          <h1 className="text-2xl font-bold text-brand-slate mb-4">
+            Article Not Found
+          </h1>
+          <p className="text-slate-600 mb-8">
+            The article you're looking for doesn't exist.
+          </p>
           <Link href="/blog">
             <Button>Back to Blog</Button>
           </Link>
@@ -50,7 +58,6 @@ export default function BlogPostPage() {
   return (
     <div className="py-20">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
-        
         {/* Back Navigation */}
         <Link href="/blog">
           <Button variant="ghost" className="mb-8" data-testid="back-to-blog">
@@ -64,13 +71,19 @@ export default function BlogPostPage() {
           <Badge className="mb-4" data-testid="post-category">
             {post.category}
           </Badge>
-          <h1 className="text-4xl lg:text-5xl font-bold text-brand-slate mb-6" data-testid="post-title">
+          <h1
+            className="text-4xl lg:text-5xl font-bold text-brand-slate mb-6"
+            data-testid="post-title"
+          >
             {post.title}
           </h1>
-          <p className="text-xl text-slate-600 leading-relaxed mb-6" data-testid="post-excerpt">
+          <p
+            className="text-xl text-slate-600 leading-relaxed mb-6"
+            data-testid="post-excerpt"
+          >
             {post.excerpt}
           </p>
-          
+
           {/* Article Meta */}
           <div className="flex items-center text-slate-500 space-x-6">
             <div className="flex items-center">
@@ -78,8 +91,8 @@ export default function BlogPostPage() {
               <span data-testid="post-date">
                 {new Date(post.createdAt!).toLocaleDateString("en-US", {
                   year: "numeric",
-                  month: "long", 
-                  day: "numeric"
+                  month: "long",
+                  day: "numeric",
                 })}
               </span>
             </div>
@@ -95,8 +108,8 @@ export default function BlogPostPage() {
         {/* Featured Image */}
         {post.imageUrl && (
           <div className="mb-12">
-            <img 
-              src={post.imageUrl} 
+            <img
+              src={post.imageUrl}
               alt={post.title}
               className="w-full h-96 object-cover rounded-2xl shadow-lg"
               data-testid="post-image"
@@ -116,10 +129,11 @@ export default function BlogPostPage() {
               Enjoyed this article?
             </h3>
             <p className="text-slate-600 mb-6">
-              Check out more insights on instructional design and learning technology.
+              Check out more insights on instructional design and learning
+              technology.
             </p>
             <Link href="/blog">
-              <Button 
+              <Button
                 variant="outline"
                 className="border-brand-purple text-brand-purple hover:bg-brand-purple hover:text-white"
                 data-testid="more-articles-button"

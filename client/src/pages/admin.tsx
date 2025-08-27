@@ -13,10 +13,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Trash2, Edit, Plus, Save, X, FileText, Users, Mail, FolderOpen, Eye, EyeOff, ImageIcon, Type, List, Quote } from "lucide-react";
 import MarkdownContent from "@/components/markdown-content";
 
+
 export default function Admin() {
   const [activeTab, setActiveTab] = useState("projects");
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [editingBlogPost, setEditingBlogPost] = useState<BlogPost | null>(null);
+  const [resumeText, setResumeText] = useState("");
   const [editingTestimonial, setEditingTestimonial] = useState<Testimonial | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
@@ -55,6 +57,7 @@ export default function Admin() {
   const { data: projects = [], isLoading: projectsLoading } = useQuery<Project[]>({
     queryKey: ["/api/projects"],
   });
+
   
   const { data: blogPosts = [], isLoading: blogLoading } = useQuery<BlogPost[]>({
     queryKey: ["/api/blog"],

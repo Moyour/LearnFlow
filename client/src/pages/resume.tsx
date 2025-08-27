@@ -49,6 +49,7 @@ export default function Resume() {
             Experienced Instructional Designer & Learning Experience Designer
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/Kazeem_Salau_Resume.pdf" download>
             <Button 
               className="bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30 transition-all duration-300"
               data-testid="download-resume"
@@ -56,6 +57,8 @@ export default function Resume() {
               <Download className="w-4 h-4 mr-2" />
               Download PDF
             </Button>
+              </a>
+            
             {/* Admin upload button - hidden by default */}
             <Button 
               onClick={() => setShowUploader(!showUploader)}

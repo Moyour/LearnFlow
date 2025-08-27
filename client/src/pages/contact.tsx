@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { Mail, Linkedin, MapPin, Download, Calendar, Send } from "lucide-react";
+import { Mail, Linkedin, MapPin, Download, Calendar, Send, X, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -23,7 +23,7 @@ const projectTypes = [
 
 export default function Contact() {
   const { toast } = useToast();
-  
+
   const form = useForm<InsertContact>({
     resolver: zodResolver(insertContactSchema),
     defaultValues: {
@@ -76,32 +76,53 @@ export default function Contact() {
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
-            
+
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
                 <h3 className="text-2xl font-bold text-white mb-6 drop-shadow-lg">Get In Touch</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <a
+                      href="mailto:your.email@example.com"
+                      className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0 hover:bg-white/30 transition-colors"
+                      title="Send an email"
+                      data-testid="email-link"
+                    >
                       <Mail className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-white">Email</p>
-                      <p className="text-white/80" data-testid="contact-email">kazeem.salau@example.com</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    </a>
+                    <a
+                      href="https://x.com/themoyoursalau?s=21"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0 hover:bg-white/30 transition-colors"
+                      title="Visit X profile"
+                      data-testid="x-link"
+                    >
+                      <X className="h-6 w-6 text-white" />
+                    </a>
+                    <a
+                      href="https://www.youtube.com/@moyoursalau"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0 hover:bg-white/30 transition-colors"
+                      title="Visit YouTube channel"
+                      data-testid="youtube-link"
+                    >
+                      <Youtube className="h-6 w-6 text-white" />
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/kazeem-salau-164b1087/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0 hover:bg-white/30 transition-colors"
+                      title="Visit LinkedIn profile"
+                      data-testid="linkedin-link"
+                    >
                       <Linkedin className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-white">LinkedIn</p>
-                      <p className="text-white/80" data-testid="contact-linkedin">https://www.linkedin.com/in/kazeem-salau-164b1087/</p>
-                    </div>
+                    </a>
                   </div>
-                  
+
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
                       <MapPin className="h-6 w-6 text-white" />
@@ -113,14 +134,14 @@ export default function Contact() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Quick Links */}
               <div>
                 <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
                 <div className="flex flex-wrap gap-4">
                   <Button 
                     variant="outline"
-                    className="border-white/40 text-white hover:bg-gradient-to-r hover:from-pink-400 hover:via-purple-500 hover:to-indigo-500 hover:text-white hover:border-transparent"
+                    className="text-white bg-white/10 border-white/40 hover:bg-gradient-to-r hover:from-pink-400 hover:via-purple-500 hover:to-indigo-500 hover:text-white hover:border-transparent"
                     data-testid="download-resume"
                   >
                     <Download className="mr-2 h-4 w-4" />
@@ -128,7 +149,7 @@ export default function Contact() {
                   </Button>
                   <Button 
                     variant="outline"
-                    className="border-white/40 text-white hover:bg-gradient-to-r hover:from-pink-400 hover:via-purple-500 hover:to-indigo-500 hover:text-white hover:border-transparent"
+                    className="border-white/40 text-white bg-white/10 border-white/40 hover:bg-gradient-to-r hover:from-pink-400 hover:via-purple-500 hover:to-indigo-500 hover:text-white hover:border-transparent"
                     data-testid="schedule-call"
                   >
                     <Calendar className="mr-2 h-4 w-4" />
@@ -137,7 +158,7 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-            
+
             {/* Contact Form */}
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-lg border border-white/20">
               <Form {...form}>
@@ -180,7 +201,7 @@ export default function Contact() {
                       )}
                     />
                   </div>
-                  
+
                   <FormField
                     control={form.control}
                     name="email"
@@ -190,7 +211,7 @@ export default function Contact() {
                         <FormControl>
                           <Input 
                             type="email"
-                            placeholder="your.email@company.com" 
+                            placeholder="kazeem.salau@yahoo.com" 
                             {...field}
                             className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
                             data-testid="input-email"
@@ -200,7 +221,7 @@ export default function Contact() {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="company"
@@ -220,7 +241,7 @@ export default function Contact() {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="projectType"
@@ -245,7 +266,7 @@ export default function Contact() {
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="message"
@@ -265,7 +286,7 @@ export default function Contact() {
                       </FormItem>
                     )}
                   />
-                  
+
                   <Button 
                     type="submit" 
                     className="w-full bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 text-white hover:from-pink-500 hover:via-purple-600 hover:to-indigo-600 font-semibold"

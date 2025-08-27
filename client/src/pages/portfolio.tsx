@@ -43,7 +43,6 @@ export default function Portfolio() {
 
   return (
     <div className="bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400 min-h-screen overflow-x-hidden">
-      
       {/* Interactive Cursor */}
       <div 
         className="fixed w-8 h-8 bg-white/20 rounded-full pointer-events-none z-50 mix-blend-difference"
@@ -54,7 +53,6 @@ export default function Portfolio() {
           transform: hoveredProject ? 'scale(2)' : 'scale(1)'
         }}
       />
-
       {/* Hero Section - Dramatic Impact Statement */}
       <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
         {/* Animated Background */}
@@ -151,7 +149,6 @@ export default function Portfolio() {
           }
         `}</style>
       </section>
-
       {/* Project Categories - Creative Filter */}
       <section className="py-20 bg-black/30 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
@@ -186,7 +183,6 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
-
       {/* Projects Showcase - Storytelling Approach */}
       <section className="py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -264,7 +260,7 @@ export default function Portfolio() {
                             {project.scormUrl && (
                               <div className="flex items-center gap-2 text-purple-400">
                                 <Monitor className="w-4 h-4" />
-                                <span className="text-sm font-medium">Interactive Training Available</span>
+                                <span className="text-sm font-medium text-[#ffffff]">Interactive Training Available</span>
                               </div>
                             )}
                           </div>
@@ -313,7 +309,6 @@ export default function Portfolio() {
           )}
         </div>
       </section>
-
       {/* Call to Action */}
       <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-indigo-500/20" />

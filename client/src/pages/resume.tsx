@@ -1,42 +1,8 @@
-import { useState } from "react";
 import * as React from "react";
-import { Download, Mail, Phone, MapPin, Globe, Upload } from "lucide-react";
+import { Download, Mail, Phone, MapPin, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ResumeUploader } from "@/components/ResumeUploader";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-
-interface ResumeData {
-  personalInfo: {
-    name: string;
-    email: string;
-    phone: string;
-    location: string;
-  };
-  summary: string;
-  rawContent: string;
-  filename: string;
-  uploadDate: string;
-}
 
 export default function Resume() {
-  const [showUploader, setShowUploader] = useState(false);
-  const [resumeData, setResumeData] = useState<ResumeData | null>(null);
-  
-  const handleUploadComplete = (data: any) => {
-    setResumeData(data.data);
-    setShowUploader(false);
-    
-    // Save the parsed data for future use
-    localStorage.setItem('resumeData', JSON.stringify(data.data));
-  };
-  
-  // Load saved resume data on component mount
-  React.useEffect(() => {
-    const savedData = localStorage.getItem('resumeData');
-    if (savedData) {
-      setResumeData(JSON.parse(savedData));
-    }
-  }, []);
   return (
     <div className="py-20 bg-gradient-to-br from-indigo-900 via-purple-600 via-pink-500 to-amber-400 min-h-screen">
       {/* Hero Section */}
@@ -50,24 +16,14 @@ export default function Resume() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/Kazeem_Salau_Resume.pdf" download>
-            <Button 
-              className="bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30 transition-all duration-300"
-              data-testid="download-resume"
-            >
-              <Download className="w-4 h-4 mr-2" />
-              Download PDF
-            </Button>
-              </a>
-            
-            {/* Admin upload button - hidden by default */}
-            <Button 
-              onClick={() => setShowUploader(!showUploader)}
-              className="bg-purple-500/20 backdrop-blur-md border-purple-300/30 text-white hover:bg-purple-500/30 transition-all duration-300"
-              title="Admin: Update resume content"
-            >
-              <Upload className="w-4 h-4 mr-2" />
-              {showUploader ? 'Hide Uploader' : 'Update Resume'}
-            </Button>
+              <Button
+                className="bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-white/30 transition-all duration-300"
+                data-testid="download-resume"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Download PDF
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -75,58 +31,21 @@ export default function Resume() {
       {/* Resume Content */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          
-          {/* Upload Section */}
-          {showUploader && (
-            <div className="mb-12 p-6 bg-purple-50 rounded-lg border-2 border-purple-200">
-              <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Admin: Update Resume Content</h2>
-                <p className="text-gray-600">
-                  Upload your resume file to automatically extract and update your portfolio information
-                </p>
-              </div>
-              <ResumeUploader onUploadComplete={handleUploadComplete} />
-            </div>
-          )}
-
-          {/* Success Message */}
-          {resumeData && (
-            <div className="mb-8">
-              <Alert className="mb-4 border-green-200 bg-green-50">
-                <AlertDescription className="text-green-800">
-                  Resume content updated! Your information has been extracted from the uploaded file "{resumeData.filename}". 
-                  Review the details below and the content will be saved to your portfolio.
-                </AlertDescription>
-              </Alert>
-              
-              {/* Raw Content Preview */}
-              {resumeData.rawContent && (
-                <div className="p-4 bg-gray-100 rounded-lg border">
-                  <h4 className="font-semibold text-gray-900 mb-2">Extracted Content Preview:</h4>
-                  <p className="text-sm text-gray-700 font-mono whitespace-pre-wrap max-h-32 overflow-y-auto">
-                    {resumeData.rawContent.substring(0, 500)}
-                    {resumeData.rawContent.length > 500 && '...'}
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
-          
           {/* Contact Information */}
           <div className="mb-12 p-8 bg-gray-50 rounded-2xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">{resumeData?.personalInfo?.name || "Kazeem Salau"}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Kazeem Salau</h2>
             <div className="grid md:grid-cols-2 gap-4 text-gray-600">
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-purple-600" />
-                <span>{resumeData?.personalInfo?.email || "kazeem.salau@email.com"}</span>
+                <span>kazeem.salau@email.com</span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex ITEMS-center gap-3">
                 <Phone className="w-5 h-5 text-purple-600" />
-                <span>{resumeData?.personalInfo?.phone || "+1 (555) 123-4567"}</span>
+                <span>+1 (555) 123-4567</span>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin className="w-5 h-5 text-purple-600" />
-                <span>{resumeData?.personalInfo?.location || "San Francisco, CA"}</span>
+                <span>San Francisco, CA</span>
               </div>
               <div className="flex items-center gap-3">
                 <Globe className="w-5 h-5 text-purple-600" />
@@ -141,11 +60,11 @@ export default function Resume() {
               Professional Summary
             </h3>
             <p className="text-gray-700 leading-relaxed text-lg">
-              {resumeData?.summary || `Results-driven Instructional Designer with 8+ years of experience creating engaging, 
-              learner-centered educational experiences. Expert in applying learning science principles, 
-              design thinking methodologies, and cutting-edge educational technologies to deliver 
-              measurable learning outcomes. Proven track record of improving learner engagement by 
-              40% and knowledge retention by 35% through innovative design approaches.`}
+              Results孝2Results-driven Instructional Designer with 8+ years of experience creating engaging,
+              learner-centered educational experiences. Expert in applying learning science principles,
+              design thinking methodologies, and cutting-edge educational technologies to deliver
+              measurable learning outcomes. Proven track record of improving learner engagement by
+              40% and knowledge retention by 35% through innovative design approaches.
             </p>
           </div>
 
@@ -190,7 +109,6 @@ export default function Resume() {
             <h3 className="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-purple-200 pb-2">
               Professional Experience
             </h3>
-            
             <div className="space-y-8">
               {/* Job 1 */}
               <div className="border-l-4 border-purple-200 pl-6">
@@ -294,7 +212,7 @@ export default function Resume() {
               <div className="bg-gray-50 p-6 rounded-lg">
                 <h4 className="text-lg font-semibold text-gray-900 mb-2">Enterprise Onboarding Transformation</h4>
                 <p className="text-gray-700 mb-3">
-                  Complete redesign of company-wide onboarding program using design thinking methodology. 
+                  Complete redesign of company-wide onboarding program using design thinking methodology.
                   Reduced time-to-productivity by 45% and increased new hire satisfaction by 60%.
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -303,11 +221,11 @@ export default function Resume() {
                   <span className="px-3 py-1 bg-purple-100 text-purple-700 text-sm rounded-full">Analytics</span>
                 </div>
               </div>
-              
+
               <div className="bg-gray-50 p-6 rounded-lg">
                 <h4 className="text-lg font-semibold text-gray-900 mb-2">AI-Enhanced Learning Platform</h4>
                 <p className="text-gray-700 mb-3">
-                  Pioneered integration of AI-powered personalization features in corporate LMS, 
+                  Pioneered integration of AI-powered personalization features in corporate LMS,
                   resulting in 50% improvement in learning path completion and 30% increase in knowledge retention.
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -318,7 +236,6 @@ export default function Resume() {
               </div>
             </div>
           </div>
-
         </div>
       </section>
     </div>

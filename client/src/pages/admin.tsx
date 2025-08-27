@@ -824,46 +824,75 @@ export default function Admin() {
               )}
 
               <div className="grid gap-6">
-                {blogPosts.map((post) => (
-                  <Card key={post.id} className="bg-white/10 backdrop-blur-md border-white/20">
-                    <CardContent className="p-6">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <h3 className="text-xl font-bold text-white">{post.title}</h3>
-                            <Badge variant="outline" className="border-white/30 text-white/80">
-                              {post.category}
-                            </Badge>
-                            {post.published && (
-                              <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30">
-                                Published
-                              </Badge>
-                            )}
-                          </div>
-                          <p className="text-white/80 mb-3">{post.excerpt}</p>
-                        </div>
-                        <div className="flex gap-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => startBlogEdit(post)}
-                            className="border-white/20 text-white hover:bg-white/10"
-                          >
-                            <Edit className="w-4 h-4" />
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => deleteBlogMutation.mutate(post.id)}
-                            className="border-red-500/20 text-red-300 hover:bg-red-500/10"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </Button>
-                        </div>
-                      </div>
+                {blogLoading ? (
+                  <Card className="bg-white/10 backdrop-blur-md border-white/20">
+                    <CardContent className="p-12 text-center">
+                      <div className="text-white">Loading blog posts...</div>
                     </CardContent>
                   </Card>
-                ))}
+                ) : blogPosts.length === 0 ? (
+                  <Card className="bg-white/10 backdrop-blur-md border-white/20">
+                    <CardContent className="p-12 text-center">
+                      <FileText className="w-16 h-16 text-white/40 mx-auto mb-4" />
+                      <h3 className="text-xl font-bold text-white mb-2">No blog posts yet</h3>
+                      <p className="text-white/60 mb-4">Create your first blog post to get started</p>
+                      <Button
+                        onClick={() => {setShowForm(true); setActiveTab("blog")}}
+                        className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+                        data-testid="button-create-first-blog"
+                      >
+                        <Plus className="w-4 h-4 mr-2" />
+                        Create First Blog Post
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ) : (
+                  blogPosts.map((post) => (
+                    <Card key={post.id} className="bg-white/10 backdrop-blur-md border-white/20">
+                      <CardContent className="p-6">
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-2">
+                              <h3 className="text-xl font-bold text-white">{post.title}</h3>
+                              <Badge variant="outline" className="border-white/30 text-white/80">
+                                {post.category}
+                              </Badge>
+                              {post.published && (
+                                <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30">
+                                  Published
+                                </Badge>
+                              )}
+                            </div>
+                            <p className="text-white/80 mb-3">{post.excerpt || "No excerpt provided"}</p>
+                            <p className="text-white/60 text-sm">
+                              Created: {post.createdAt ? new Date(post.createdAt).toLocaleDateString() : 'Date unknown'}
+                            </p>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => startBlogEdit(post)}
+                              className="border-white/20 text-white hover:bg-white/10"
+                              data-testid={`button-edit-blog-${post.id}`}
+                            >
+                              <Edit className="w-4 h-4" />
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => deleteBlogMutation.mutate(post.id)}
+                              className="border-red-500/20 text-red-300 hover:bg-red-500/10"
+                              data-testid={`button-delete-blog-${post.id}`}
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))
+                )}
               </div>
             </TabsContent>
 

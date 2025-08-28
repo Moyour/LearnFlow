@@ -242,7 +242,7 @@ export default function Home() {
         <div className="flex justify-center gap-8">
           <Link href="/contact">
             <Button className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 px-12 py-6 rounded-full text-xl font-semibold">
-              Get In Touch <ArrowRight className="ml-3 w-6 h-6" />
+              Get In Touch 
             </Button>
           </Link>
           <Link href="/portfolio">

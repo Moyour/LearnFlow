@@ -120,7 +120,7 @@ export default function About() {
                 <div className="max-w-lg space-y-6">
                   <p className="text-2xl text-white/90 leading-relaxed font-light">
                      
-                    Because learning should <span className="underline decoration-pink-400"> spark action.</span> I turn complexity into simplicity, so learners not only understand but apply, grow, and succeed. <span className="italic">inevitable</span>. 
+                    Because learning should <span className="underline decoration-pink-400"> spark action.</span> I turn complexity into simplicity, so learners not only understand but apply, grow, and succeed. <span className="italic"></span>
                          </p>
                   
                   <div className="flex items-center gap-4">

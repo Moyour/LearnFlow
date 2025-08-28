@@ -250,8 +250,11 @@ export default function Contact() {
                         <FormLabel className="text-white">Project Type</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value || undefined}>
                           <FormControl>
-                            <SelectTrigger className="bg-white/20 border-white/30 text-white" data-testid="select-projectType">
-                              <SelectValue placeholder="Select project type" className="text-white/60" />
+                            <SelectTrigger className="bg-white/20 border-white/30 text-[#ffffff]" data-testid="select-projectType">
+                              <SelectValue
+                                placeholder="Select project type"
+                                className="text-white data-[placeholder]:text-white/60"
+                              />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent className="bg-white/95 backdrop-blur-md">

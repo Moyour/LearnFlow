@@ -27,7 +27,7 @@ export default function Portfolio() {
     { id: "Digital", label: "Digital Learning", icon: Target, count: projects.length },
     { id: "mobile", label: "Mobile Experiences", icon: Brain, count: projects.filter(p => p.category === "elearning").length },
     { id: "Corporate", label: "Corporate Training", icon: Zap, count: projects.filter(p => p.category === "mobile").length },
-    { id: "Future", label: "Future-Ready Learning", icon: Users, count: projects.filter(p => p.category === "corporate").length },
+    { id: "Game", label: "Gamified", icon: Users, count: projects.filter(p => p.category === "corporate").length },
   ];
 
   const filteredProjects = projects.filter((project: Project) => {

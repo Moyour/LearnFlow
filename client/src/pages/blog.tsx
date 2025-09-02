@@ -9,9 +9,17 @@ import testiImage from "../assets/Tes4.jpg";
 export default function Blog() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const { data: blogPosts = [], isLoading } = useQuery({
+  const { data: blogPosts = [], isLoading, error } = useQuery({
     queryKey: ["/api/blog"],
-    queryFn: () => fetch("/api/blog?published=true").then(res => res.json()),
+    queryFn: async () => {
+      const res = await fetch("/api/blog?published=true");
+      if (!res.ok) {
+        throw new Error('Failed to fetch blog posts');
+      }
+      const data = await res.json();
+      // Ensure we always return an array
+      return Array.isArray(data) ? data : [];
+    },
   });
 
   const filteredPosts = blogPosts.filter((post: BlogPost) => {
@@ -57,7 +65,13 @@ export default function Blog() {
           </div>
           
           {/* Blog Posts List - Medium Style */}
-          {isLoading ? (
+          {error ? (
+            <div className="text-center py-12">
+              <p className="text-lg text-red-600">
+                Unable to load blog posts. Please try again later.
+              </p>
+            </div>
+          ) : isLoading ? (
             <div className="max-w-4xl mx-auto space-y-12">
               {[...Array(4)].map((_, i) => (
                 <div key={i} className="animate-pulse">

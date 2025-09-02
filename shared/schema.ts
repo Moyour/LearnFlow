@@ -15,6 +15,11 @@ export const projects = pgTable("projects", {
   scormUrl: text("scorm_url"),
   demoUrl: text("demo_url"),
   featured: boolean("featured").default(false),
+  // Project detail page sections
+  challenge: text("challenge"),
+  solution: text("solution"),
+  process: text("process"),
+  results: text("results"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 

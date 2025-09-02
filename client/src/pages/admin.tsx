@@ -32,6 +32,10 @@ export default function Admin() {
     scormUrl: "",
     demoUrl: "",
     featured: false,
+    challenge: "",
+    solution: "",
+    process: "",
+    results: "",
   });
   const [blogFormData, setBlogFormData] = useState<InsertBlogPost>({
     title: "",
@@ -230,6 +234,10 @@ export default function Admin() {
       scormUrl: "",
       demoUrl: "",
       featured: false,
+      challenge: "",
+      solution: "",
+      process: "",
+      results: "",
     });
   };
 
@@ -487,6 +495,63 @@ export default function Admin() {
                           className="bg-white/10 border-white/20 text-white placeholder:text-white/60 mt-2"
                           data-testid="input-scorm-url"
                         />
+                      </div>
+                    </div>
+
+                    {/* Project Detail Page Sections */}
+                    <div className="space-y-4 border-t border-white/20 pt-6">
+                      <h3 className="text-white text-lg font-semibold mb-4">Project Detail Page Content</h3>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <label className="text-white text-sm font-medium">Challenge</label>
+                          <Textarea 
+                            value={formData.challenge || ''}
+                            onChange={(e) => setFormData({...formData, challenge: e.target.value})}
+                            className="bg-white/10 border-white/20 text-white placeholder:text-white/60 mt-2"
+                            rows={4}
+                            placeholder="Describe the challenge this project addressed..."
+                            data-testid="textarea-challenge"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="text-white text-sm font-medium">Solution</label>
+                          <Textarea 
+                            value={formData.solution || ''}
+                            onChange={(e) => setFormData({...formData, solution: e.target.value})}
+                            className="bg-white/10 border-white/20 text-white placeholder:text-white/60 mt-2"
+                            rows={4}
+                            placeholder="Explain the solution you implemented..."
+                            data-testid="textarea-solution"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <label className="text-white text-sm font-medium">Process</label>
+                          <Textarea 
+                            value={formData.process || ''}
+                            onChange={(e) => setFormData({...formData, process: e.target.value})}
+                            className="bg-white/10 border-white/20 text-white placeholder:text-white/60 mt-2"
+                            rows={4}
+                            placeholder="Describe your design and development process..."
+                            data-testid="textarea-process"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="text-white text-sm font-medium">Results</label>
+                          <Textarea 
+                            value={formData.results || ''}
+                            onChange={(e) => setFormData({...formData, results: e.target.value})}
+                            className="bg-white/10 border-white/20 text-white placeholder:text-white/60 mt-2"
+                            rows={4}
+                            placeholder="Share the outcomes and impact..."
+                            data-testid="textarea-results"
+                          />
+                        </div>
                       </div>
                     </div>
 

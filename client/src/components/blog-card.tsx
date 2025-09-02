@@ -72,10 +72,7 @@ export default function BlogCard({ post }: BlogCardProps) {
               <span className="text-sm">{engagement.readTime}</span>
             </div>
 
-            <div className="flex items-center gap-1 text-gray-500">
-              <MessageCircle className="w-4 h-4" />
-              <span className="text-sm">{engagement.comments}</span>
-            </div>
+            
 
             <div className="flex items-center gap-6 ml-auto">
               <button className="text-gray-400 hover:text-gray-600 transition-colors">

@@ -28,11 +28,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         <div className="flex-1 space-y-3">
           {/* Author Info */}
           <div className="flex items-center gap-3">
-            <img 
-              src={author.avatar}
-              alt={author.name}
-              className="w-6 h-6 rounded-full object-cover"
-            />
+            
             <span className="text-sm text-gray-700 font-medium">{author.name}</span>
             {author.verified && (
               <div className="w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center">

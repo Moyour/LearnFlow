@@ -30,9 +30,7 @@ export default function Navigation() {
     { name: "Projects", href: "/portfolio" },
     { name: "About", href: "/about" },
     { name: "Blog", href: "/blog" },
-    { name: "Resume", href: "/resume" }, // now points to internal page
   ];
-
   const isActive = (href: string) => {
     if (href === "/") return location === "/";
     return location.startsWith(href);

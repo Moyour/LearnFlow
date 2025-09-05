@@ -1,10 +1,7 @@
 import { Link } from "wouter";
 import { BlogPost } from "@shared/schema";
-import { Clock, MessageCircle, Star } from "lucide-react";
-
-interface BlogCardProps {
-  post: BlogPost;
-}
+import { Clock, Star } from "lucide-react";
+interface BlogCardProps {post: BlogPost;}
 
 export default function BlogCard({ post }: BlogCardProps) {
   // Mock author data - in a real app this would come from the post data
@@ -70,11 +67,8 @@ export default function BlogCard({ post }: BlogCardProps) {
             <div className="flex items-center gap-1 text-gray-500">
               <Clock className="w-4 h-4" />
               <span className="text-sm">{engagement.readTime}</span>
+           
             </div>
-
-            
-
-            
           </div>
         </div>
 

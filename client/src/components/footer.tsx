@@ -87,11 +87,7 @@ export default function Footer() {
                   Contact
                 </ScrollLink>
               </li>
-              <li>
-                <ScrollLink href="/resume" className="hover:text-white transition-colors" data-testid="footer-resume">
-                  Resume
-                </ScrollLink>
-              </li>
+              
             </ul>
           </div>
 

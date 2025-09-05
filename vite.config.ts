@@ -3,32 +3,36 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig(async ({ command, mode }) => {
-  // Only import Replit plugins in dev on Replit
-  let replitPlugins: any[] = [];
+  // Array to hold plugins
+  const plugins = [react()];
 
+  // Only try to load Replit plugins if running in Replit
   if (mode !== "production" && process.env.REPL_ID !== undefined) {
-    const runtimeErrorOverlay = await import("@replit/vite-plugin-runtime-error-modal").then(
-      (m) => m.default
-    );
-    const cartographer = await import("@replit/vite-plugin-cartographer").then(
-      (m) => m.cartographer
-    );
+    // Import dynamically inside the function scope
+    try {
+      const { default: runtimeErrorOverlay } = await import(
+        "@replit/vite-plugin-runtime-error-modal"
+      );
+      const { cartographer } = await import("@replit/vite-plugin-cartographer");
 
-    replitPlugins = [runtimeErrorOverlay(), cartographer()];
+      plugins.push(runtimeErrorOverlay(), cartographer());
+    } catch (err) {
+      console.warn("Replit plugins not found, skipping them");
+    }
   }
 
   return {
-    plugins: [react(), ...replitPlugins],
+    plugins,
     resolve: {
       alias: {
-        "@": path.resolve(import.meta.url, "../client/src"),
-        "@shared": path.resolve(import.meta.url, "../shared"),
-        "@assets": path.resolve(import.meta.url, "../attached_assets"),
+        "@": path.resolve("client/src"),
+        "@shared": path.resolve("shared"),
+        "@assets": path.resolve("attached_assets"),
       },
     },
-    root: path.resolve(import.meta.url, "../client"),
+    root: path.resolve("client"),
     build: {
-      outDir: path.resolve(import.meta.url, "../dist/public"),
+      outDir: path.resolve("dist/public"),
       emptyOutDir: true,
     },
     server: {

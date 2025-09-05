@@ -1,6 +1,8 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
+import typography from "@tailwindcss/typography";
 
-export default {
+const config: Config = {
   darkMode: ["class"],
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -62,57 +64,39 @@ export default {
           ring: "var(--sidebar-ring)",
         },
         // Brand colors
-        'brand-purple': 'hsl(251, 79%, 68%)',
-        'brand-slate': {
-          DEFAULT: 'hsl(213, 25%, 12%)',
-          50: 'hsl(210, 6%, 98%)',
-          100: 'hsl(210, 6%, 95%)',
-          200: 'hsl(210, 6%, 90%)',
-          300: 'hsl(210, 6%, 83%)',
-          600: 'hsl(213, 16%, 39%)',
-          700: 'hsl(213, 25%, 27%)',
+        "brand-purple": "hsl(251, 79%, 68%)",
+        "brand-slate": {
+          DEFAULT: "hsl(213, 25%, 12%)",
+          50: "hsl(210, 6%, 98%)",
+          100: "hsl(210, 6%, 95%)",
+          200: "hsl(210, 6%, 90%)",
+          300: "hsl(210, 6%, 83%)",
+          600: "hsl(213, 16%, 39%)",
+          700: "hsl(213, 25%, 27%)",
         },
       },
       fontFamily: {
         sans: ["Poppins", "var(--font-sans)", "sans-serif"],
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],
-        poppins: ['Poppins', 'sans-serif'],
+        poppins: ["Poppins", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
         "fade-in": {
-          "0%": {
-            opacity: "0",
-            transform: "translateY(10px)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translateY(0)",
-          },
+          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "slide-in": {
-          "0%": {
-            transform: "translateX(-100%)",
-          },
-          "100%": {
-            transform: "translateX(0)",
-          },
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0)" },
         },
       },
       animation: {
@@ -123,5 +107,7 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
-} satisfies Config;
+  plugins: [tailwindcssAnimate, typography],
+};
+
+export default config;
